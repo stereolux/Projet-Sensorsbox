@@ -1,0 +1,51 @@
+$icon-font-path: "/fonts/";
+$fa-font-path: "/fonts";
+
+@import "sass-bootstrap/lib/bootstrap";
+@import "font-awesome/scss/font-awesome";
+
+@import "inline";
+@import "layout";
+@import "alert";
+@import "navigation";
+@import "user";
+@import "article";
+@import "vkheader";
+@import "helpers";
+
+
+button .glyphicon {
+	top:2px;
+	margin:0 10px;
+}
+
+
+.gpioInput {
+	border: 1px solid #CCC;
+	padding: 10px;
+	text-align:center;
+	font-size:3em;
+	font-weight:bold;
+}
+
+.row > div > a.btn {
+	margin-bottom:15px;
+}
+
+.navbar-brand span {
+	position: absolute;
+	top:5px;
+	display:inline-block;
+	background:#444;
+	color:white;
+	height:40px;
+	width:40px;
+	line-height:210%;
+	border:1px solid #222;
+	border-radius:50%;
+	text-align:center;
+	text-shadow: rgba(0,0,0,0.8) 1px 1px 1px;
+}
+.breadcrumb {
+	margin-bottom: 15px
+}

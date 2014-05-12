@@ -1,0 +1,15 @@
+.articleAuthor {
+    padding:5px 0 15px;
+}
+.articleAuthor img {
+    max-width:36px;
+    margin: -16px 10px -14px 0px;
+}
+
+.articleOptions {
+	float:right;
+	text-align:right;
+}
+*:not(.list-group-item) > .articleOptions {
+	margin-top:-1px;
+}

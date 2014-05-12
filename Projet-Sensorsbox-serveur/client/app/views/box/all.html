@@ -1,0 +1,29 @@
+<div class="articleOptions">
+	<div hm-tap="utils.locationPath('box/create')" class="btn btn-default">
+		<span class="glyphicon glyphicon-plus"></span>
+		Add box
+	</div>
+</div>
+<h2>All boxes</h2>
+
+<ul class="list-group">
+	<li ng-repeat="box in boxs | orderBy:'name'" class="list-group-item clearfix">
+		<div ng-show="(user.id === box.owner)" class="articleOptions">
+			<div hm-tap="utils.locationPath('box/{{box.id}}/edit')" class="btn btn-default">
+				<span class="glyphicon glyphicon-cog"></span>
+			</div>
+			<div hm-tap="deleteRpi(box)" class="btn btn-default">
+				<span class="glyphicon glyphicon-remove"></span>
+			</div>
+			<br/>
+			<br/>
+			<div hm-tap="utils.locationPath('box/{{box.id}}/show')" class="btn btn-block btn-primary">
+				<span>Details</span>
+			</div>
+		</div>
+		<p>
+			<strong>{{box.name}}</strong>
+		</p>
+		<p>{{box.description}}</p>
+	</li>
+</ul>

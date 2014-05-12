@@ -1,0 +1,24 @@
+vkheader {
+	display:block;
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	padding:6px 15px;
+	background:white;
+	border-bottom:1px solid #333333;
+	text-align:center;
+	> div {
+		height:40px;
+		line-height:40px;
+		font-size:18px;
+		font-weight:500;
+	}
+	div.glyphicon {
+		font-size:32px;
+		float:left;
+		&.vkusericon {
+			float:right
+		}
+	}
+}

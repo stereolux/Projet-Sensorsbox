@@ -1,0 +1,63 @@
+
+@import "sass-bootstrap/lib/variables";
+
+.vkalert {
+		margin-bottom:10px;
+}
+.vkalert.ng-enter {
+	animation-duration: 600ms;
+  animation-name: slidein;
+}
+.vkalert.ng-leave {
+	animation-duration: 600ms;
+  animation-name: slideout;
+}
+@media (max-width: $screen-sm) {
+}
+@media (min-width: $screen-sm) {
+	.vkalert.ng-enter, .vkalert.ng-leave.ng-leave-active {
+	}
+	.vkalert, .vkalert.ng-enter.ng-enter-active, .vkalert.ng-leave {
+	}
+}
+@keyframes slidein {
+  0% {
+    transform: translateX(-150%);
+		line-height:0;
+		padding: 0;
+		margin-bottom:0;
+  }
+
+  50% {
+    transform: translateX(-150%);
+		line-height:1.42857;
+		padding: 15px;
+		margin-bottom:10px;
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+@keyframes slideout {
+  0% {
+    transform: translateX(0%);
+		line-height:1.42857;
+		padding: 15px;
+		margin-bottom:10px;
+  }
+
+  50% {
+    transform: translateX(150%);
+		line-height:1.42857;
+		padding: 15px;
+		margin-bottom:10px;
+  }
+
+  100% {
+    transform: translateX(150%);
+		line-height:0;
+		padding: 0;
+		margin-bottom:0;
+  }
+}

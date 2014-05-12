@@ -1,0 +1,13 @@
+social {
+	i.fa {
+		font-size:20px;
+		position:relative;
+		bottom:-2px;
+	}
+	.btn-group > .btn:not(:first-child):not(:last-child):not(.dropdown-toggle) {
+		border-left-color: white;
+		border-right-color: white;
+		padding-top:10px;
+		padding-bottom:10px;
+	}
+}

@@ -1,0 +1,13 @@
+<div ng-show="(user.id === box.user)" class="articleOptions clearfix">
+	<div style="padding-bottom:8px;">
+		<div hm-tap="utils.locationPath('box/' + box.id + '/edit')" class="btn btn-default">
+			<span class="glyphicon glyphicon-cog"></span>
+		</div>
+		<div hm-tap="deleteRpi(box)" class="btn btn-default">
+			<span class="glyphicon glyphicon-remove"></span>
+		</div>
+	</div>
+</div>
+<h2 ng-bind="box.name">Box</h2>
+<p ng-bind="'ID: ' + box.id"></p>
+<p>{{box.description}}</p>

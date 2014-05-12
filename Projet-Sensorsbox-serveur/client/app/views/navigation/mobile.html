@@ -1,0 +1,28 @@
+<div class="snap-drawers">
+	<div class="snap-drawer snap-drawer-left">
+		<nav class="scrollable" role="navigation">
+			<div class="vkbrand">
+					Menu
+			</div>
+			<a hm-tap="utils.locationPath('')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/'}">Home</a>
+			<h5 ng-show="user" class="centeredH dark"><span>Settings</span></h5>
+			<div ng-show="user" style="clear:both">
+					<a hm-tap="utils.locationPath('box')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/box'}">Boxes</a>
+			</div>
+		</nav>
+	</div>
+	<div class="snap-drawer snap-drawer-right">
+		<nav class="scrollable" role="navigation">
+			<div ng-show="!user">
+				<div class="vkbrand">User</div>
+				<a hm-tap="utils.locationPath('user/signin')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/user/signin'}">Sign in</a>
+				<a hm-tap="utils.locationPath('user/signup')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/user/signup'}">Sign up</a>
+			</div>
+			<div ng-show="user">
+					<div class="vkbrand">{{user.firstname}}</div>
+					<a hm-tap="utils.locationPath('user/edit')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/user/edit'}">Settings</a>
+					<a hm-tap="logout()" class="list-group-item">Sign out</a>
+			</div>
+		</nav>
+	</div>
+</div>

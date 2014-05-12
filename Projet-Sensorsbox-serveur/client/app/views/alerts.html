@@ -1,0 +1,5 @@
+<div class="vkalertcontainer">
+	<div>
+		<alert ng-repeat="alert in alerts | orderBy:$index:reverse" type="{{alert.type}}" class="vkalert">{{alert.msg}}</alert>
+	</div>
+</div>

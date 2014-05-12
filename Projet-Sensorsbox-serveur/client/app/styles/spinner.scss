@@ -1,0 +1,55 @@
+@import "compass/css3/shared";
+@import "vendor/_ui-spinner";
+
+$spinner_color : #445878;
+
+.spinnerContainer {
+	display:none;
+	background:rgba(0,0,0,0);
+	top: 0;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	> div {
+		background:white;
+		margin:8em auto 0;
+		width:140px;
+		padding:20px 30px;
+		border-radius:10px;
+		border:1px solid #CCC;
+		box-shadow: 0 0 40px 0px rgba(0,0,0,0.2);
+		.spinner {
+			width:60px;
+			@include ui-spinner(#fff, 60px, $spinner_color, white, .7, 3s);
+			margin:0 auto;
+		}
+		.spinnerContent {
+			padding-top:10px;
+			text-align:center;
+		}
+	}
+}
+
+.vkslow.spinnerShown .spinnerContainer {
+	display:block;
+}
+
+
+body {
+	.disableUi {
+		position:absolute;
+		top:0;
+		left:0;
+		right:0;
+		bottom:0;
+		display:none;
+	}
+	&.snapjs-left, &.snapjs-right {
+		.disableUi {
+			display:block;
+		}
+
+	}
+
+}

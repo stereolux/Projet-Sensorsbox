@@ -1,0 +1,22 @@
+{
+  "name": "sensorsbox",
+  "private": true,
+  "version": "0.0.0",
+  "description": "a Sails application",
+  "keywords": [],
+  "dependencies": {
+    "sails": "~0.10.0-rc7",
+    "sails-mongo": "~0.10.0-rc4",
+    "grunt": "0.4.2",
+    "passport": "~0.2.0",
+    "passport-local": "~1.0.0",
+    "bcrypt": "~0.7.8"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "debug": "node debug app.js"
+  },
+  "main": "app.js",
+  "author": "vkammerer & xseignard",
+  "license": "MIT"
+}
