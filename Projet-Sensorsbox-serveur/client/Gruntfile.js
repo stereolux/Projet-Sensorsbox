@@ -22,7 +22,7 @@ module.exports = function (grunt) {
     yeoman: {
       // configurable paths
       app: require('./bower.json').appPath || 'app',
-      dist: '../server/dist'
+      dist: 'dist'
     },
 
     // Watches files for changes and runs tasks based on the changed files
@@ -147,6 +147,10 @@ module.exports = function (grunt) {
     bowerInstall: {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
+        exclude: [
+          'bower_components/jquery/dist/jquery.js',
+          'bower_components/sass-bootstrap/dist/js/bootstrap.js'
+        ],
         ignorePath: '<%= yeoman.app %>/'
       },
       sass: {
@@ -310,7 +314,8 @@ module.exports = function (grunt) {
             '.htaccess',
             '*.html',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'fonts/*',
+            'bower_components/sass-bootstrap/dist/fonts/*'
           ]
         }, {
           expand: true,

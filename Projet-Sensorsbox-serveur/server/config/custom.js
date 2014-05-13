@@ -69,7 +69,7 @@ module.exports = {
         app.use(express.static(process.cwd() + '/../client/app'));        
       }
       else if (process.env.NODE_ENV === 'production') {
-        app.use(express.static(process.cwd() + '/dist'));
+        app.use(express.static(process.cwd() + '/../client/dist'));
       }
 
       console.log('Enabling passport for websockets communication');

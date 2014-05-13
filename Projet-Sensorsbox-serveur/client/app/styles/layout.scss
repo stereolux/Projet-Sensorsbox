@@ -7,11 +7,6 @@
 	-ms-backface-visibility:hidden;
 }
 
-@media (max-width: $screen-sm) {
-	@import "snapjs/snap";
-}
-
-
 layoutmobile .vkContainer {
 	background:white;
 }
