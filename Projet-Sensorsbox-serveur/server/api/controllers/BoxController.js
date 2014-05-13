@@ -7,8 +7,9 @@
 
 module.exports = {
 
-  find: function(req,res){
-  	Box.find({owner:req.user[0].id}, function(err, box){
+  /*find: function(req,res){
+   console.dir(req);
+   Box.find({owner:req.user[0].id}, function(err, box){
       if ((err) || (!box)) {
         return res.send(404, err);
       }
@@ -16,5 +17,5 @@ module.exports = {
       	return res.send(box);
       }
 	  });
-  }
+  }*/
 };

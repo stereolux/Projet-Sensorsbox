@@ -20,7 +20,7 @@ module.exports.policies = {
   // (`true` allows public access)
 	'*': 'passportAuthenticated',
 	UserController: {
-		'create': true
+		'create': true,
 	},
 	AuthController: {
 		'login': true
@@ -28,10 +28,10 @@ module.exports.policies = {
 	BoxController: {
 		'create': ['passportAuthenticated', 'addUser'],
 		'update': ['passportAuthenticated', 'isOwner'],
-		'delete': ['passportAuthenticated', 'isOwner']
+		'delete': ['passportAuthenticated', 'isOwner'],
+		'find': true
 	}
-
-
+	
 	// Here's an example of mapping some policies to run before
   // a controller and its actions
 	// RabbitController: {

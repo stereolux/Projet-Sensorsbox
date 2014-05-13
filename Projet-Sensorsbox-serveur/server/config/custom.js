@@ -2,7 +2,8 @@
   Set passport logic and static folder location
 */
 
-var express    = require('sails/node_modules/express'),
+var sails = require('sails'),
+  express    = require('sails/node_modules/express'),
   passport    = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
   bcrypt = require('bcrypt');
@@ -33,11 +34,36 @@ passport.use(new LocalStrategy({
   })
 );
 
+var initAuthWithWebSockets = function() {
+  var initialize = passport.initialize(),
+    session = passport.session(),
+    http = require('http'),
+    methods = ['login', 'logIn', 'logout', 'logOut', 'isAuthenticated', 'isUnauthenticated'];
+
+  sails.removeAllListeners('router:request');
+  sails.on('router:request', function(req, res) {
+    initialize(req, res, function () {
+      session(req, res, function (err) {
+        if (err) {
+          return sails.config[500](500, req, res);
+        }
+        for (var i = 0; i < methods.length; i++) {
+          req[methods[i]] = http.IncomingMessage.prototype[methods[i]].bind(req);
+        }
+        sails.router.route(req, res);
+      });
+    });
+  });
+  return {
+    initialize : initialize,
+    session : session
+  }
+};
+
 module.exports = {
   express: {
     customMiddleware: function(app){
       console.log('Changing default static assets folder');
-
       if (process.env.NODE_ENV === 'development') {
         app.use(express.static(process.cwd() + '/../client/.tmp'));
         app.use(express.static(process.cwd() + '/../client/app'));        
@@ -46,9 +72,12 @@ module.exports = {
         app.use(express.static(process.cwd() + '/dist'));
       }
 
+      console.log('Enabling passport for websockets communication');
+      var objs = initAuthWithWebSockets();
+
       console.log('Adding express midleware for passport');
-      app.use(passport.initialize());
-      app.use(passport.session());
+      app.use(objs.initialize);
+      app.use(objs.session);
     }
   }
 };
