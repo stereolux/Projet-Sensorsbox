@@ -18,7 +18,11 @@ module.exports = {
     },
 		owner:{
 			model:'user'
-		}
+		},
+    sensor:{
+        collection: 'sensor',
+        via: 'box'
+    }
   }
 
 };

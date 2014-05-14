@@ -1,39 +1,47 @@
 'use strict';
 
 angular.module('sensorsboxclientApp')
-  .controller('BoxEditCtrl', [
+  .controller('SensorEditCtrl', [
     'Box',
+    'Sensor',
     '$scope',
     '$rootScope',
     '$routeParams',
     'utils',
     function (
       Box,
+      Sensor,
       $scope,
       $rootScope,
       $routeParams,
       utils
     ){
 
-      var boxId = $routeParams.boxId || "";
-      $rootScope.navigationpath = ['home','box'];
+      var sensorId = $routeParams.sensorId || "";
+      $rootScope.navigationpath = ['home','sensor'];
 
-      if (boxId) {
-        $rootScope.spinner = 'Loading box';
-        Box.get({boxId:boxId}, function(box){
+      Box.query(function(data){
+        delete $rootScope.spinner;
+        $scope.boxs = data;
+      });
+
+      if (sensorId) {
+        $rootScope.spinner = 'Loading sensor';
+        Sensor.get({sensorId:sensorId}, function(sensor){
           delete $rootScope.spinner;
-          $scope.box = box;
-          $rootScope.navigationpath = ['home','box',{
+          sensor.box = sensor.box.id;
+          $scope.sensor = sensor;
+          $rootScope.navigationpath = ['home','sensor',{
             ref : 'show',
-            name : box.name,
-            url: '/#/box/' + box.id + '/show'
+            name : sensor.name,
+            url: '/#/sensor/' + sensor.id + '/show'
           },'edit'];
         })
       }
-      $scope.updateBox = function(box){
-        $rootScope.spinner = 'Updating box';
-        var thisBox = new Box(box);
-        thisBox.$update({boxId:box.id}, function(data){
+      $scope.updateSensor = function(sensor){
+        $rootScope.spinner = 'Updating sensor';
+        var thisSensor = new Sensor(sensor);
+        thisSensor.$update({sensorId:sensor.id}, function(data){
             delete $rootScope.spinner;
             var alertData = { type: 'success', msg: 'Update successfull' };
             $rootScope.alerts.push(alertData);

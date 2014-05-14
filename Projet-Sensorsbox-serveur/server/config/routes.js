@@ -28,6 +28,8 @@ module.exports.routes = {
   //
   // (Alternatively, remove this and add an `index.html` file in your `assets` directory)
 
+  /* Authentication */
+
   'post /api/v1/login': {
     controller: 'auth',
     action: 'login'
@@ -36,11 +38,34 @@ module.exports.routes = {
     controller: 'auth',
     action: 'logout'
   },
+
+  /* Users */
+
   'get /api/v1/user/me': {
     controller: 'user',
     action: 'me'
-  }
+  },
 
+  /* Box */
+
+  'get /api/v1/box': {
+    controller: 'box',
+    action: 'findAll'
+  },
+
+  /* Sensor */
+
+  'get /api/v1/sensor': {
+    controller: 'sensor',
+    action: 'findAll'
+  },
+
+  /* Config */
+
+  'get /api/v1/config/:boxid': {
+    controller: 'config',
+    action: 'getConfig'
+  },
 
   // Custom routes here...
 

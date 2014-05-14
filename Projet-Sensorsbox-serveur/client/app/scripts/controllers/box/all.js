@@ -24,7 +24,7 @@ angular.module('sensorsboxclientApp')
       }
       $scope.deleteBox = function(box){
         if (window.confirm('Delete box?')) {
-          Box.delete({boxId: box._id}, function(){
+          Box.delete({boxId: box.id}, function(){
             queryBoxs();
           });
         }

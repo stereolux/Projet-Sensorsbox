@@ -29,7 +29,33 @@ angular.module('sensorsboxclientApp')
               },
               show : {
                 name : 'Box',
-                url : ''
+                url : '',
+                children : {
+                  edit : {
+                    name : 'Edit',
+                    url : ''
+                  }
+                }
+              }
+            }
+          },
+          sensor : {
+            name : 'Sensors',
+            url : '/#/sensor',
+            children : {
+              create : {
+                name : 'Add sensor',
+                url : '/#/sensor/create'
+              },
+              show : {
+                name : 'Sensor',
+                url : '',
+                children : {
+                  edit : {
+                    name : 'Edit',
+                    url : ''
+                  }
+                }
               }
             }
           }

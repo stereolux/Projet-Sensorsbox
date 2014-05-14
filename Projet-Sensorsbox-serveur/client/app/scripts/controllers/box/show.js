@@ -19,6 +19,14 @@ angular.module('sensorsboxclientApp')
       $rootScope.navigationpath = ['home','box'];
 
 
+      io.socket.get('/api/v1/config/' + boxId, function (body, sailsResponseObject) {
+        if(sailsResponseObject.statusCode === 200) {
+          $scope.config = body[0];
+          $scope.$apply();
+        }
+      });
+
+
       var queryBox = function(boxId){
         $rootScope.spinner = 'Loading box';
         Box.get({boxId:boxId}, function(box){

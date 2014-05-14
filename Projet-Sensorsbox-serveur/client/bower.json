@@ -13,9 +13,9 @@
     "angular-bootstrap": "0.11.0",
     "sass-bootstrap": "3.0.2",
     "angular-gestures": "0.2.2",
-    "snapjs": "1.9.2",
-    "sails.io.js": "~0.10.0-rc4",
-    "components-font-awesome": "~4.0.3"
+    "snapjs": "latest",
+    "components-font-awesome": "~4.0.3",
+    "sails.io.js": "~0.10.0-rc4"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",

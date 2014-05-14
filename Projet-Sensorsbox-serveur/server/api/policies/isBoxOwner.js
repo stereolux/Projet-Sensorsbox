@@ -7,6 +7,12 @@
  *
  */
 module.exports = function(req, res, next){
-	req.body.owner = req.user[0];
-  return next();
+	Box.findOne({id:req.params.id}, function(err, box){
+	  if (box.owner === req.user[0].id){
+	    return next();
+	  }
+	  else {
+	    return res.send(403, { message: 'Not Authorized 1 ' });
+	  }
+	});
 }

@@ -1,14 +1,14 @@
 /**
- * BoxController
+ * ConfigController
  *
- * @description :: Server-side logic for managing boxes
+ * @description :: Server-side logic for managing configs
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
 
 module.exports = {
 
-  findAll: function(req,res){
-    Box.find({owner:req.user[0].id}, function(err, box){
+  getConfig: function(req,res){
+		Box.find({id:req.params.boxid}).populate('owner').populate('sensor').exec(function(err,box){
       if ((err) || (!box)) {
         return res.send(404, err);
       }
@@ -16,5 +16,6 @@ module.exports = {
       	return res.send(box);
       }
 	  });
-  }
+  }	
+	
 };

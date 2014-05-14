@@ -79,5 +79,6 @@ angular
       initialisation.initIsMobileReloadOnWindowResize();
       UserStatus.isUserSignedinLocal();
 
+
     }
   ]);

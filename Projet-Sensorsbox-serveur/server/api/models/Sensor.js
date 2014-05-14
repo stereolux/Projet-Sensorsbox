@@ -8,7 +8,7 @@
 module.exports = {
 
   attributes: {
-	name: {
+  	name: {
       type: 'string',
       required: true
     },
@@ -16,12 +16,13 @@ module.exports = {
       type: 'string'
     },
     pin: {
-    	type: 'number',
+    	type: 'string',
     	required: true
     },
-	box:{
-		model:'box'
-	}
+    box:{
+    	model:'box',
+      required: true
+    }
   }
 };
 

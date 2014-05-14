@@ -9,5 +9,7 @@
 	</div>
 </div>
 <h2 ng-bind="box.name">Box</h2>
-<p ng-bind="'ID: ' + box.id"></p>
-<p>{{box.description}}</p>
+<p><strong>Id: </strong>{{box.id}}</p>
+<p><strong>Owner: </strong>{{box.owner.firstname}}</p>
+<p><strong>Description: </strong>{{box.description}}</p>
+<p><strong>config (data obtained via websocket): </strong>{{config}}</p>

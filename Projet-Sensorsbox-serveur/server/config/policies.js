@@ -26,10 +26,22 @@ module.exports.policies = {
 		'login': true
 	},
 	BoxController: {
+		'findAll': ['passportAuthenticated'],
+		'find': ['passportAuthenticated', 'isBoxOwner'],
 		'create': ['passportAuthenticated', 'addUser'],
-		'update': ['passportAuthenticated', 'isOwner'],
-		'delete': ['passportAuthenticated', 'isOwner'],
-		'find': true
+		'update': ['passportAuthenticated', 'isBoxOwner'],
+		'delete': ['passportAuthenticated', 'isBoxOwner']
+	},
+	SensorController: {
+		'findAll': ['passportAuthenticated'],
+		'find': ['passportAuthenticated', 'isSensorOwner'],
+		'create': ['passportAuthenticated'],
+		'update': ['passportAuthenticated', 'isSensorOwner'],
+		'delete': ['passportAuthenticated', 'isSensorOwner']
+	},
+	ConfigController: {
+		// should access to a box's config be pwd protected?
+		'*': true
 	}
 	
 	// Here's an example of mapping some policies to run before
