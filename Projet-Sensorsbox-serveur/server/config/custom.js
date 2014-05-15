@@ -66,10 +66,10 @@ module.exports = {
       console.log('Changing default static assets folder');
       if (process.env.NODE_ENV === 'development') {
         app.use(express.static(process.cwd() + '/../client/.tmp'));
-        app.use(express.static(process.cwd() + '/../client/app'));        
+        app.use(express.static(process.cwd() + '/../client/app'));
       }
       else if (process.env.NODE_ENV === 'production') {
-        app.use(express.static(process.cwd() + '/../client/dist'));
+        app.use(express.static(process.cwd() + '/dist'));
       }
 
       console.log('Enabling passport for websockets communication');

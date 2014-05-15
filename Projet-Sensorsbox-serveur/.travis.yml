@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "0.10"
+script: make ci
+deploy:
+  provider: heroku
+  api_key: "b03e0b3607d340e59abe4dc5057086b90131caa0"
