@@ -2,7 +2,7 @@ clean:
 	rm -rf build
 
 test:
-	echo "toto"
+	echo "some test"
 
 build:
 	mkdir build
