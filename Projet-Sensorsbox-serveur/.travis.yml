@@ -4,9 +4,9 @@ node_js:
 before_script:
   - npm install -g bower grunt-cli
   - gem install compass
-  - sudo add-apt-repository ppa:git-core/ppa
+  - sudo add-apt-repository ppa:git-core/ppa -y
   - sudo apt-get update
-  - sudo apt-get install git
+  - sudo apt-get install git -y
 script: make ci
 deploy:
   provider: heroku
