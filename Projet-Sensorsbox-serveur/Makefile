@@ -12,4 +12,4 @@ build:
 heroku:
 	yes | git subtree push --prefix build heroku master
 
-ci: test build heroku
+ci: test clean build heroku
