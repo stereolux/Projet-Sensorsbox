@@ -7,7 +7,8 @@ before_script:
   - sudo add-apt-repository ppa:git-core/ppa -y
   - sudo apt-get update
   - sudo apt-get install git -y
-  - git remote add heroku git@heroku.com:sensorsbox.git 
+  - yes | git remote rm heroku
+  - yes | git remote add heroku git@heroku.com:sensorsbox.git -y
 script: make ci
 deploy:
   provider: heroku
