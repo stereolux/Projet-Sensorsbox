@@ -1,15 +1,18 @@
 clean:
 	rm -rf build
+	rm -rf server/node_modules
+	rm -rf client/node_modules
+	rm -rf client/app/bower_components
+	rm -rf client/dist
 
-test:
-	echo "some tests"
-
-build:
+create_build_dir:
 	mkdir build
-	cd server && rm -rf node_modules && npm i && cd .. && cp -R -a server/* build
-	cd client && rm -rf node_modules && rm -rf app/bower_components && rm -rf dist && npm i && bower i && grunt build && cp -R dist ../build/
 
-heroku:
-	yes | git subtree push --prefix build heroku master
+build_server:
+	cp -R -a server/* build
+	cd build && npm install
 
-ci: test clean build heroku
+build_client:
+	cd client && npm install && bower install && grunt build && cp -R dist ../build/
+
+build: clean create_build_dir build_server build_client
