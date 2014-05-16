@@ -10,6 +10,6 @@ build:
 	cd client && rm -rf node_modules && rm -rf app/bower_components && rm -rf dist && npm i && bower i && grunt build && cp -R dist ../build/
 
 heroku:
-	git subtree push --prefix build heroku master
+	yes | git subtree push --prefix build heroku master
 
 ci: test build heroku
