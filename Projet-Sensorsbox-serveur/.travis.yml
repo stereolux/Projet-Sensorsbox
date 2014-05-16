@@ -7,7 +7,6 @@ before_script:
 - sudo add-apt-repository ppa:git-core/ppa -y
 - sudo apt-get update
 - sudo apt-get install git -y
-- heroku version
 script: make build
 after_success:
 - wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
