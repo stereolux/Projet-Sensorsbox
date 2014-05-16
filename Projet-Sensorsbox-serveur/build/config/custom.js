@@ -39,9 +39,12 @@ var initAuthWithWebSockets = function() {
     session = passport.session(),
     http = require('http'),
     methods = ['login', 'logIn', 'logout', 'logOut', 'isAuthenticated', 'isUnauthenticated'];
+/*
+*/
 
   sails.removeAllListeners('router:request');
   sails.on('router:request', function(req, res) {
+    console.log('router request');
     initialize(req, res, function () {
       session(req, res, function (err) {
         if (err) {

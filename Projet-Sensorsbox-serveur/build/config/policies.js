@@ -32,6 +32,7 @@ module.exports.policies = {
 		'update': ['passportAuthenticated', 'isBoxOwner'],
 		'delete': ['passportAuthenticated', 'isBoxOwner']
 	},
+/*
 	SensorController: {
 		'findAll': ['passportAuthenticated'],
 		'find': ['passportAuthenticated', 'isSensorOwner'],
@@ -39,7 +40,19 @@ module.exports.policies = {
 		'update': ['passportAuthenticated', 'isSensorOwner'],
 		'delete': ['passportAuthenticated', 'isSensorOwner']
 	},
+*/
+	SensorController: {
+		'*': true
+	},
 	ConfigController: {
+		// should access to a box's config be pwd protected?
+		'*': true
+	},
+	RealtimeController: {
+		// should access to a box's config be pwd protected?
+		'*': true
+	},
+	MeasureController: {
 		// should access to a box's config be pwd protected?
 		'*': true
 	}

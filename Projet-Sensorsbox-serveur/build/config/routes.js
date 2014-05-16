@@ -67,6 +67,15 @@ module.exports.routes = {
     action: 'getConfig'
   },
 
+  /* Realtime */
+
+  'get /api/v1/realtime': {
+    controller: 'realtime',
+    action: 'measure'
+  },
+
+  /* Realtime */
+
   // Custom routes here...
 
 

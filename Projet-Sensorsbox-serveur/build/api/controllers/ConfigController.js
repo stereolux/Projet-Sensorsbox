@@ -13,6 +13,10 @@ module.exports = {
         return res.send(404, err);
       }
       else {
+        box[0].sensor.forEach(function(sensor){
+          console.log(sensor.id);
+          RecordService.recordSensor(sensor);
+        })
       	return res.send(box);
       }
 	  });

@@ -1,5 +1,5 @@
 /**
-* Sensor.js
+* Record.js
 *
 * @description :: TODO: You might write a short summary of how this model works and what it represents here.
 * @docs        :: http://sailsjs.org/#!documentation/models
@@ -8,25 +8,22 @@
 module.exports = {
 
   attributes: {
-  	name: {
-      type: 'string',
-      required: true
-    },
-    description: {
+    mean: {
       type: 'string'
     },
-    pin: {
-    	type: 'string',
-    	required: true
+    max: {
+      type: 'string'
     },
-    recordFrequency: {
-      type: 'string',
-      required: true
+    min: {
+      type: 'string'
     },
-    box:{
-    	model:'box',
-      required: true
+    timerange: {
+      type: 'string'
+    },
+    sensor:{
+        model: 'sensor'
     }
   }
+
 };
 

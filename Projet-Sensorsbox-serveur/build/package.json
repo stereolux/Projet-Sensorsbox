@@ -10,7 +10,8 @@
     "grunt": "0.4.2",
     "passport": "~0.2.0",
     "passport-local": "~1.0.0",
-    "bcrypt": "~0.7.8"
+    "bcrypt": "~0.7.8",
+    "sails-redis": "~0.10.0-rc1"
   },
   "scripts": {
     "start": "node app.js",
