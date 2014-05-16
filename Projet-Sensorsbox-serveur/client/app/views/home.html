@@ -1,12 +1,16 @@
 <div ng-show="!user" class="row">
-	<div class="col-xs-12">
+  <div class="col-xs-12 col-sm-8">
 		<p>Sensors Box exposes an API to a Raspberry Pi's sensors</p>
 	</div>
-	<div class="col-xs-12 col-sm-6">
-		<a class="btn btn-primary btn-lg btn-block" hm-tap="utils.locationPath('user/signin')" >Sign in</a>
-	</div>
-	<div class="col-xs-12 col-sm-6">
-		<a class="btn btn-default btn-lg btn-block" hm-tap="utils.locationPath('user/signup')" >Sign up</a>
+	<div class="col-xs-12 col-sm-4">
+    <div ng-show="!user" class="row">
+      <div class="col-xs-12 col-sm-6">
+        <a class="btn btn-primary btn-lg btn-block" hm-tap="utils.locationPath('user/signin')" >Sign in</a>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <a class="btn btn-default btn-lg btn-block" hm-tap="utils.locationPath('user/signup')" >Sign up</a>
+      </div>
+    </div>
 	</div>
 </div>
 <div ng-show="user">

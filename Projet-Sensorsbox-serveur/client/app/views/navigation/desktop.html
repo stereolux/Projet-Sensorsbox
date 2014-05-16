@@ -1,46 +1,45 @@
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-    <a class="navbar-brand" ng-click="utils.locationPath('')">
-    	<span>SB</span>
-    </a>
+<div class="row" style="padding-top:20px">
+  <div class="col-xs-4 col-md-3">
+      <a href="/" ><img src="images/logo.png"></a>
   </div>
-  <div class="navbar-collapse navbar-ex1-collapse">
-
-		<ul class="nav navbar-nav" style="padding-left:35px;">
-			<li class="dropdown" ng-show="user">
-				<a class="dropdown-toggle">
-					Settings
-					<b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a ng-click="utils.locationPath('box')">Boxes</a>
-			    </li>
-          <li>
-            <a ng-click="utils.locationPath('sensor')">Sensors</a>
+  <div class="col-xs-8 col-md-9">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-collapse navbar-ex1-collapse" style="padding:0 15px 0 0;">
+        <ul class="nav navbar-nav">
+          <li class="dropdown" ng-show="user">
+            <a class="dropdown-toggle">
+              Settings
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a ng-click="utils.locationPath('box')">Boxes</a>
+              </li>
+              <li>
+                <a ng-click="utils.locationPath('sensor')">Sensors</a>
+              </li>
+            </ul>
           </li>
-				</ul>
-			</li>
-		</ul>
-		<ul class="nav navbar-nav navbar-right">
-
-			<li ng-show="!user"><a hm-tap="utils.locationPath('user/signin')">Sign in</a></li>
-			<li ng-show="!user"><a hm-tap="utils.locationPath('user/signup')">Sign up</a></li>
-
-			<li class="dropdown vkNavLogDetails" ng-show="user">
-				<a class="dropdown-toggle">
-					{{user.firstname}}
-					<b class="caret"></b>
-				</a>
-				<ul class="dropdown-menu">
-					<li>
-						<a hm-tap="utils.locationPath('user/edit')">Settings</a>
-					</li>
-					<li>
-						<a hm-tap="logout()">Sign out</a>
-					</li>
-				</ul>
-			</li>
-		</ul>
-	</div>
-</nav>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li ng-show="!user"><a hm-tap="utils.locationPath('user/signin')">Sign in</a></li>
+          <li ng-show="!user"><a hm-tap="utils.locationPath('user/signup')">Sign up</a></li>
+          <li class="dropdown vkNavLogDetails" ng-show="user">
+            <a class="dropdown-toggle">
+              {{user.firstname}}
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a hm-tap="utils.locationPath('user/edit')">Settings</a>
+              </li>
+              <li>
+                <a hm-tap="logout()">Sign out</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
