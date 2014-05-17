@@ -27,6 +27,7 @@ describe('Sensor', function() {
 
 		it('should be instanciated with default values if no conversion and opts', function(done) {
 			sensor = new Sensor(device, 0);
+			sensor.poll();
 			sensor.opts.interval.should.equal(300);
 			sensor.opts.tolerance.should.equal(3);
 			sensor.on('change', function(measure) {
@@ -40,6 +41,7 @@ describe('Sensor', function() {
 				opts = {interval: 200, tolerance: 2};
 
 			sensor = new Sensor(device, 0, conversion, opts);
+			sensor.poll();
 			sensor.opts.interval.should.equal(200);
 			sensor.opts.tolerance.should.equal(2);
 			sensor.on('change', function(measure) {
@@ -50,6 +52,7 @@ describe('Sensor', function() {
 
 		it('should be properly closed', function(done) {
 			sensor = new Sensor(device, 0);
+			sensor.poll();
 			sensor.on('change', function(measure) {
 				sensor.poller._idleTimeout.should.equal(sensor.opts.interval);
 				sensor.close();
