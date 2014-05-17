@@ -75,11 +75,11 @@ module.exports = {
       }
 
       console.log('Enabling passport for websockets communication');
-      var objs = initAuthWithWebSockets();
+      //var objs = initAuthWithWebSockets();
 
       console.log('Adding express midleware for passport');
-      app.use(objs.initialize);
-      app.use(objs.session);
+      app.use(passport.initialize());
+      app.use(passport.session());
     }
   }
 };
