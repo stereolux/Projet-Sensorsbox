@@ -23,6 +23,10 @@ module.exports = {
       type: 'string',
       required: true
     },
+    measureFrequency: {
+      type: 'string',
+      required: true
+    },
     box:{
     	model:'box',
       required: true

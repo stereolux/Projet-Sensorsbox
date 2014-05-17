@@ -30,10 +30,10 @@ module.exports.connections = {
   },
   redis: {
    adapter: 'sails-redis',
-   port: 9606,
-   host: 'angelfish.redistogo.com',
-   db: 'redistogo',
-   password: '4740b20fedbf10f4bc334e3110401452'
+   port: process.env.REDIS_PORT || null,
+   host: process.env.REDIS_HOST || null,
+   db: process.env.REDIS_DB || null,
+   password: process.env.REDIS_PASSWORD || null
   }
 
 
