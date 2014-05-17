@@ -25,10 +25,16 @@ module.exports.connections = {
     adapter: 'sails-mongo',
     url : process.env.DATABASE_URL || 'mongodb://localhost:27017/sensorsbox'
   },
-  redis: {
+  redisLocal: {
     adapter: 'sails-redis'
+  },
+  redis: {
+   adapter: 'sails-redis',
+   port: 9606,
+   host: 'angelfish.redistogo.com',
+   db: 'redistogo',
+   password: '4740b20fedbf10f4bc334e3110401452'
   }
-
 
 
 

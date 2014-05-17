@@ -53,13 +53,6 @@ module.exports.routes = {
     action: 'findAll'
   },
 
-  /* Sensor */
-
-  'get /api/v1/sensor': {
-    controller: 'sensor',
-    action: 'findAll'
-  },
-
   /* Config */
 
   'get /api/v1/config/:boxid': {
@@ -73,8 +66,6 @@ module.exports.routes = {
     controller: 'realtime',
     action: 'measure'
   },
-
-  /* Realtime */
 
   // Custom routes here...
 
