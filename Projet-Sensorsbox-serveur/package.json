@@ -5,13 +5,13 @@
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
-    "sails": "~0.10.0-rc7",
-    "sails-mongo": "~0.10.0-rc4",
+    "bcrypt": "~0.7.8",
     "grunt": "0.4.2",
     "passport": "~0.2.0",
     "passport-local": "~1.0.0",
-    "bcrypt": "~0.7.8",
-    "sails-redis": "~0.10.0-rc1"
+    "sails": "~0.10.0-rc7",
+    "sails-mongo": "~0.10.0-rc4",
+    "sails-redis": "git://github.com/xseignard/sails-redis"
   },
   "scripts": {
     "start": "node app.js",

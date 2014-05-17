@@ -30,8 +30,8 @@ module.exports.connections = {
   },
   redis: {
    adapter: 'sails-redis',
-   port: process.env.REDIS_PORT || null,
-   host: process.env.REDIS_HOST || null,
+   port: process.env.REDIS_PORT || 6379,
+   host: process.env.REDIS_HOST || 'localhost',
    db: process.env.REDIS_DB || null,
    password: process.env.REDIS_PASSWORD || null
   }
