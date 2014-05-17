@@ -25,9 +25,6 @@ module.exports.connections = {
     adapter: 'sails-mongo',
     url : process.env.DATABASE_URL || 'mongodb://localhost:27017/sensorsbox'
   },
-  redisLocal: {
-    adapter: 'sails-redis'
-  },
   redis: {
    adapter: 'sails-redis',
    port: process.env.REDIS_PORT || 6379,
