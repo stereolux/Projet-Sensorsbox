@@ -16,7 +16,7 @@ after_success:
 - echo "   CheckHostIP no" >> ~/.ssh/config
 - echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
 - yes | heroku keys:add
-- yes | git subtree push --prefix build heroku master
+- yes | git push heroku master
 env:
   global:
     secure: IEaCXmL6mGvtVAZ1jFKJxaus80rUl9cokVWh1NJNgJjzEJod8fd60rdNLMsv28dWf3MUR8hH+Pznq0XDJ7Jw3dV24D++q+9BrlBtX6DFdT9OqO241xaqjnsIscY1k31WCC3J6zmsi3ujn9yLNObvigO5kefT/Ah1tUOUQzlSkCY=
