@@ -44,16 +44,13 @@ var Sensor = function(device, channel, conversion, opts) {
 	opts.interval = opts.interval || 300;
 	opts.tolerance = opts.tolerance || 3;
 	this.opts = opts;
-
-	// start polling the sensor
-	this._poll();
 };
 util.inherits(Sensor, EventEmitter);
 
 /**
  * Trigger the polling of the sensor.
  */
-Sensor.prototype._poll = function() {
+Sensor.prototype.poll = function() {
 	var _self = this;
 	this.poller = setInterval(function() {
 		_self.device.read(_self.channel, function(value) {
@@ -64,6 +61,18 @@ Sensor.prototype._poll = function() {
 			_self.oldMeasure = measure;
 		});
 	}, this.opts.interval);
+};
+
+/**
+ * Read the value of the sensor
+ * @param {function()} callback - the callback with the measure as param
+ */
+Sensor.prototype.read = function(callback) {
+	var _self = this;
+	this.device.read(this.channel, function(value) {
+		var measure = _self.conversion(value);
+		callback(measure);
+	});
 };
 
 /**
