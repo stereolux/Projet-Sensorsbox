@@ -13,7 +13,7 @@ MeasureService.prototype.watchSensor = function(sensor, sensorConfig, callback) 
 				batch();
 				callback(measure);
 			});
-		}, parseInt(sensorConfig.recordFrequency));
+		}, parseInt(sensorConfig.measureFrequency));
 	};
 	batch();
 };

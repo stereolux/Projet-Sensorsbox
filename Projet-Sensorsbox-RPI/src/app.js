@@ -8,8 +8,8 @@ var socketIOClient = require('socket.io-client'),
 	MeasureService = require('./services/measureService');
 
 var config = {
-	serverUrl: 'http://localhost:1337',
-	boxId:'5370e63139f9543e588397a3'
+	serverUrl: 'http://beta.sensorsbox.com',
+	boxId:'5370b765ee9999020070ae8e'
 };
 
 var sensorMap = {};
