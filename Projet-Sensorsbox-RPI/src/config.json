@@ -1,4 +1,4 @@
 {
-	"serverUrl": "http://beta.sensorsbox.com",
-	"boxId": "5370b765ee9999020070ae8e"
+	"serverUrl": "http://192.168.1.77:1337",
+	"boxId": "53724062416908b816cf1475"
 }
