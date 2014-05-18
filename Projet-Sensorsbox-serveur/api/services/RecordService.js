@@ -1,7 +1,7 @@
 var getValues = function(sensor, callback){
 	Measure.find({sensor:sensor.id}).exec(function(err, measures){
 		if (measures.length === 0) {
-			callback({});
+			callback();
 		}
 		else {
 			var measuresValues = [];
@@ -32,13 +32,20 @@ exports.recordSensor = function(sensor) {
 		}
 		getValues(sensor, function(record){
 			recordTimeouts[sensor.id] = setTimeout(function() {
-				Record.create(record).exec(function(err, record){
-					console.log(err);
-					console.log(record);
-					Measure.destroy({sensor:sensor.id}).exec(function(err) {
-						console.log('Measure destroyed');
-					});
-				});
+				if (record) {
+					Record.create(record).exec(function(err, record){
+						if (err) {
+							console.log(err);
+						}
+						else {
+							console.log('Record saved');
+							console.dir(record);
+							Measure.destroy({sensor:sensor.id}).exec(function(err) {
+								console.log('Measures destroyed');
+							});
+						}
+					});					
+				}
 				batch();
 			}, parseInt(sensor.recordFrequency));
 		});
