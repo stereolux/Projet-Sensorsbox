@@ -7,10 +7,7 @@ var socketIOClient = require('socket.io-client'),
 	MeasureController = require('./controllers/measureController'),
 	MeasureService = require('./services/measureService');
 
-var config = {
-	serverUrl: 'http://beta.sensorsbox.com',
-	boxId:'5370b765ee9999020070ae8e'
-};
+var config = require('./config');
 
 var sensorMap = {};
 
@@ -29,7 +26,7 @@ var watchSensor = function (sensor, sensorConfig) {
 		};
 		console.dir(measure);
 		measureController.sendMeasure(measure, function(err, sent) {
-			console.log(sent);
+			console.dir(sent);
 		});
 	});
 };

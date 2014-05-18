@@ -7,7 +7,7 @@ var MeasureController = function(socket, route) {
 MeasureController.prototype.sendMeasure = function(measure, callback) {
 	var _self = this;
 	this.io.socket.post(this.route, measure, function(body, response) {
-		callback(null, body[0]);
+		callback(null, body);
 	});
 };
 
