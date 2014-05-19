@@ -5,10 +5,10 @@ var MeasureService = function() {};
 
 MeasureService.prototype.watchSensor = function(sensor, sensorConfig, callback) {
 	var batch = function() {
-		if (typeof(recordTimeouts[sensor.id])!=='undefined'){
-			clearTimeout(recordTimeouts[sensor.id]);
+		if (typeof(recordTimeouts[sensorConfig.id])!=='undefined'){
+			clearTimeout(recordTimeouts[sensorConfig.id]);
 		}
-		recordTimeouts[sensor.id] = setTimeout(function() {
+		recordTimeouts[sensorConfig.id] = setTimeout(function() {
 			sensor.read(function(measure) {
 				batch();
 				callback(measure);
