@@ -6,7 +6,8 @@ angular
     'ngResource',
     'ui.bootstrap',
     'angular-gestures',
-    'ngAnimate'
+    'ngAnimate',
+    'nvd3ChartDirectives'
   ])
   .config([
     '$routeProvider',
