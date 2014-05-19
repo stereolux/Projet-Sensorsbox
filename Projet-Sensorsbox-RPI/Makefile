@@ -15,6 +15,11 @@ test:
 jshint:
 	$(JSHINT) src test
 
+npm-rpi:
+	@echo "Installing libraries that are specific to the Raspberry Pi"
+	@if grep -q BCM2708 /proc/cpuinfo ; then echo npm i mcp3008.js; fi;
+	@echo "Done"
+
 coverage:
 	@# check if reports folder exists, if not create it
 	@test -d reports || mkdir reports
