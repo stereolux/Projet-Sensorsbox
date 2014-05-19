@@ -53,12 +53,12 @@ describe('Sensor', function() {
 		it('should be properly closed', function(done) {
 			sensor = new Sensor(fakeDevice, 0);
 			sensor.poll();
+			should.exist(sensor.poller.ontimeout);
 			sensor.on('change', function(measure) {
-				sensor.poller._idleTimeout.should.equal(sensor.opts.interval);
 				sensor.close();
 			});
 			sensor.on('close', function() {
-				sensor.poller._idleTimeout.should.equal(-1);
+				should.not.exist(sensor.poller.ontimeout);
 				done();
 			});
 		});
