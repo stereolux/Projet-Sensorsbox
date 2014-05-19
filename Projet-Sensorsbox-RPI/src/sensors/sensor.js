@@ -81,8 +81,8 @@ Sensor.prototype.read = function(callback) {
 Sensor.prototype.close = function() {
 	if (this.poller) {
 		clearInterval(this.poller);
-		this.emit(sensorEventNames.close);
 	}
+	this.emit(sensorEventNames.close);
 };
 
 module.exports = Sensor;
