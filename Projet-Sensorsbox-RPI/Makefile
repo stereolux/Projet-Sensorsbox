@@ -17,7 +17,7 @@ jshint:
 
 npm-rpi:
 	@echo "Installing libraries that are specific to the Raspberry Pi"
-	@if grep -q BCM2708 /proc/cpuinfo ; then echo npm i mcp3008.js; fi;
+	@if grep -q BCM2708 /proc/cpuinfo ; then npm i mcp3008.js; fi;
 	@echo "Done"
 
 coverage:
