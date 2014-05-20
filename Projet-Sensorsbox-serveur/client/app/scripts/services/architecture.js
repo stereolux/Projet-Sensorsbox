@@ -7,6 +7,10 @@ angular.module('sensorsboxclientApp')
         name : 'Home',
         url : '/#',
         children : {
+          guide : {
+            name : 'Guide',
+            url : '/#/guide'
+          },
           usersignin : {
             name : 'Sign in',
             url : '/#/user/signin'

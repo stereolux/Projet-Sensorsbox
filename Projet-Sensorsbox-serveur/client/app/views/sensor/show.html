@@ -1,4 +1,4 @@
-<div ng-show="(user.id === sensor.user)" class="articleOptions clearfix">
+<div ng-show="user && (user.id === sensor.user)" class="articleOptions clearfix">
 	<div style="padding-bottom:8px;">
 		<div hm-tap="utils.locationPath('sensor/' + sensor.id + '/edit')" class="btn btn-default">
 			<span class="glyphicon glyphicon-cog"></span>

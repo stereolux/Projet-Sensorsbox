@@ -15,10 +15,7 @@ angular.module('sensorsboxclientApp')
       $routeProvider
         .when('/sensor', {
           templateUrl: 'views/sensor/all.html',
-          controller: 'SensorListCtrl',
-          resolve : {
-            condition : isUserSignedinLocal
-          }
+          controller: 'SensorListCtrl'
         })
         .when('/sensor/create', {
           templateUrl: 'views/sensor/create.html',
@@ -29,10 +26,7 @@ angular.module('sensorsboxclientApp')
         })
         .when('/sensor/:sensorId/show', {
           templateUrl: 'views/sensor/show.html',
-          controller: 'SensorShowCtrl',
-          resolve : {
-            condition : isUserSignedinLocal
-          }
+          controller: 'SensorShowCtrl'
         })
         .when('/sensor/:sensorId/edit', {
           templateUrl: 'views/sensor/edit.html',

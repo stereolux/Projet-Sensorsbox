@@ -32,6 +32,10 @@ angular
           templateUrl: 'views/home.html',
           controller: 'HomeCtrl'
         })
+        .when('/guide', {
+          templateUrl: 'views/guide.html',
+          controller: 'GuideCtrl'
+        })
         .when('/user/signin', {
           templateUrl: 'views/user/signin.html',
           controller: 'UserSigninCtrl',

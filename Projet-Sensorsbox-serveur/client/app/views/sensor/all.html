@@ -1,4 +1,4 @@
-<div class="articleOptions">
+<div class="articleOptions" ng-show="user">
 	<div hm-tap="utils.locationPath('sensor/create')" class="btn btn-default">
 		<span class="glyphicon glyphicon-plus"></span>
 		Add sensor
@@ -8,16 +8,16 @@
 
 <ul class="list-group">
 	<li ng-repeat="sensor in sensors | orderBy:'name'" class="list-group-item clearfix">
-		<div ng-show="(user.id === sensor.box.owner)" class="articleOptions">
-			<div hm-tap="utils.locationPath('sensor/{{sensor.id}}/edit')" class="btn btn-default">
+		<div class="articleOptions">
+			<div ng-show="(user.id === sensor.box.owner)" hm-tap="utils.locationPath('sensor/{{sensor.id}}/edit')" class="btn btn-default">
 				<span class="glyphicon glyphicon-cog"></span>
 			</div>
-			<div hm-tap="deleteSensor(sensor)" class="btn btn-default">
+			<div ng-show="(user.id === sensor.box.owner)" hm-tap="deleteSensor(sensor)" class="btn btn-default" style="margin-left:5px">
 				<span class="glyphicon glyphicon-remove"></span>
 			</div>
 			<br/>
 			<br/>
-			<div hm-tap="utils.locationPath('sensor/{{sensor.id}}/show')" class="btn btn-block btn-primary">
+			<div hm-tap="utils.locationPath('sensor/{{sensor.id}}/show')" class="btn btn-block btn-primary" style="padding-left:2em;padding-right:2em;">
 				<span>Details</span>
 			</div>
 		</div>

@@ -21,7 +21,7 @@ angular.module('sensorsboxclientApp')
 
       io.socket.get('/api/v1/config/' + boxId, function (body, sailsResponseObject) {
         if(sailsResponseObject.statusCode === 200) {
-          $scope.config = body[0];
+          $scope.config = body;
           $scope.$apply();
         }
       });

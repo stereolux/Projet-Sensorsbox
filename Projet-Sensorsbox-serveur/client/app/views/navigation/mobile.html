@@ -7,6 +7,7 @@
 			<a hm-tap="utils.locationPath('')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/'}">Home</a>
 			<h5 ng-show="user" class="centeredH dark"><span>Settings</span></h5>
 			<div ng-show="user" style="clear:both">
+          <a hm-tap="utils.locationPath('guide')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/guide'}">Guide</a>
 					<a hm-tap="utils.locationPath('box')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/box'}">Boxes</a>
           <a hm-tap="utils.locationPath('sensor')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/sensor'}">Sensors</a>
 			</div>

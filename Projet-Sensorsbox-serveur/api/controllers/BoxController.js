@@ -7,14 +7,4 @@
 
 module.exports = {
 
-  findAll: function(req,res){
-    Box.find({owner:req.user[0].id}, function(err, box){
-      if ((err) || (!box)) {
-        return res.send(404, err);
-      }
-      else {
-      	return res.send(box);
-      }
-	  });
-  }
 };

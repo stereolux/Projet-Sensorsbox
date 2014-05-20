@@ -1,24 +1,22 @@
 <div class="row" style="padding-top:20px">
-  <div class="col-xs-4 col-md-3">
+  <div class="col-xs-12" style="text-align:center;">
       <a href="/" ><img src="images/logo.png"></a>
   </div>
-  <div class="col-xs-8 col-md-9">
+  <div class="col-xs-12">
     <nav class="navbar navbar-default" role="navigation">
       <div class="navbar-collapse navbar-ex1-collapse" style="padding:0 15px 0 0;">
         <ul class="nav navbar-nav">
-          <li class="dropdown" ng-show="user">
-            <a class="dropdown-toggle">
-              Settings
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a ng-click="utils.locationPath('box')">Boxes</a>
-              </li>
-              <li>
-                <a ng-click="utils.locationPath('sensor')">Sensors</a>
-              </li>
-            </ul>
+          <li>
+            <a ng-click="utils.locationPath('')">Home</a>
+          </li>
+          <li>
+            <a ng-click="utils.locationPath('guide')">Guide</a>
+          </li>
+          <li>
+            <a ng-click="utils.locationPath('box')">Boxes</a>
+          </li>
+          <li>
+            <a ng-click="utils.locationPath('sensor')">Sensors</a>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">

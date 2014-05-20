@@ -15,10 +15,7 @@ angular.module('sensorsboxclientApp')
       $routeProvider
         .when('/box', {
           templateUrl: 'views/box/all.html',
-          controller: 'BoxListCtrl',
-          resolve : {
-            condition : isUserSignedinLocal
-          }
+          controller: 'BoxListCtrl'
         })
         .when('/box/create', {
           templateUrl: 'views/box/create.html',
@@ -29,10 +26,7 @@ angular.module('sensorsboxclientApp')
         })
         .when('/box/:boxId/show', {
           templateUrl: 'views/box/show.html',
-          controller: 'BoxShowCtrl',
-          resolve : {
-            condition : isUserSignedinLocal
-          }
+          controller: 'BoxShowCtrl'
         })
         .when('/box/:boxId/edit', {
           templateUrl: 'views/box/edit.html',

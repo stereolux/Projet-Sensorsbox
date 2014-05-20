@@ -46,13 +46,6 @@ module.exports.routes = {
     action: 'me'
   },
 
-  /* Box */
-
-  'get /api/v1/box': {
-    controller: 'box',
-    action: 'findAll'
-  },
-
   /* Config */
 
   'get /api/v1/config/:boxid': {

@@ -11,8 +11,6 @@
 	animation-duration: 600ms;
   animation-name: slideout;
 }
-@media (max-width: $screen-sm) {
-}
 @media (min-width: $screen-sm) {
 	.vkalert.ng-enter, .vkalert.ng-leave.ng-leave-active {
 	}

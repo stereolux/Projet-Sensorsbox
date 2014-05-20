@@ -1,3 +1,22 @@
+$navbar-default-color:             #428bca;
+$navbar-default-bg:                #FFF;
+
+// Navbar links
+$navbar-default-link-color:                #428bca;
+$navbar-default-link-hover-color:          #428bca;
+$navbar-default-link-active-color:         #428bca;
+$navbar-default-link-active-bg:            transparent;
+$navbar-default-link-disabled-color:       #428bca;
+
+$dropdown-link-color:            #428bca;
+$dropdown-link-hover-color:      #FFF;
+$dropdown-link-hover-bg:         #428bca;
+
+$icon-font-path: "/fonts/";
+
+@import "sass-bootstrap/lib/bootstrap";
+
+
 @import "inline";
 @import "layout";
 @import "alert";
@@ -44,4 +63,43 @@ button .glyphicon {
 }
 .breadcrumb {
 	margin-bottom: 15px
+}
+.navbar {
+  background: white;
+  border-radius: 0;
+  border-color: #FFF #FFF #D85A4C #FFF;
+  border-width: 1px 0px 3px 0px;
+}
+.navbar-default .navbar-nav > li > a,
+.navbar a {
+  cursor: pointer;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  background: white;
+}
+.dropdown-menu {
+  border-width: 3px 0px 0px 0px;
+  border-color: transparent;
+}
+ol.breadcrumb {
+  background: #F9FCFF;
+  padding: 10px 15px;
+  border-bottom: 1px solid #F1F8FF;
+  border-top: none;
+  border-radius: 0;
+  @media (max-width: $screen-sm) {
+    margin-left:-15px;
+    margin-right:-15px;
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: #D85A4C;
+  margin-top: 0;
+
 }

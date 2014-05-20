@@ -26,23 +26,18 @@ module.exports.policies = {
 		'login': true
 	},
 	BoxController: {
-		'findAll': ['passportAuthenticated'],
-		'find': ['passportAuthenticated', 'isBoxOwner'],
+		'find': true,
+		'findOne': true,
 		'create': ['passportAuthenticated', 'addUser'],
 		'update': ['passportAuthenticated', 'isBoxOwner'],
 		'delete': ['passportAuthenticated', 'isBoxOwner']
 	},
-/*
 	SensorController: {
-		'findAll': ['passportAuthenticated'],
-		'find': ['passportAuthenticated', 'isSensorOwner'],
+		'find': true,
+		'findOne': true,
 		'create': ['passportAuthenticated'],
 		'update': ['passportAuthenticated', 'isSensorOwner'],
 		'delete': ['passportAuthenticated', 'isSensorOwner']
-	},
-*/
-	SensorController: {
-		'*': true
 	},
 	ConfigController: {
 		// should access to a box's config be pwd protected?
