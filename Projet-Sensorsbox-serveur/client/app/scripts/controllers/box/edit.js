@@ -32,7 +32,15 @@ angular.module('sensorsboxclientApp')
       }
       $scope.updateBox = function(box){
         $rootScope.spinner = 'Updating box';
-        var thisBox = new Box(box);
+
+        var boxCopy = {};
+        angular.extend(boxCopy, box);
+        delete boxCopy.owner;
+        delete boxCopy.updatedAt;
+        delete boxCopy.createdAt;
+        delete boxCopy.sensor;
+        var thisBox = new Box(boxCopy);
+
         thisBox.$update({boxId:box.id}, function(data){
             delete $rootScope.spinner;
             var alertData = { type: 'success', msg: 'Update successfull' };
