@@ -28,7 +28,7 @@ describe('MeasureService', function() {
 			setTimeout(function() {
 				counter.should.equal(times);
 				done();
-			}, sensorConfig.measureFrequency * times + 10);
+			}, sensorConfig.measureFrequency * times + 100);
 			service.watchSensor(sensor, sensorConfig, function(measure) {
 				counter++;
 				should.exist(measure);

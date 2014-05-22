@@ -8,7 +8,7 @@ var ConfigController = function(socket, route) {
 ConfigController.prototype.getConfig = function(boxId, callback) {
 	var _self = this;
 	this.io.socket.get(this.route + boxId, function(body, response) {
-		callback(null, body[0]);
+		callback(null, body);
 	});
 };
 

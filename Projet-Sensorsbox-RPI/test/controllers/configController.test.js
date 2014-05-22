@@ -6,7 +6,7 @@ var should = require('chai').should(),
 var fakeSocket = {
 	socket: {
 		get: function(route, callback) {
-			callback(['ok'], {});
+			callback('ok', {});
 		}
 	}
 };
