@@ -7,16 +7,15 @@ var getValues = function(sensor, callback){
 			var measuresValues = [];
 			var measuresTotal = 0;
 			measures.forEach(function(measure){
-				var value = parseInt(measure.value);
-				measuresValues.push(value);
-				measuresTotal += value;
+				measuresValues.push(measure.value);
+				measuresTotal += parseInt(measure.value);
 			});
 			var mean = measuresTotal / measuresValues.length;
 			callback({
 				mean: mean,
-				min: Math.min.apply(null, measuresValues),
-				max: Math.max.apply(null, measuresValues),
-				timerange: sensor.recordFrequency,
+				minimum: Math.min.apply(null, measuresValues),
+				maximum: Math.max.apply(null, measuresValues),
+				timerange: parseInt(sensor.recordFrequency),
 				sensor: sensor.id
 			});
 		}
@@ -47,7 +46,7 @@ exports.recordSensor = function(sensor) {
 					});					
 				}
 				batch();
-			}, parseInt(sensor.recordFrequency));
+			}, sensor.recordFrequency);
 		});
 	};
 	batch();

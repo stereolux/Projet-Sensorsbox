@@ -1,0 +1,24 @@
+<nav class="navbar navbar-default" role="navigation" style="padding:10px 10px 0px 20px">
+  <div class="navbar-collapse navbar-ex1-collapse" style="padding:0 15px 0 0;">
+    <a href="/" ><img src="images/logo.png" style="height:40px;"></a>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li ng-show="!user"><a hm-tap="utils.locationPath('user/signin')">Sign in</a></li>
+      <li ng-show="!user"><a hm-tap="utils.locationPath('user/signup')">Sign up</a></li>
+      <li class="dropdown vkNavLogDetails" ng-show="user">
+        <a class="dropdown-toggle">
+          {{user.firstname}}
+          <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li>
+            <a hm-tap="utils.locationPath('user/edit')">Settings</a>
+          </li>
+          <li>
+            <a hm-tap="logout()">Sign out</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>

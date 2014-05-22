@@ -50,6 +50,10 @@ module.exports.policies = {
 	MeasureController: {
 		// should access to a box's config be pwd protected?
 		'*': true
+	},
+	RecordController: {
+		// should access to a box's config be pwd protected?
+		'*': true
 	}
 	
 	// Here's an example of mapping some policies to run before

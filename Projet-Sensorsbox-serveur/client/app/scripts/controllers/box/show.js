@@ -18,14 +18,38 @@ angular.module('sensorsboxclientApp')
       var boxId = $routeParams.boxId || "";
       $rootScope.navigationpath = ['home','box'];
 
+      $scope.boxMeasures = [
+        {
+          "key": "Measures",
+          "values": []
+        }
+      ];
 
-      io.socket.get('/api/v1/config/' + boxId, function (body, sailsResponseObject) {
+      var parseMeasure = function(measure){
+        return [
+          new Date(measure.createdAt),
+          parseInt(measure.value || measure.mean)
+        ];
+      }
+
+      io.socket.get('/api/v1/record/', function (body, sailsResponseObject) {
         if(sailsResponseObject.statusCode === 200) {
-          $scope.config = body;
-          $scope.$apply();
         }
       });
 
+      io.socket.on('measure', function (body) {
+        $scope.$apply(function(){
+            if ($scope.boxMeasures[0].values.length > 29) {
+              $scope.boxMeasures[0].values.shift();
+            }
+            $scope.boxMeasures[0].values.push(parseMeasure(body.data));
+        })
+      });
+
+      io.socket.get('/api/v1/realtime/', function (body, sailsResponseObject) {
+        if(sailsResponseObject.statusCode === 200) {
+        }
+      });
 
       var queryBox = function(boxId){
         $rootScope.spinner = 'Loading box';

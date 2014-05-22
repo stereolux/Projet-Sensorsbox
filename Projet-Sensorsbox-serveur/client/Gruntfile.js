@@ -149,8 +149,7 @@ module.exports = function (grunt) {
         src: ['<%= yeoman.app %>/index.html'],
         exclude: [
           'bower_components/jquery/dist/jquery.js',
-          'bower_components/sass-bootstrap/dist/js/bootstrap.js',
-          'bower_components/sass-bootstrap/dist/css/bootstrap.css'
+          'bootstrap-sass-official/vendor/assets/javascripts/*'
         ],
         ignorePath: '<%= yeoman.app %>/'
       },
@@ -316,7 +315,8 @@ module.exports = function (grunt) {
             '*.html',
             'images/{,*/}*.{webp}',
             'fonts/*',
-            'bower_components/sass-bootstrap/dist/fonts/*'
+            'bower_components/sass-bootstrap/dist/fonts/*',
+            'bower_components/snapjs/snap.css'
           ]
         }, {
           expand: true,

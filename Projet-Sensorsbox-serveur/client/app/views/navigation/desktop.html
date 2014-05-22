@@ -1,43 +1,14 @@
-<div class="row" style="padding-top:20px">
-  <div class="col-xs-12" style="text-align:center;">
-      <a href="/" ><img src="images/logo.png"></a>
-  </div>
-  <div class="col-xs-12">
-    <nav class="navbar navbar-default" role="navigation">
-      <div class="navbar-collapse navbar-ex1-collapse" style="padding:0 15px 0 0;">
-        <ul class="nav navbar-nav">
-          <li>
-            <a ng-click="utils.locationPath('')">Home</a>
-          </li>
-          <li>
-            <a ng-click="utils.locationPath('guide')">Guide</a>
-          </li>
-          <li>
-            <a ng-click="utils.locationPath('box')">Boxes</a>
-          </li>
-          <li>
-            <a ng-click="utils.locationPath('sensor')">Sensors</a>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li ng-show="!user"><a hm-tap="utils.locationPath('user/signin')">Sign in</a></li>
-          <li ng-show="!user"><a hm-tap="utils.locationPath('user/signup')">Sign up</a></li>
-          <li class="dropdown vkNavLogDetails" ng-show="user">
-            <a class="dropdown-toggle">
-              {{user.firstname}}
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li>
-                <a hm-tap="utils.locationPath('user/edit')">Settings</a>
-              </li>
-              <li>
-                <a hm-tap="logout()">Sign out</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
+<div style="padding-top: 10px">
+  <div class="list-group">
+      <a class="list-group-item" ng-click="utils.locationPath('')">
+        <i class="fa fa-home"></i>&nbsp;&nbsp;Home
+      </a>
+      <a class="list-group-item" ng-click="utils.locationPath('guide')">
+        <i class="fa fa-book"></i>&nbsp;&nbsp;Guide</a>
+      <a class="list-group-item" ng-click="utils.locationPath('box')">
+        <i class="fa fa-ticket"></i>&nbsp;&nbsp;Boxes</a>
+      <a class="list-group-item" ng-click="utils.locationPath('sensor')">
+        <i class="fa fa-tag"></i>&nbsp;&nbsp;Sensors</a>
+    </li>
   </div>
 </div>

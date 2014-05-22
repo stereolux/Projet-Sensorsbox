@@ -12,7 +12,6 @@
 <p><strong>Id: </strong>{{box.id}}</p>
 <p><strong>Owner: </strong>{{box.owner.firstname}}</p>
 <p><strong>Description: </strong>{{box.description}}</p>
-<p><strong>config (data obtained via websocket): </strong>{{config}}</p>
 
 <div class="articleOptions" ng-show="user">
   <div hm-tap="utils.locationPath('sensor/create')" class="btn btn-default">
@@ -40,3 +39,18 @@
     <p>{{sensor.description}}</p>
   </li>
 </ul>
+
+<nvd3-line-chart
+    data="boxMeasures"
+    width="600"
+    interactive="true"
+    objectEquality="true"
+    height="350"
+    showXAxis="true"
+    showYAxis="true"
+    xAxisTickFormat="xAxisTickFormat_Date_Format()"
+    yAxisTickFormat="yAxisFormatFunction()">
+    <svg></svg>
+</nvd3-line-chart>
+
+

@@ -1,4 +1,4 @@
-@import "sass-bootstrap/lib/variables";
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/variables";
 
 .vkalert {
 		margin-bottom:10px;
@@ -19,14 +19,14 @@
 }
 @keyframes slidein {
   0% {
-    transform: translateX(-150%);
+    transform: translateX(150%);
 		line-height:0;
 		padding: 0;
 		margin-bottom:0;
   }
 
   50% {
-    transform: translateX(-150%);
+    transform: translateX(150%);
 		line-height:1.42857;
 		padding: 15px;
 		margin-bottom:10px;

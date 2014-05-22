@@ -14,7 +14,7 @@ $dropdown-link-hover-bg:         #428bca;
 
 $icon-font-path: "/fonts/";
 
-@import "sass-bootstrap/lib/bootstrap";
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/bootstrap";
 
 
 @import "inline";
@@ -23,7 +23,7 @@ $icon-font-path: "/fonts/";
 @import "navigation";
 @import "user";
 @import "article";
-@import "vkheader";
+@import "header";
 @import "helpers";
 
 button .glyphicon {
@@ -61,14 +61,11 @@ button .glyphicon {
 	text-align:center;
 	text-shadow: rgba(0,0,0,0.8) 1px 1px 1px;
 }
-.breadcrumb {
-	margin-bottom: 15px
-}
 .navbar {
-  background: white;
+  background: #f8f8f8;
   border-radius: 0;
-  border-color: #FFF #FFF #D85A4C #FFF;
-  border-width: 1px 0px 3px 0px;
+  border-color: #FFF #FFF #e7e7e7 #FFF;
+  border-width: 0px 0px 1px 0px;
 }
 .navbar-default .navbar-nav > li > a,
 .navbar a {
@@ -82,17 +79,6 @@ button .glyphicon {
 .dropdown-menu {
   border-width: 3px 0px 0px 0px;
   border-color: transparent;
-}
-ol.breadcrumb {
-  background: #F9FCFF;
-  padding: 10px 15px;
-  border-bottom: 1px solid #F1F8FF;
-  border-top: none;
-  border-radius: 0;
-  @media (max-width: $screen-sm) {
-    margin-left:-15px;
-    margin-right:-15px;
-  }
 }
 
 h1,

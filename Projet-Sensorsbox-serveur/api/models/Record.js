@@ -9,16 +9,16 @@ module.exports = {
 
   attributes: {
     mean: {
-      type: 'string'
+      type: 'float'
     },
-    max: {
-      type: 'string'
+    maximum: {
+      type: 'float'
     },
-    min: {
-      type: 'string'
+    minimum: {
+      type: 'float'
     },
     timerange: {
-      type: 'string'
+      type: 'int'
     },
     sensor:{
         model: 'sensor'

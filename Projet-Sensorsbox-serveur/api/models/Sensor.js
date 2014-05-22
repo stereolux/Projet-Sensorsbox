@@ -16,15 +16,15 @@ module.exports = {
       type: 'string'
     },
     pin: {
-    	type: 'string',
+    	type: 'int',
     	required: true
     },
     recordFrequency: {
-      type: 'string',
+      type: 'int',
       required: true
     },
     measureFrequency: {
-      type: 'string',
+      type: 'int',
       required: true
     },
     box:{

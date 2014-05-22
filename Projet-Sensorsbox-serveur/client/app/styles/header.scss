@@ -1,4 +1,4 @@
-vkheader {
+headermobile {
 	display:block;
 	position:absolute;
 	left:0;
@@ -21,4 +21,13 @@ vkheader {
 			float:right
 		}
 	}
+}
+
+headerdesktop {
+  position: fixed;
+  height:50px;
+  top:0;
+  right:0;
+  left:0;
+  z-index:10;
 }

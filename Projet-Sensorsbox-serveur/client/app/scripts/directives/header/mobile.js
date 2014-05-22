@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('sensorsboxclientApp')
-  .directive('vkheader', function () {
+  .directive('headermobile', function () {
     return {
-      templateUrl: 'views/navigation/vkheader.html',
+      templateUrl: 'views/header/mobile.html',
       restrict: 'E',
       controller : function($scope){},
       link: function(scope, element, attrs) {}
