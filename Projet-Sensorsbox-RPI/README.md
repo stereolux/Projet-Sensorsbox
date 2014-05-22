@@ -19,7 +19,7 @@ npm install
 
 ```
 cd ~/sensorsbox-rpi
-node index.js
+node src/app.js
 ```
 
 ## Run the program when the raspberry pi boots
