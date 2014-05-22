@@ -30,4 +30,4 @@ codeclimate:
 
 ci: clean jshint test coverage codeclimate
 
-.PHONY: clean test jshint coverage codeclimate
+.PHONY: clean test jshint coverage codeclimate ci npm-rpi
