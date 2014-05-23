@@ -11,3 +11,5 @@ build_client:
 	cd client && npm install && bower install && grunt build
 
 build: clean build_server build_client
+
+.PHONY: clean build_server build_client build
