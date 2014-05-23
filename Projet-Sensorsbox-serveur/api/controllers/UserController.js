@@ -7,14 +7,12 @@
 
 module.exports = {
 
-  me: function(req,res){
-    if (req.isAuthenticated()){
-      return res.send(200, req.user[0]);
-    }
-    else {
-      return res.send(403, { message: 'Not Authorized' });
-    }
-  }
-
-
+	me: function(req,res) {
+		if (req.isAuthenticated()) {
+			return res.send(200, req.user[0]);
+		}
+		else {
+			return res.send(403, { message: 'Not Authorized' });
+		}
+	}
 };

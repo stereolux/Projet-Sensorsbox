@@ -1,22 +1,21 @@
 /**
 * Box.js
 *
-* @description :: TODO: You might write a short summary of how this model works and what it represents here.
+* @description :: Measure model.
 * @docs        :: http://sailsjs.org/#!documentation/models
 */
 
 module.exports = {
 
-  attributes: {
-    value: {
-      type: 'int',
-      required: true
-    },
-    sensor:{
-        model: 'sensor'
-    }
-  },
-  connection: 'redis'
+	attributes: {
+		value: {
+			type: 'int',
+			required: true
+		},
+		sensor: {
+			model: 'sensor'
+		}
+	},
+	connection: 'redis'
 
 };
-

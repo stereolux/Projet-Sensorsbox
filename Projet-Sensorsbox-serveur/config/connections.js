@@ -21,19 +21,15 @@
 
 module.exports.connections = {
 
-  mongodbServer: {
-    adapter: 'sails-mongo',
-    url : process.env.DATABASE_URL || 'mongodb://localhost:27017/sensorsbox'
-  },
-  redis: {
-   adapter: 'sails-redis',
-   port: process.env.REDIS_PORT || 6379,
-   host: process.env.REDIS_HOST || 'localhost',
-   db: process.env.REDIS_DB || null,
-   password: process.env.REDIS_PASSWORD || null
-  }
-
-
-
-
+	mongodbServer: {
+		adapter: 'sails-mongo',
+		url : process.env.DATABASE_URL || 'mongodb://localhost:27017/sensorsbox'
+	},
+	redis: {
+		adapter: 'sails-redis',
+		port: process.env.REDIS_PORT || 6379,
+		host: process.env.REDIS_HOST || 'localhost',
+		db: process.env.REDIS_DB || null,
+		password: process.env.REDIS_PASSWORD || null
+	}
 };

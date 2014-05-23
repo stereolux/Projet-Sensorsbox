@@ -7,9 +7,7 @@
 
 module.exports = {
 
-	measure: function(req, res){
+	measure: function(req, res) {
 		Measure.watch(req.socket);
 	}
-	
 };
-

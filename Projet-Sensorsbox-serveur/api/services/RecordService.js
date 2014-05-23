@@ -43,7 +43,7 @@ exports.recordSensor = function(sensor) {
 								console.log('Measures destroyed');
 							});
 						}
-					});					
+					});
 				}
 				batch();
 			}, sensor.recordFrequency);

@@ -7,7 +7,4 @@
 
 module.exports = {
 
-
-	
 };
-
