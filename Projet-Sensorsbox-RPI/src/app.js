@@ -1,13 +1,23 @@
 'use strict';
-var socketIOClient = require('socket.io-client'),
+var fs = require('fs'),
+	socketIOClient = require('socket.io-client'),
 	sailsIOClient = require('sails.io.js'),
 	Sensor = require('./sensors/sensor'),
-	fakeDevice = require('./helpers/fakeDevice'),
 	ConfigController = require('./controllers/configController'),
 	MeasureController = require('./controllers/measureController'),
-	MeasureService = require('./services/measureService');
+	MeasureService = require('./services/measureService'),
+	device;
 
 var config = require('./config');
+
+var isRpi = fs.readFileSync('/proc/cpuinfo', {encoding: 'UTF-8'}).indexOf('BCM2708') > -1;
+if (isRpi) {
+	var mcp3008 = require('mcp3008.js');
+	device = new mcp3008();
+}
+else {
+	device = require('./helpers/fakeDevice');
+}
 
 var sensorMap = {};
 
@@ -38,7 +48,7 @@ var measureService = new MeasureService();
 
 configController.getConfig(config.boxId, function(err, boxConfig) {
 	boxConfig.sensor.forEach(function(sensorConfig) {
-		var sensor = new Sensor(fakeDevice, parseInt(sensorConfig.pin));
+		var sensor = new Sensor(device, parseInt(sensorConfig.pin));
 		sensorMap[sensorConfig.id] = sensor;
 		watchSensor(sensor, sensorConfig);
 	});
