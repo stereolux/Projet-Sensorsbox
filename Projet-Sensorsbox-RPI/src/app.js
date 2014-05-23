@@ -10,7 +10,7 @@ var fs = require('fs'),
 
 var config = require('./config');
 
-var isRpi = fs.readFileSync('/proc/cpuinfo', {encoding: 'UTF-8'}).indexOf('BCM2708') > -1;
+var isRpi = fs.existsSync('/proc/cpuinfo') && (fs.readFileSync('/proc/cpuinfo', {encoding: 'UTF-8'}).indexOf('BCM2708') > -1);
 if (isRpi) {
 	var mcp3008 = require('mcp3008.js');
 	device = new mcp3008();
