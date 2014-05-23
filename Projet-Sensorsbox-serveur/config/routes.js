@@ -50,18 +50,21 @@ module.exports.routes = {
 
 	'get /api/v1/config/:boxid': {
 		controller: 'config',
-		action: 'getConfig'
+		action: 'getConfig',
+		cors: true
 	},
 
 	/* Realtime */
 
 	'get /api/v1/realtime/box/:boxId': {
 		controller: 'realtime',
-		action: 'boxRealtime'
+		action: 'boxRealtime',
+		cors: true
 	},
 	'get /api/v1/realtime/sensor/:sensorId': {
 		controller: 'realtime',
-		action: 'sensorRealtime'
+		action: 'sensorRealtime',
+		cors: true
 	},
 
 	/* Measures */
