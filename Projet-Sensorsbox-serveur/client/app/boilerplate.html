@@ -8,7 +8,7 @@
   <body>
     <script src="bower_components/sails.io.js/dist/sails.io.js"></script>
     <script>
-      io.socket.get('/api/v1/realtime/box/537bdd75353aae0c53d74815', function (body, sailsResponseObject) {
+      io.socket.get('/api/v1/config/537bdd75353aae0c53d74815', function (body, sailsResponseObject) {
         if(sailsResponseObject.statusCode === 200) {
           console.log('subscribed to updates to sensors of this box and to measures by these sensors');
         }

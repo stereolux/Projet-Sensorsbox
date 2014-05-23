@@ -15,9 +15,10 @@ module.exports = {
 			else {
 				if (box[0] && box[0].sensor) {
 					box[0].sensor.forEach(function(sensor){
-						this.sensorRealtime(req, res);
+						module.exports.sensorRealtime(req, res);
 					});
 				}
+				res.send(box[0])
 			}
 		});
 	},
@@ -28,7 +29,8 @@ module.exports = {
 				return res.send(404, err);
 			}
 			else {
-				Sensor.subscribe(req.socket, sensors, ['create', 'update']);
+				Sensor.subscribe(req.socket, sensors);
+				res.send(sensors[0])
 			}
 		});
 	}

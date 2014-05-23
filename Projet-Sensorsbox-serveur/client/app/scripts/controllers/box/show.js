@@ -18,36 +18,45 @@ angular.module('sensorsboxclientApp')
       var boxId = $routeParams.boxId || "";
       $rootScope.navigationpath = ['home','box'];
 
-      $scope.boxMeasures = [
-        {
-          "key": "Measures",
-          "values": []
-        }
-      ];
-
       var parseMeasure = function(measure){
         return [
           new Date(measure.createdAt),
           parseInt(measure.value || measure.mean)
         ];
       }
-/*
-      io.socket.get('/api/v1/record/', function (body, sailsResponseObject) {
-        if(sailsResponseObject.statusCode === 200) {
-        }
-      });
-*/
+
+      var myBoxMeasures = {};
+      $scope.boxMeasures = [];
+
       io.socket.on('sensor', function (body) {
         $scope.$apply(function(){
-            if ($scope.boxMeasures[0].values.length > 29) {
-              $scope.boxMeasures[0].values.shift();
+          console.log(body);
+            if (myBoxMeasures[body.data.sensor].length > 29) {
+              myBoxMeasures[body.data.sensor].shift();
             }
-            $scope.boxMeasures[0].values.push(parseMeasure(body.data));
+            myBoxMeasures[body.data.sensor].push(parseMeasure(body.data));
         })
       });
 
+      $scope.toolTipContentFunction = function(){
+        return function(key, x, y, e, graph) {
+          return '<h1>' + key + '</h1>' +
+          '<p>' +  y + ' at ' + x + '</p>'
+        }
+      }
+
+
       io.socket.get('/api/v1/realtime/box/' + $routeParams.boxId, function (body, sailsResponseObject) {
         if(sailsResponseObject.statusCode === 200) {
+          body.sensor.forEach(function(sensor){
+            myBoxMeasures[sensor.id] = [];
+            console.log(sensor.name);
+            $scope.boxMeasures.push({
+                "key": sensor.name,
+                "values": myBoxMeasures[sensor.id]
+            })
+          })
+          console.log(myBoxMeasures);
           console.log('subscribed to updates to sensors of this box and to measures by these sensors');
         }
       });
