@@ -15,6 +15,10 @@ module.exports = {
 			else {
 				if (box[0] && box[0].sensor) {
 
+					/* Subscribe to any configuration change to this box and to new Sensors added to it */
+
+					Box.subscribe(req.socket, box);
+
 					/* Subscribe to any configuration change to the sensors of this box */
 
 					Sensor.find({box:box[0].id}).exec(function(e,sensors){

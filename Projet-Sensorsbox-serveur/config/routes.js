@@ -55,11 +55,11 @@ module.exports.routes = {
 
 	/* Realtime */
 
-	'get /api/v1/realtime/box/:boxId': {
+	'get /api/v1/realtime/box/:boxid': {
 		controller: 'realtime',
 		action: 'boxRealtime'
 	},
-	'get /api/v1/realtime/sensor/:sensorId': {
+	'get /api/v1/realtime/sensor/:sensorid': {
 		controller: 'realtime',
 		action: 'sensorRealtime'
 	},
@@ -69,8 +69,14 @@ module.exports.routes = {
 	'post /api/v1/measure': {
 		controller: 'measure',
 		action: 'createMeasure'
-	}
+	},
 
+	/* Sensors */
+
+	'post /api/v1/sensor': {
+		controller: 'sensor',
+		action: 'createSensor'
+	}
 	// Custom routes here...
 
 
