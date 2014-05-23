@@ -18,7 +18,7 @@ module.exports = {
 			type: 'float'
 		},
 		timerange: {
-			type: 'int'
+			type: 'float'
 		},
 		sensor: {
 			model: 'sensor'

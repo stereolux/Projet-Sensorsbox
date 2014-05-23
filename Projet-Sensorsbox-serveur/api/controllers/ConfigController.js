@@ -14,14 +14,26 @@ module.exports = {
 			}
 			else {
 				if (box[0] && box[0].sensor) {
-					box[0].sensor.forEach(function(sensor) {
-						console.log(sensor.id);
-						RecordService.recordSensor(sensor);
-					});
-					Sensor.find({box:box[0].id}).exec(function(e,sensors) {
+
+					/* Subscribe to any configuration change to the sensors of this box */
+
+					Sensor.find({box:box[0].id}).exec(function(e,sensors){
 						Sensor.subscribe(req.socket, sensors);
 					});
+
+					/* Initiate Record service for this box and cancel it when necessary */
+
+					box[0].sensor.forEach(function(sensor){
+						RecordService.recordSensor(sensor);
+					});
+					req.socket.on('disconnect', function () {
+						box[0].sensor.forEach(function(sensor){
+							RecordService.cancelRecordSensor(sensor);
+						});
+					});
+
 					return res.send(box[0]);
+
 				}
 			}
 		});

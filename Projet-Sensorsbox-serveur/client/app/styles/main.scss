@@ -13,7 +13,9 @@ $dropdown-link-hover-color:      #FFF;
 $dropdown-link-hover-bg:         #428bca;
 
 $icon-font-path: "/fonts/";
+$fa-font-path: "/fonts/";
 
+@import "fontawesome/scss/font-awesome";
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/bootstrap";
 
 

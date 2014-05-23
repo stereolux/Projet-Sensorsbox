@@ -14,7 +14,7 @@
     "bootstrap-sass-official": "3.1.1",
     "angular-gestures": "0.2.2",
     "snapjs": "latest",
-    "components-font-awesome": "~4.0.3",
+    "fontawesome": "4.1.0",
     "sails.io.js": "~0.10.0-rc4",
     "angularjs-nvd3-directives": "~0.0.7"
   },

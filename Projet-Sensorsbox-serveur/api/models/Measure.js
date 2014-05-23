@@ -9,7 +9,7 @@ module.exports = {
 
 	attributes: {
 		value: {
-			type: 'int',
+			type: 'float',
 			required: true
 		},
 		sensor: {

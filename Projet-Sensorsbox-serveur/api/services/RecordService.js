@@ -8,14 +8,14 @@ var getValues = function(sensor, callback){
 			var measuresTotal = 0;
 			measures.forEach(function(measure){
 				measuresValues.push(measure.value);
-				measuresTotal += parseInt(measure.value);
+				measuresTotal += measure.value;
 			});
 			var mean = measuresTotal / measuresValues.length;
 			callback({
 				mean: mean,
 				minimum: Math.min.apply(null, measuresValues),
 				maximum: Math.max.apply(null, measuresValues),
-				timerange: parseInt(sensor.recordFrequency),
+				timerange: sensor.recordFrequency,
 				sensor: sensor.id
 			});
 		}
@@ -31,6 +31,7 @@ exports.recordSensor = function(sensor) {
 		}
 		getValues(sensor, function(record){
 			recordTimeouts[sensor.id] = setTimeout(function() {
+				console.log(record);
 				if (record) {
 					Record.create(record).exec(function(err, record){
 						if (err) {
@@ -50,4 +51,10 @@ exports.recordSensor = function(sensor) {
 		});
 	};
 	batch();
+};
+
+exports.cancelRecordSensor = function(sensor) {
+	if (typeof(recordTimeouts[sensor.id])!=='undefined'){
+		clearTimeout(recordTimeouts[sensor.id]);
+	}
 };

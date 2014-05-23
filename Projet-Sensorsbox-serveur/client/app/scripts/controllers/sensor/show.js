@@ -18,6 +18,11 @@ angular.module('sensorsboxclientApp')
       var sensorId = $routeParams.sensorId || "";
       $rootScope.navigationpath = ['home','sensor'];
 
+      io.socket.get('/api/v1/realtime/sensor/' + $routeParams.sensorId, function (body, sailsResponseObject) {
+        if(sailsResponseObject.statusCode === 200) {
+          console.log('subscribed to updates to sensor and to measures by this sensor');
+        }
+      });
 
       var querySensor = function(sensorId){
         $rootScope.spinner = 'Loading sensor';

@@ -31,13 +31,13 @@ angular.module('sensorsboxclientApp')
           parseInt(measure.value || measure.mean)
         ];
       }
-
+/*
       io.socket.get('/api/v1/record/', function (body, sailsResponseObject) {
         if(sailsResponseObject.statusCode === 200) {
         }
       });
-
-      io.socket.on('measure', function (body) {
+*/
+      io.socket.on('sensor', function (body) {
         $scope.$apply(function(){
             if ($scope.boxMeasures[0].values.length > 29) {
               $scope.boxMeasures[0].values.shift();
@@ -46,8 +46,9 @@ angular.module('sensorsboxclientApp')
         })
       });
 
-      io.socket.get('/api/v1/realtime/', function (body, sailsResponseObject) {
+      io.socket.get('/api/v1/realtime/box/' + $routeParams.boxId, function (body, sailsResponseObject) {
         if(sailsResponseObject.statusCode === 200) {
+          console.log('subscribed to updates to sensors of this box and to measures by these sensors');
         }
       });
 
