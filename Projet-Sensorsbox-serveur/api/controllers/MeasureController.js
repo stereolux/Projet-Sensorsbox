@@ -7,10 +7,10 @@
 
 module.exports = {
 
-	createMeasure : function(req, res) {
-		Measure.create(req.body).exec(function(err,created){
-			Sensor.message(req.body.sensor, created, req);
-			res.json(created);
+	create : function(req, res) {
+		Measure.create(req.body).exec(function(err,measure){
+			SocketService.message('measure', 'created', measure);
+			res.json(measure);
 		});
 	}
 

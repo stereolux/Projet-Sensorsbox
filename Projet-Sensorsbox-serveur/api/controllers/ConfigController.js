@@ -8,35 +8,28 @@
 module.exports = {
 
 	getConfig: function(req,res) {
-		Box.find({id:req.params.boxid}).populate('owner').populate('sensor').exec(function(err,box) {
-			if ((err) || (!box)) {
+		Box.find({id:req.params.boxid}).populate('owner').populate('sensor').exec(function(err,boxes) {
+			if ((err) || (!boxes)) {
 				return res.send(404, err);
 			}
 			else {
-				if (box[0] && box[0].sensor) {
+				if (boxes[0] && boxes[0].sensor) {
 
-					/* Subscribe to any configuration change to this box and to new Sensors added to it */
-
-					Box.subscribe(req.socket, box);
-
-					/* Subscribe to any configuration change to the sensors of this box */
-
-					Sensor.find({box:box[0].id}).exec(function(e,sensors){
-						Sensor.subscribe(req.socket, sensors);
-					});
+					SocketService.join(req.socket, 'box', boxes[0]);
 
 					/* Initiate Record service for this box and cancel it when necessary */
 
-					box[0].sensor.forEach(function(sensor){
+					boxes[0].sensor.forEach(function(sensor){
 						RecordService.recordSensor(sensor);
 					});
 					req.socket.on('disconnect', function () {
-						box[0].sensor.forEach(function(sensor){
+						console.log('disconnect');
+						boxes[0].sensor.forEach(function(sensor){
 							RecordService.cancelRecordSensor(sensor);
 						});
 					});
 
-					return res.send(box[0]);
+					return res.send(boxes[0]);
 
 				}
 			}

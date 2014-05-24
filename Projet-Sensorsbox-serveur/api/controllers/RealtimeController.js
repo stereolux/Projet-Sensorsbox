@@ -8,17 +8,13 @@
 module.exports = {
 
 	boxRealtime: function(req, res) {
-		Box.find({id:req.params.boxid}).populate('sensor').exec(function(err,box){
-			if ((err) || (!box)) {
+		Box.find({id:req.params.boxid}).populate('sensor').exec(function(err,boxes){
+			if ((err) || (!boxes)) {
 				return res.send(404, err);
 			}
-			else {
-				if (box[0] && box[0].sensor) {
-					box[0].sensor.forEach(function(sensor){
-						module.exports.sensorRealtime(req, res);
-					});
-				}
-				res.send(box[0])
+			else if (boxes[0]) {
+				SocketService.join(req.socket, 'box', boxes[0]);
+				SocketService.message('box', 'list', boxes[0]);
 			}
 		});
 	},
@@ -28,9 +24,9 @@ module.exports = {
 			if ((err) || (!sensors)) {
 				return res.send(404, err);
 			}
-			else {
-				Sensor.subscribe(req.socket, sensors);
-				res.send(sensors[0])
+			else if (sensors[0]) {
+				SocketService.join(req.socket, 'sensor', sensors[0]);
+				console.log('sensor_' + sensors[0].id);
 			}
 		});
 	}

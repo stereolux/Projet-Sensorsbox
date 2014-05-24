@@ -37,16 +37,18 @@ angular.module('sensorsboxclientApp')
 
       $scope.sensorMeasures = [];
 
+*/
       io.socket.get('/api/v1/realtime/sensor/' + $routeParams.sensorId, function (body, sailsResponseObject) {
         if(sailsResponseObject.statusCode === 200) {
+/*
           $scope.sensorMeasures.push({
               "key": body.name,
               "values": []
           })
+*/
           console.log('subscribed to updates to sensor and to measures by this sensor');
         }
       });
-*/
 
       var querySensor = function(sensorId){
         $rootScope.spinner = 'Loading sensor';
