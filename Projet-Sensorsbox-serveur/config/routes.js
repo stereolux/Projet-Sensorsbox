@@ -22,11 +22,31 @@
 
 module.exports.routes = {
 
+	/*
+	=======================
+		BOX ROUTES
+	=======================
+	*/
 
-	// Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, etc. depending on your
-	// default view engine) your home page.
-	//
-	// (Alternatively, remove this and add an `index.html` file in your `assets` directory)
+	/* Config */
+
+	'get /api/v1/config/:boxid': {
+		controller: 'config',
+		action: 'getConfig',
+	},
+
+	/* Measures */
+
+	'post /api/v1/measure': {
+		controller: 'measure',
+		action: 'create'
+	},
+
+	/*
+	=======================
+		ADMIN ROUTES
+	=======================
+	*/
 
 	/* Authentication */
 
@@ -46,12 +66,26 @@ module.exports.routes = {
 		action: 'me'
 	},
 
-	/* Config */
+	/* Sensors */
 
-	'get /api/v1/config/:boxid': {
-		controller: 'config',
-		action: 'getConfig',
+	'post /api/v1/sensor': {
+		controller: 'sensor',
+		action: 'create'
 	},
+	'put /api/v1/sensor/:sensorid': {
+		controller: 'sensor',
+		action: 'update'
+	},
+	'delete /api/v1/sensor/:sensorid': {
+		controller: 'sensor',
+		action: 'destroy'
+	},
+
+	/*
+	=======================
+		API USER ROUTES
+	=======================
+	*/
 
 	/* Realtime */
 
@@ -62,26 +96,6 @@ module.exports.routes = {
 	'get /api/v1/realtime/sensor/:sensorid': {
 		controller: 'realtime',
 		action: 'sensorRealtime',
-	},
-
-	/* Measures */
-
-	'post /api/v1/measure': {
-		controller: 'measure',
-		action: 'createMeasure'
-	},
-
-	/* Sensors */
-
-	'post /api/v1/sensor': {
-		controller: 'sensor',
-		action: 'createSensor'
 	}
-	// Custom routes here...
-
-
-	// If a request to a URL doesn't match any of the custom routes above,
-	// it is matched against Sails route blueprints.  See `config/blueprints.js`
-	// for configuration options and examples.
 
 };

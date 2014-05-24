@@ -28,35 +28,27 @@ angular.module('sensorsboxclientApp')
       var myBoxMeasures = {};
       $scope.boxMeasures = [];
 
-      io.socket.on('sensor', function (body) {
+      io.socket.on('measure', function (data) {
         $scope.$apply(function(){
-          console.log(body);
-            if (myBoxMeasures[body.data.sensor].length > 29) {
-              myBoxMeasures[body.data.sensor].shift();
+            if (myBoxMeasures[data.created.sensor].length > 29) {
+              myBoxMeasures[data.created.sensor].shift();
             }
-            myBoxMeasures[body.data.sensor].push(parseMeasure(body.data));
+            myBoxMeasures[data.created.sensor].push(parseMeasure(data.created));
         })
       });
 
-      $scope.toolTipContentFunction = function(){
-        return function(key, x, y, e, graph) {
-          return '<h1>' + key + '</h1>' +
-          '<p>' +  y + ' at ' + x + '</p>'
-        }
-      }
-
-
-      io.socket.get('/api/v1/realtime/box/' + $routeParams.boxId, function (body, sailsResponseObject) {
-        if(sailsResponseObject.statusCode === 200) {
-          body.sensor.forEach(function(sensor){
-            myBoxMeasures[sensor.id] = [];
-            console.log(sensor.name);
-            $scope.boxMeasures.push({
-                "key": sensor.name,
-                "values": myBoxMeasures[sensor.id]
-            })
+      io.socket.on('box', function (data) {
+        data.list.sensor.forEach(function(sensor){
+          myBoxMeasures[sensor.id] = [];
+          $scope.boxMeasures.push({
+              "key": sensor.name,
+              "values": myBoxMeasures[sensor.id]
           })
-          console.log(myBoxMeasures);
+        })
+      });
+
+      io.socket.get('/api/v1/realtime/box/' + $routeParams.boxId, function (body, response) {
+        if(response.statusCode === 200) {
           console.log('subscribed to updates to sensors of this box and to measures by these sensors');
         }
       });

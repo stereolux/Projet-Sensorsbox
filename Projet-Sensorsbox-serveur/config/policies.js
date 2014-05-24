@@ -16,60 +16,57 @@
 
 module.exports.policies = {
 
-	// Default policy for all controllers and actions
-	// (`true` allows public access)
+	/* Default */
+
 	'*': 'passportAuthenticated',
+
+	/* Box */
+
+	ConfigController: {
+		'*': true
+	},
+	MeasureController: {
+		'*': true
+	},
+
+	/* Authentication and User Management */
+
 	UserController: {
 		'create': true,
 	},
 	AuthController: {
 		'login': true
 	},
+
+	/* Admin */
+
 	BoxController: {
 		'find': true,
 		'findOne': true,
 		'create': ['passportAuthenticated', 'addUser'],
 		'update': ['passportAuthenticated', 'isBoxOwner'],
-		'delete': ['passportAuthenticated', 'isBoxOwner']
+		'destroy': ['passportAuthenticated', 'isBoxOwner']
 	},
 	SensorController: {
 		'find': true,
 		'findOne': true,
+/*
 		'create': ['passportAuthenticated'],
 		'update': ['passportAuthenticated', 'isSensorOwner'],
 		'delete': ['passportAuthenticated', 'isSensorOwner']
+*/
+		'create': true,
+		'update': true,
+		'destroy': true
 	},
-	ConfigController: {
-		// should access to a box's config be pwd protected?
-		'*': true
-	},
+
+	/* API Users */
+
 	RealtimeController: {
-		// should access to a box's config be pwd protected?
-		'*': true
-	},
-	MeasureController: {
-		// should access to a box's config be pwd protected?
 		'*': true
 	},
 	RecordController: {
-		// should access to a box's config be pwd protected?
 		'*': true
 	}
 
-	// Here's an example of mapping some policies to run before
-	// a controller and its actions
-	// RabbitController: {
-
-		// Apply the `false` policy as the default for all of RabbitController's actions
-		// (`false` prevents all access, which ensures that nothing bad happens to our rabbits)
-		// '*': false,
-
-		// For the action `nurture`, apply the 'isRabbitMother' policy
-		// (this overrides `false` above)
-		// nurture	: 'isRabbitMother',
-
-		// Apply the `isNiceToAnimals` AND `hasRabbitFood` policies
-		// before letting any users feed our rabbits
-		// feed : ['isNiceToAnimals', 'hasRabbitFood']
-	// }
 };
