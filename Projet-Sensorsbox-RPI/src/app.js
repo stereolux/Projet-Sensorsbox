@@ -31,6 +31,7 @@ io.socket.on('sensor', function(response) {
 var watchSensor = function (sensor, sensorConfig) {
 	measureService.watchSensor(sensor, sensorConfig, function(value) {
 		var measure = {
+			box: sensorConfig.box,
 			sensor: sensorConfig.id,
 			value: value
 		};
