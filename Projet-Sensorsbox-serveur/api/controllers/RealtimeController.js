@@ -15,6 +15,7 @@ module.exports = {
 			else if (boxes[0]) {
 				SocketService.join(req.socket, 'box', boxes[0]);
 				SocketService.message('box', 'list', boxes[0]);
+				return res.send(boxes[0]);
 			}
 		});
 	},
@@ -27,6 +28,7 @@ module.exports = {
 			else if (sensors[0]) {
 				SocketService.join(req.socket, 'sensor', sensors[0]);
 				console.log('sensor_' + sensors[0].id);
+				return res.send(sensors[0]);
 			}
 		});
 	}
