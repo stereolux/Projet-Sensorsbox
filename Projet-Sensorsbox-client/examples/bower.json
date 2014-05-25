@@ -1,0 +1,22 @@
+{
+  "name": "sensorsbox-example",
+  "version": "0.0.1",
+  "authors": [
+    "xseignard <xavier.seignard@gmail.com>"
+  ],
+  "description": "A simple demo of the sensorsbox client library",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "d3": "~3.4.8",
+    "sails.io.js": "~0.10.0-rc4",
+    "socket.io-client": "~0.9.17"
+  }
+}
