@@ -16,9 +16,9 @@ module.exports = {
 				if (boxes[0] && boxes[0].sensor) {
 
 					SocketService.join(req.socket, 'box', boxes[0]);
+					SocketService.message('box', 'list', boxes[0]);
 
-					/* Initiate Record service for this box and cancel it when necessary */
-
+					// initiate Record service for this box and cancel it when necessary
 					boxes[0].sensor.forEach(function(sensor){
 						RecordService.recordSensor(sensor);
 					});
