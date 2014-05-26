@@ -23,9 +23,34 @@ var sensorMap = {};
 
 var io = sailsIOClient(socketIOClient);
 io.sails.url = config.serverUrl;
-io.socket.on('sensor', function(response) {
-	var sensor = sensorMap[response.id];
-	watchSensor(sensor, response.data);
+
+io.socket.on('sensor', function(sensorConfig) {
+	if (sensorConfig.action === 'destroy') {
+		delete sensorMap[sensorConfig.data.id];
+		measureService.unwatchSensor(sensorConfig.data.id);
+	}
+	else {
+		var sensor = new Sensor(device, parseInt(sensorConfig.data.pin));
+		sensorMap[sensorConfig.data.id] = sensor;
+		watchSensor(sensor, sensorConfig);
+	}
+});
+
+io.socket.on('box', function(boxConfig) {
+	console.log(boxConfig);
+	if (boxConfig.action === 'destroy') {
+		for (var sensor in sensorMap) {
+			delete sensorMap[sensorConfig.data.id];
+			measureService.unwatchSensor(sensorConfig.data.id);
+		}
+	}
+	else {
+		boxConfig.data.sensor.forEach(function(sensorConfig) {
+			var sensor = new Sensor(device, parseInt(sensorConfig.pin));
+			sensorMap[sensorConfig.id] = sensor;
+			watchSensor(sensor, sensorConfig);
+		});
+	};
 });
 
 var watchSensor = function (sensor, sensorConfig) {
@@ -47,10 +72,4 @@ var measureController = new MeasureController(io, '/api/v1/measure');
 
 var measureService = new MeasureService();
 
-configController.getConfig(config.boxId, function(err, boxConfig) {
-	boxConfig.sensor.forEach(function(sensorConfig) {
-		var sensor = new Sensor(device, parseInt(sensorConfig.pin));
-		sensorMap[sensorConfig.id] = sensor;
-		watchSensor(sensor, sensorConfig);
-	});
-});
+configController.getConfig(config.boxId);
