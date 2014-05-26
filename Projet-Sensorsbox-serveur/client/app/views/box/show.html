@@ -1,55 +1,100 @@
-<div ng-show="user && (user.id === box.owner.id)" class="articleOptions clearfix">
-	<div style="padding-bottom:8px;">
-		<div hm-tap="utils.locationPath('box/' + box.id + '/edit')" class="btn btn-default">
-			<span class="glyphicon glyphicon-cog"></span>
-		</div>
-		<div hm-tap="deleteRpi(box)" class="btn btn-default" style="margin-left:5px">
-			<span class="glyphicon glyphicon-remove"></span>
-		</div>
-	</div>
-</div>
-<h2 ng-bind="box.name">Box</h2>
-<p><strong>Id: </strong>{{box.id}}</p>
-<p><strong>Owner: </strong>{{box.owner.firstname}}</p>
-<p><strong>Description: </strong>{{box.description}}</p>
-
-<div class="articleOptions" ng-show="user">
-  <div hm-tap="utils.locationPath('sensor/create')" class="btn btn-default">
-    <span class="glyphicon glyphicon-plus"></span>
-    Add sensor
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
+    <div ng-show="user && (user.id === box.owner.id)" class="articleOptions clearfix">
+      <div style="padding-bottom:8px;">
+        <div hm-tap="utils.locationPath('box/' + box.id + '/edit')" class="btn btn-default">
+          <span class="glyphicon glyphicon-cog"></span>
+        </div>
+        <div hm-tap="deleteRpi(box)" class="btn btn-default" style="margin-left:5px">
+          <span class="glyphicon glyphicon-remove"></span>
+        </div>
+      </div>
+    </div>
+    <h1><i class="fa fa-cube"></i> {{box.name}}</h1>
   </div>
 </div>
-<h2>Sensors</h2>
-<ul class="list-group">
-  <li ng-repeat="sensor in box.sensor | orderBy:'name'" class="list-group-item clearfix">
-    <div class="articleOptions">
-      <div  ng-show="user && (user.id === box.owner.id)" hm-tap="utils.locationPath('sensor/{{sensor.id}}/edit')" class="btn btn-default">
-        <span class="glyphicon glyphicon-cog"></span>
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Settings</h3>
       </div>
-      <div  ng-show="user && (user.id === box.owner.id)" hm-tap="deleteSensor(sensor)" class="btn btn-default" style="margin-left:5px">
-        <span class="glyphicon glyphicon-remove"></span>
+      <div class="panel-body">
+        <p><strong>Id: </strong>{{box.id}}</p>
+        <p><strong>Owner: </strong>{{box.owner.firstname}}</p>
+        <p><strong>Description: </strong>{{box.description}}</p>
       </div>
-      <br/>
-      <br/>
-      <div hm-tap="utils.locationPath('sensor/{{sensor.id}}/show')" class="btn btn-block btn-primary" style="padding-left:2em;padding-right:2em;">Details</div>
     </div>
-    <p>
-      <strong>{{sensor.name}}</strong>
-    </p>
-    <p>{{sensor.description}}</p>
-  </li>
-</ul>
-
-<nvd3-line-chart
-    data="boxMeasures"
-    width="600"
-    objectEquality="true"
-    height="350"
-    showXAxis="true"
-    showYAxis="true"
-    xAxisTickFormat="xAxisTickFormat_Date_Format()"
-    yAxisTickFormat="yAxisFormatFunction()">
-    <svg></svg>
-</nvd3-line-chart>
-
-
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          Sensors
+        </h3>
+      </div>
+      <div class="panel-body">
+        <div class="articleOptions" ng-show="user">
+          <div hm-tap="utils.locationPath('sensor/create')" class="btn btn-default">
+            <span class="glyphicon glyphicon-plus"></span>
+            Add sensor
+          </div>
+        </div>
+        <h5>All sensors for this box</h5>
+        <ul class="list-group">
+          <li ng-repeat="sensor in box.sensor | orderBy:'name'" class="list-group-item clearfix">
+            <div class="articleOptions">
+              <div  ng-show="user && (user.id === box.owner.id)" hm-tap="utils.locationPath('sensor/{{sensor.id}}/edit')" class="btn btn-default">
+                <span class="glyphicon glyphicon-cog"></span>
+              </div>
+              <div  ng-show="user && (user.id === box.owner.id)" hm-tap="deleteSensor(sensor)" class="btn btn-default" style="margin-left:5px">
+                <span class="glyphicon glyphicon-remove"></span>
+              </div>
+              <br/>
+              <br/>
+              <div hm-tap="utils.locationPath('sensor/{{sensor.id}}/show')" class="btn btn-block btn-primary" style="padding-left:2em;padding-right:2em;">Details</div>
+            </div>
+            <p>
+              <strong>{{sensor.name}}</strong>
+            </p>
+            <p>{{sensor.description}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Integration</h3>
+      </div>
+      <div class="panel-body">
+<pre>
+&lt;script&gt;
+  var sensorsBox = new SensorsBox();
+  sensorsBox.watchBox('{{box.id}}');
+  sensorsBox.on("measure", function(body){
+    console.log(body.data);
+  });
+&lt;/script&gt;
+</pre>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Graph</h3>
+      </div>
+      <div class="panel-body">
+        <nvd3-line-chart
+            data="boxMeasures"
+            width="600"
+            objectEquality="true"
+            height="350"
+            showXAxis="true"
+            showYAxis="true"
+            xAxisTickFormat="xAxisTickFormat_Date_Format()"
+            yAxisTickFormat="yAxisFormatFunction()">
+            <svg></svg>
+        </nvd3-line-chart>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,16 +1,43 @@
-<div ng-show="user && (user.id === sensor.user)" class="articleOptions clearfix">
-	<div style="padding-bottom:8px;">
-		<div hm-tap="utils.locationPath('sensor/' + sensor.id + '/edit')" class="btn btn-default">
-			<span class="glyphicon glyphicon-cog"></span>
-		</div>
-		<div hm-tap="deleteRpi(sensor)" class="btn btn-default">
-			<span class="glyphicon glyphicon-remove"></span>
-		</div>
-	</div>
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
+    <div ng-show="user && (user.id === sensor.box.owner)" class="articleOptions clearfix">
+    	<div style="padding-bottom:8px;">
+    		<div hm-tap="utils.locationPath('sensor/' + sensor.id + '/edit')" class="btn btn-default">
+    			<span class="glyphicon glyphicon-cog"></span>
+    		</div>
+    		<div hm-tap="deleteRpi(sensor)" class="btn btn-default">
+    			<span class="glyphicon glyphicon-remove"></span>
+    		</div>
+    	</div>
+    </div>
+    <h1><i class="fa fa-tag"></i> {{sensor.name}}</h1>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Settings</h3>
+      </div>
+      <div class="panel-body">
+        <p><strong>Id: </strong>{{sensor.id}}</p>
+        <p><strong>Description: </strong>{{sensor.description}}</p>
+        <p><strong>Pin: </strong>{{sensor.pin}}</p>
+        <p><strong>Box: </strong>{{sensor.box.name}}</p>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Integration</h3>
+      </div>
+      <div class="panel-body">
+<pre>
+&lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  var sensorsBox = new SensorsBox();
+  sensorsBox.watchSensor('{{sensor.id}}');
+  sensorsBox.on("measure", function(body){
+    console.log(body.data);
+  });
+&lt;/script&gt;
+</pre>
+      </div>
+    </div>
+  </div>
 </div>
-<h2 ng-bind="sensor.name">Box</h2>
-<p><strong>Id: </strong>{{sensor.id}}</p>
-<p><strong>Description: </strong>{{sensor.description}}</p>
-<p><strong>Pin: </strong>{{sensor.pin}}</p>
-<p><strong>Box: </strong>{{sensor.box.name}}</p>
-

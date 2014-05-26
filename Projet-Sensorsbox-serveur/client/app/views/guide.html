@@ -1,8 +1,87 @@
 <div class="row">
-  <div class="col-xs-12">
-    <h3>Guide</h3>
-		<p>
-      Installation guide here.
-      </p>
+  <div class="col-xs-12 col-lg-6">
+    <h1><i class="fa fa-book"></i> Guide</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">With sensorsbox-client</h3>
+      </div>
+      <div class="panel-body">
+        <p>
+          The recommended way of using SensorsBox is with the javascript library <a href="https://github.com/stereolux/sensorsbox-client" target="_blank">sensorsbox-client</a>.<br/>
+        </p>
+        <h4>Installation</h4>
+    		<p>
+          Insert the library in your html, and create an instance of the "SensorsBox" Constructor.
+<pre>
+&lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  var sensorsBox = new SensorsBox();
+&lt;/script&gt;
+</pre>
+          This initiates a websocket connection to the server.
+        </p>
+        <h4>Watch a whole box</h4>
+        <p>
+          If you wish to listen to all the sensors of a specific box, you must:
+          <ul>
+            <li>Get the box ID on the site</li>
+            <li>call the method "watchBox"</li>
+            <li>listen to "measure" events</li>
+          </ul>
+<pre>
+&lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  var sensorsBox = new SensorsBox();
+  sensorsBox.watchBox(YOUR_BOX_ID);
+  sensorsBox.on("measure", function(body){
+    console.log(body.data);
+  });
+&lt;/script&gt;
+</pre>
+        </p>
+        <h4>Watch a sensor</h4>
+        <p>
+          If you wish to listen to a specific sensor, you must:
+          <ul>
+            <li>Get the sensor ID on the site</li>
+            <li>call the method "watchSensor"</li>
+            <li>listen to "measure" events</li>
+          </ul>
+<pre>
+&lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  var sensorsBox = new SensorsBox();
+  sensorsBox.watchSensor(YOUR_SENSOR_ID);
+  sensorsBox.on("measure", function(body){
+    console.log(body.data);
+  });
+&lt;/script&gt;
+</pre>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">With the raw API</h3>
+      </div>
+      <div class="panel-body">
+        <p>
+          The SensorsBox API is built on the <a href="https://github.com/LearnBoost/socket.io" target="_blank">Socket.IO</a> library.<br/>
+          To initiate a websocket connection, you must therefore follow the socket.io protocol:
+          <ul>
+            <li>Initiate a GET request to 'http://sensorsbox.com/socket.io'</li>
+            <li>Get the first parameter of the response: this is your Socket.IO session ID</li>
+            <li>Initiate a Websocket connection to 'ws://sensorsbox.com/socket.io/1/websocket/YOUR_SESSION_ID'</li>
+          </ul>
+          More information about the protocol can be found on the <a href="https://github.com/LearnBoost/socket.io-spec" target="_blank">Socket.IO specification page</a>.<br/>
+        </p>
+      </div>
+    </div>
 	</div>
 </div>

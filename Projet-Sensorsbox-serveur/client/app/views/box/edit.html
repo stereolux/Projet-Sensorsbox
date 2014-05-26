@@ -1,17 +1,28 @@
-<h2 ng-bind="box.name">Box</h2>
-<form>
-	<div class="form-group">
-		<label>Name</label>
-		<div>
-			<input class="form-control" type="text" ng-model="box.name" placeholder="Name"></div>
-	</div>
-	<div class="form-group">
-		<label>Description</label>
-		<div>
-			<textarea class="form-control" ng-model="box.description" placeholder="Description"></textarea>
-		</div>
-	</div>
-	<div class="form-group">
-		<button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="updateBox(box)">Update box</button>
-	</div>
-</form>
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
+    <h1><i class="fa fa-cube"></i> {{box.name}}</h1>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Settings</h3>
+      </div>
+      <div class="panel-body">
+        <form>
+          <div class="form-group">
+            <label>Name</label>
+            <div>
+              <input class="form-control" type="text" ng-model="box.name" placeholder="Name"></div>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <div>
+              <textarea class="form-control" ng-model="box.description" placeholder="Description"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block" ng-click="updateBox(box)">Update box</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
