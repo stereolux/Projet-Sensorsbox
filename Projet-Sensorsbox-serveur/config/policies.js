@@ -62,7 +62,7 @@ module.exports.policies = {
 
 	/* API Users */
 
-	RealtimeController: {
+	WatchController: {
 		'*': true
 	},
 	RecordController: {

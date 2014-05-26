@@ -14,8 +14,8 @@ exports.message = function(model, action, instance) {
 		rooms.push('sensor_' + instance.id);
 	}
 	else if (model === 'measure') {
-		rooms.push('realtimebox_' + instance.box);
-		rooms.push('realtimesensor_' + instance.sensor);
+		rooms.push('watch_box_' + instance.box);
+		rooms.push('watch_sensor_' + instance.sensor);
 	}
 
 	rooms.forEach(function(room){

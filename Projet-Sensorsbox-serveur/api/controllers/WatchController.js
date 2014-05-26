@@ -14,7 +14,7 @@ module.exports = {
 			}
 			else if (boxes[0]) {
 				SocketService.join(req.socket, 'box', boxes[0]);
-				SocketService.join(req.socket, 'realtimebox', boxes[0]);
+				SocketService.join(req.socket, 'watch_box', boxes[0]);
 				SocketService.message('box', 'list', boxes[0]);
 			}
 		});
@@ -26,7 +26,7 @@ module.exports = {
 			}
 			else if (boxes[0]) {
 				SocketService.leave(req.socket, 'box', boxes[0]);
-				SocketService.leave(req.socket, 'realtimebox', boxes[0]);
+				SocketService.leave(req.socket, 'watch_box', boxes[0]);
 			}
 		});
 	},
@@ -38,7 +38,7 @@ module.exports = {
 			}
 			else if (sensors[0]) {
 				SocketService.join(req.socket, 'sensor', sensors[0]);
-				SocketService.join(req.socket, 'realtimesensor', sensors[0]);
+				SocketService.join(req.socket, 'watch_sensor', sensors[0]);
 				SocketService.message('sensor', 'list', sensors[0]);
 			}
 		});
@@ -50,7 +50,7 @@ module.exports = {
 			}
 			else if (sensors[0]) {
 				SocketService.leave(req.socket, 'sensor', sensors[0]);
-				SocketService.leave(req.socket, 'realtimesensor', sensors[0]);
+				SocketService.leave(req.socket, 'watch_sensor', sensors[0]);
 			}
 		});
 	}

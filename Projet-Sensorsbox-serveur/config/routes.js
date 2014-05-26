@@ -98,22 +98,22 @@ module.exports.routes = {
 	=======================
 	*/
 
-	/* Realtime */
+	/* Real time */
 
 	'get /api/v1/watch/box/:boxid': {
-		controller: 'realtime',
+		controller: 'watch',
 		action: 'boxWatch',
 	},
 	'get /api/v1/unwatch/box/:boxid': {
-		controller: 'realtime',
+		controller: 'watch',
 		action: 'boxUnwatch',
 	},
 	'get /api/v1/watch/sensor/:sensorid': {
-		controller: 'realtime',
+		controller: 'watch',
 		action: 'sensorWatch',
 	},
 	'get /api/v1/unwatch/sensor/:sensorid': {
-		controller: 'realtime',
+		controller: 'watch',
 		action: 'sensorUnwatch',
 	}
 
