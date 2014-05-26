@@ -38,7 +38,7 @@ angular.module('sensorsboxclientApp')
       $scope.sensorMeasures = [];
 
 */
-      io.socket.get('/api/v1/realtime/sensor/' + $routeParams.sensorId, function (body, sailsResponseObject) {
+      io.socket.get('/api/v1/watch/sensor/' + $routeParams.sensorId, function (body, sailsResponseObject) {
         if(sailsResponseObject.statusCode === 200) {
 /*
           $scope.sensorMeasures.push({
@@ -73,4 +73,5 @@ angular.module('sensorsboxclientApp')
           });
         }
       }
+
   }]);

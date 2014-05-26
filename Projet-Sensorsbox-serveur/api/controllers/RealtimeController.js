@@ -7,28 +7,50 @@
 
 module.exports = {
 
-	boxRealtime: function(req, res) {
+	boxWatch: function(req, res) {
 		Box.find({id:req.params.boxid}).populate('sensor').exec(function(err,boxes){
 			if ((err) || (!boxes)) {
 				return res.send(404, err);
 			}
 			else if (boxes[0]) {
 				SocketService.join(req.socket, 'box', boxes[0]);
+				SocketService.join(req.socket, 'realtimebox', boxes[0]);
 				SocketService.message('box', 'list', boxes[0]);
-				return res.send(boxes[0]);
+			}
+		});
+	},
+	boxUnwatch: function(req, res) {
+		Box.find({id:req.params.boxid}).populate('sensor').exec(function(err,boxes){
+			if ((err) || (!boxes)) {
+				return res.send(404, err);
+			}
+			else if (boxes[0]) {
+				SocketService.leave(req.socket, 'box', boxes[0]);
+				SocketService.leave(req.socket, 'realtimebox', boxes[0]);
 			}
 		});
 	},
 
-	sensorRealtime: function(req, res) {
+	sensorWatch: function(req, res) {
 		Sensor.find(req.params.sensorid).exec(function (err, sensors) {
 			if ((err) || (!sensors)) {
 				return res.send(404, err);
 			}
 			else if (sensors[0]) {
 				SocketService.join(req.socket, 'sensor', sensors[0]);
-				console.log('sensor_' + sensors[0].id);
-				return res.send(sensors[0]);
+				SocketService.join(req.socket, 'realtimesensor', sensors[0]);
+				SocketService.message('sensor', 'list', sensors[0]);
+			}
+		});
+	},
+	sensorUnwatch: function(req, res) {
+		Sensor.find(req.params.sensorid).exec(function (err, sensors) {
+			if ((err) || (!sensors)) {
+				return res.send(404, err);
+			}
+			else if (sensors[0]) {
+				SocketService.leave(req.socket, 'sensor', sensors[0]);
+				SocketService.leave(req.socket, 'realtimesensor', sensors[0]);
 			}
 		});
 	}

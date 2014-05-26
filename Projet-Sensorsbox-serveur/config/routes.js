@@ -66,6 +66,17 @@ module.exports.routes = {
 		action: 'me'
 	},
 
+	/* Boxes */
+
+	'put /api/v1/box/:boxid': {
+		controller: 'box',
+		action: 'update'
+	},
+	'delete /api/v1/box/:boxid': {
+		controller: 'box',
+		action: 'destroy'
+	},
+
 	/* Sensors */
 
 	'post /api/v1/sensor': {
@@ -89,13 +100,21 @@ module.exports.routes = {
 
 	/* Realtime */
 
-	'get /api/v1/realtime/box/:boxid': {
+	'get /api/v1/watch/box/:boxid': {
 		controller: 'realtime',
-		action: 'boxRealtime',
+		action: 'boxWatch',
 	},
-	'get /api/v1/realtime/sensor/:sensorid': {
+	'get /api/v1/unwatch/box/:boxid': {
 		controller: 'realtime',
-		action: 'sensorRealtime',
+		action: 'boxUnwatch',
+	},
+	'get /api/v1/watch/sensor/:sensorid': {
+		controller: 'realtime',
+		action: 'sensorWatch',
+	},
+	'get /api/v1/unwatch/sensor/:sensorid': {
+		controller: 'realtime',
+		action: 'sensorUnwatch',
 	}
 
 };

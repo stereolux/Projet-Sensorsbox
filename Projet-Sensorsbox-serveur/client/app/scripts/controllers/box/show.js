@@ -18,39 +18,45 @@ angular.module('sensorsboxclientApp')
       var boxId = $routeParams.boxId || "";
       $rootScope.navigationpath = ['home','box'];
 
-      var parseMeasure = function(measure){
-        return [
-          new Date(measure.createdAt),
-          parseInt(measure.value || measure.mean)
-        ];
-      }
-
       var myBoxMeasures = {};
       $scope.boxMeasures = [];
 
-      io.socket.on('measure', function (data) {
-        $scope.$apply(function(){
-            if (myBoxMeasures[data.created.sensor].length > 29) {
-              myBoxMeasures[data.created.sensor].shift();
-            }
-            myBoxMeasures[data.created.sensor].push(parseMeasure(data.created));
-        })
+      var serverUrl = window.location.origin;
+
+      var sensorsBox = new SensorsBox({
+        host:serverUrl
       });
 
-      io.socket.on('box', function (data) {
-        data.list.sensor.forEach(function(sensor){
+      sensorsBox.on('measure', function (body) {
+        $scope.$apply(function() {
+          if (myBoxMeasures[body.data.sensor].length > 29) {
+            myBoxMeasures[body.data.sensor].shift();
+          }
+          myBoxMeasures[body.data.sensor].push([
+            new Date(body.data.createdAt),
+            parseInt(body.data.value)
+          ]);
+        });
+      });
+
+      sensorsBox.on('box', function (body) {
+        body.data.sensor.forEach(function(sensor) {
           myBoxMeasures[sensor.id] = [];
           $scope.boxMeasures.push({
               "key": sensor.name,
               "values": myBoxMeasures[sensor.id]
           })
         })
+      })
+
+      sensorsBox.watchBox($routeParams.boxId, function(err, box) {
+        console.log('watching box');
       });
 
-      io.socket.get('/api/v1/realtime/box/' + $routeParams.boxId, function (body, response) {
-        if(response.statusCode === 200) {
-          console.log('subscribed to updates to sensors of this box and to measures by these sensors');
-        }
+      $scope.$on('$locationChangeStart', function(event) {
+        sensorsBox.unwatchBox($routeParams.boxId, function(err, box) {
+          console.log('Successfully unwatched box');
+        })
       });
 
       var queryBox = function(boxId){
