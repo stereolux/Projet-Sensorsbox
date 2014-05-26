@@ -36,21 +36,23 @@ io.socket.on('sensor', function(sensorConfig) {
 	}
 });
 
-io.socket.on('box', function(boxConfig) {
-	console.log(boxConfig);
-	if (boxConfig.action === 'destroy') {
-		for (var sensor in sensorMap) {
-			delete sensorMap[sensorConfig.data.id];
-			measureService.unwatchSensor(sensorConfig.data.id);
+io.socket.on('box', function(body) {
+	console.log(body.data);
+	if (body.action === 'destroy') {
+		for (var sensor in body.data.sensor) {
+			delete sensorMap[sensor.id];
+			measureService.unwatchSensor(sensor.id);
 		}
 	}
 	else {
-		boxConfig.data.sensor.forEach(function(sensorConfig) {
+		body.data.sensor.forEach(function(sensorConfig) {
 			var sensor = new Sensor(device, parseInt(sensorConfig.pin));
 			sensorMap[sensorConfig.id] = sensor;
+			console.log('sensor');
+			console.log(sensor);
 			watchSensor(sensor, sensorConfig);
 		});
-	};
+	}
 });
 
 var watchSensor = function (sensor, sensorConfig) {

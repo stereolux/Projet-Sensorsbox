@@ -19,8 +19,8 @@ MeasureService.prototype.watchSensor = function(sensor, sensorConfig, callback) 
 };
 
 MeasureService.prototype.unwatchSensor = function(sensorId) {
-	if (typeof(recordTimeouts[sensorConfig.id]) !== 'undefined') {
-		clearTimeout(recordTimeouts[sensorConfig.id]);
+	if (typeof(recordTimeouts[sensorId]) !== 'undefined') {
+		clearTimeout(recordTimeouts[sensorId]);
 	}
 };
 
