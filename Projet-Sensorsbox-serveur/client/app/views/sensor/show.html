@@ -32,7 +32,7 @@
 &lt;script&gt;
   var sensorsBox = new SensorsBox();
   sensorsBox.watchSensor('{{sensor.id}}');
-  sensorsBox.on("measure", function(body){
+  sensorsBox.on('measure', function(body){
     console.log(body.data);
   });
 &lt;/script&gt;
