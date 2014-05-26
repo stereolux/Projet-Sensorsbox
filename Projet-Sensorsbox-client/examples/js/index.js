@@ -43,26 +43,30 @@
 		.call(d3.svg.axis().scale(y).orient('left'));
 
 	var updateGraph = function(measure) {
-		datas[measure.created.sensor].push(measure.created.value);
-		paths[measure.created.sensor]
+		datas[measure.data.sensor].push(measure.data.value);
+		paths[measure.data.sensor]
 				.attr('d', line)
 				.attr('transform', null)
 				.transition()
 				.duration(900)
 				.ease('linear')
-				.attr('stroke', colors[measure.created.sensor])
+				.attr('stroke', colors[measure.data.sensor])
 				.attr('stroke-width', 2)
 				.attr('fill', 'none')
 				.attr('transform', 'translate(' + x(-1) + ',0)');
-		if (datas[measure.created.sensor].length > n + 2) datas[measure.created.sensor].shift();
-		console.log(datas[measure.created.sensor]);
+		if (datas[measure.data.sensor].length > n + 2) datas[measure.data.sensor].shift();
+		console.log(datas[measure.data.sensor]);
 	};
 
 	var descriptionDiv = document.createElement('div');
 
-	var sensorsBox = new SensorsBox({verbose: true});
+	var sensorsBox = new SensorsBox({verbose:true});
 	sensorsBox.watchBox('537e7956af25ef0200ad8bc5', function(err, box) {
-		box.sensor.forEach(function(sensor) {
+		console.log('successfully watching');
+	});
+
+	sensorsBox.on('box', function(body){
+		body.data.sensor.forEach(function(sensor) {
 			colors[sensor.id] = 'hsl(' + Math.random() * 360 + ',100%,50%)';
 			var desc = document.createElement('div');
 			desc.setAttribute('style','color: ' + colors[sensor.id] + ';');
