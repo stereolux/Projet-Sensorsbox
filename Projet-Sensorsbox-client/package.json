@@ -1,5 +1,5 @@
 {
-  "name": "sensorbox-client",
+  "name": "sensorsbox-client",
   "version": "0.0.1",
   "description": "Client library for http://sensorsbox.com",
   "devDependencies": {

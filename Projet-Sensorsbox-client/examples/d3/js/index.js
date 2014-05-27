@@ -60,12 +60,13 @@
 
 	var descriptionDiv = document.createElement('div');
 
-	var sensorsBox = new SensorsBox({verbose:true});
-	sensorsBox.watchBox('537e7956af25ef0200ad8bc5', function(err, box) {
-		console.log('successfully watching');
-	});
-
-	sensorsBox.on('box', function(body){
+	var sbConnection = new SensorsBox.connection({verbose:true});
+	sbConnection.on('connect', function(){
+		sbConnection.watchBox('537e7956af25ef0200ad8bc5', function(err, box) {
+			console.log('successfully watching');
+		});
+	})
+	sbConnection.on('box', function(body){
 		body.data.sensor.forEach(function(sensor) {
 			colors[sensor.id] = 'hsl(' + Math.random() * 360 + ',100%,50%)';
 			var desc = document.createElement('div');
@@ -85,7 +86,7 @@
 	});
 
 	document.body.appendChild(descriptionDiv);
-	/*sensorsBox.watchSensor('537e7e7daf25ef0200ad8c09', function(err, sensor) {
+	/*sensorsBoxConnection.watchSensor('537e7e7daf25ef0200ad8c09', function(err, sensor) {
 		datas[sensor.id] = [];
 		paths[sensor.id] = svg.append('g')
 			.attr('clip-path', 'url(#clip)')
@@ -94,7 +95,7 @@
 			.attr('class', 'line')
 			.attr('d', line);
 	});*/
-	sensorsBox.on('measure', function(measure) {
+	sbConnection.on('measure', function(measure) {
 		updateGraph(measure);
 	});
 

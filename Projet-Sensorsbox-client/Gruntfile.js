@@ -4,7 +4,10 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		concat: {
 			dist: {
-				src: ['src/**/*.js'],
+				src: [
+					'bower_components/sails.io.js/dist/sails.io.js',
+					'src/**/*.js'
+				],
 				dest: 'dist/<%= pkg.name %>.js'
 			}
 		},
