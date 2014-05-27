@@ -60,7 +60,7 @@
 
 	var descriptionDiv = document.createElement('div');
 
-	var sbConnection = new SensorsBox.connection({
+	var sbConnection = new SensorsBox.connect({
 		host: 'http://localhost:1337',
 		verbose:true
 	});

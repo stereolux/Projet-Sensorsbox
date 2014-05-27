@@ -8,7 +8,7 @@
 	============================
 	*/
 
-	var connection = function(opts) {
+	var connect = function(opts) {
 
 		this.verbose = opts.verbose || false;
 
@@ -59,7 +59,7 @@
 	============================
 	*/
 
-	connection.prototype.watchBox = function(boxId, callback) {
+	connect.prototype.watchBox = function(boxId, callback) {
 		var route = '/api/v1/watch/box/';
 
 		if (this.boxes[boxId]) {
@@ -70,7 +70,7 @@
 		}
 	};
 
-	connection.prototype.unwatchBox = function(boxId, callback) {
+	connect.prototype.unwatchBox = function(boxId, callback) {
 		var _self = this;
 		var route = '/api/v1/unwatch/box/';
 
@@ -92,7 +92,7 @@
 	============================
 	*/
 
-	connection.prototype.watchSensor = function(sensorId, callback) {
+	connect.prototype.watchSensor = function(sensorId, callback) {
 		var route = '/api/v1/watch/sensor/';
 
 		if (this.sensors[sensorId]) {
@@ -103,7 +103,7 @@
 		}
 	};
 
-	connection.prototype.unwatchSensor = function(sensorId, callback) {
+	connect.prototype.unwatchSensor = function(sensorId, callback) {
 		var _self = this;
 		var route = '/api/v1/unwatch/sensor/';
 
@@ -120,6 +120,6 @@
 	};
 
 	root.SensorsBox = root.SensorsBox || {};
-	root.SensorsBox.connection = connection;
+	root.SensorsBox.connect = connect;
 
 })(this);

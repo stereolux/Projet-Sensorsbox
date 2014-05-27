@@ -869,7 +869,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 	============================
 	*/
 
-	var connection = function(opts) {
+	var connect = function(opts) {
 
 		this.verbose = opts.verbose || false;
 
@@ -920,7 +920,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 	============================
 	*/
 
-	connection.prototype.watchBox = function(boxId, callback) {
+	connect.prototype.watchBox = function(boxId, callback) {
 		var route = '/api/v1/watch/box/';
 
 		if (this.boxes[boxId]) {
@@ -931,7 +931,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 		}
 	};
 
-	connection.prototype.unwatchBox = function(boxId, callback) {
+	connect.prototype.unwatchBox = function(boxId, callback) {
 		var _self = this;
 		var route = '/api/v1/unwatch/box/';
 
@@ -953,7 +953,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 	============================
 	*/
 
-	connection.prototype.watchSensor = function(sensorId, callback) {
+	connect.prototype.watchSensor = function(sensorId, callback) {
 		var route = '/api/v1/watch/sensor/';
 
 		if (this.sensors[sensorId]) {
@@ -964,7 +964,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 		}
 	};
 
-	connection.prototype.unwatchSensor = function(sensorId, callback) {
+	connect.prototype.unwatchSensor = function(sensorId, callback) {
 		var _self = this;
 		var route = '/api/v1/unwatch/sensor/';
 
@@ -981,6 +981,6 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 	};
 
 	root.SensorsBox = root.SensorsBox || {};
-	root.SensorsBox.connection = connection;
+	root.SensorsBox.connect = connect;
 
 })(this);
