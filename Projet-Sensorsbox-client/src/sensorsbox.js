@@ -18,7 +18,6 @@
 		this.boxes = {};
 		this.sensors = {};
 
-//		SensorsBox.WatchStore.inherits(this);
 		SensorsBox.EventEmitter.inherits(this);
 		initSocketEvents(this);
 	};
@@ -122,4 +121,4 @@
 	root.SensorsBox = root.SensorsBox || {};
 	root.SensorsBox.connect = connect;
 
-})(this);
+})(window);

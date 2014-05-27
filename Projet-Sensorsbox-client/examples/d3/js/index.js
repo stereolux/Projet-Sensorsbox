@@ -61,12 +61,11 @@
 	var descriptionDiv = document.createElement('div');
 
 	var sbConnection = new SensorsBox.connect({
-		host: 'http://localhost:1337',
 		verbose:true
 	});
 	window.sbConnection = sbConnection;
 	sbConnection.on('connect', function(){
-		sbConnection.watchBox('537bdd75353aae0c53d74815', function(err, box) {
+		sbConnection.watchBox('53838983b94c1e0200b2a02d', function(err, box) {
 			console.log('successfully watching');
 		});
 	})

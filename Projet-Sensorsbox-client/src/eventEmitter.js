@@ -37,4 +37,4 @@
 	root.SensorsBox = root.SensorsBox || {};
 	root.SensorsBox.EventEmitter = EventEmitter;
 
-})(this);
+})(window);

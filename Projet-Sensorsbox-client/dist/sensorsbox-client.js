@@ -857,7 +857,7 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 	root.SensorsBox = root.SensorsBox || {};
 	root.SensorsBox.EventEmitter = EventEmitter;
 
-})(this);
+})(window);
 
 ;(function(root) {
 
@@ -879,7 +879,6 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 		this.boxes = {};
 		this.sensors = {};
 
-//		SensorsBox.WatchStore.inherits(this);
 		SensorsBox.EventEmitter.inherits(this);
 		initSocketEvents(this);
 	};
@@ -983,4 +982,4 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 	root.SensorsBox = root.SensorsBox || {};
 	root.SensorsBox.connect = connect;
 
-})(this);
+})(window);
