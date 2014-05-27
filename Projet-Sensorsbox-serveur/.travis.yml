@@ -1,4 +1,22 @@
 language: node_js
 node_js:
 - '0.10'
-script: git fetch --unshallow
+before_script:
+- npm install -g bower grunt-cli
+- gem install compass
+- sudo add-apt-repository ppa:git-core/ppa -y
+- sudo apt-get update
+- sudo apt-get install git -y
+script: make build
+after_success:
+- wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+- git remote add heroku git@heroku.com:sensorsbox.git
+- echo "Host heroku.com" >> ~/.ssh/config
+- echo "   StrictHostKeyChecking no" >> ~/.ssh/config
+- echo "   CheckHostIP no" >> ~/.ssh/config
+- echo "   UserKnownHostsFile=/dev/null" >> ~/.ssh/config
+- yes | heroku keys:add
+- yes | git push heroku master
+env:
+  global:
+    secure: IEaCXmL6mGvtVAZ1jFKJxaus80rUl9cokVWh1NJNgJjzEJod8fd60rdNLMsv28dWf3MUR8hH+Pznq0XDJ7Jw3dV24D++q+9BrlBtX6DFdT9OqO241xaqjnsIscY1k31WCC3J6zmsi3ujn9yLNObvigO5kefT/Ah1tUOUQzlSkCY=
