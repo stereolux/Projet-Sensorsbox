@@ -23,7 +23,6 @@ module.exports = {
 						RecordService.recordSensor(sensor);
 					});
 					req.socket.on('disconnect', function () {
-						console.log('disconnect');
 						boxes[0].sensor.forEach(function(sensor){
 							RecordService.cancelRecordSensor(sensor);
 						});

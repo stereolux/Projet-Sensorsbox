@@ -1,26 +1,32 @@
-exports.message = function(model, action, instance) {
+exports.message = function(model, action, instance, socket) {
 
 	var data = {
 		action: action,
 		data: instance
 	};
 
-	var rooms = [];
-	if (model === 'box') {
-		rooms.push('box_' + instance.id);
-	}
-	else if (model === 'sensor') {
-		rooms.push('box_' + instance.box);
-		rooms.push('sensor_' + instance.id);
-	}
-	else if (model === 'measure') {
-		rooms.push('watch_box_' + instance.box);
-		rooms.push('watch_sensor_' + instance.sensor);
+	if (socket) {
+		sails.sockets.emit(socket.id, model, data);
 	}
 
-	rooms.forEach(function(room){
-		sails.sockets.broadcast(room, model, data);
-	})
+	else {
+		var rooms = [];
+		if (model === 'box') {
+			rooms.push('box_' + instance.id);
+		}
+		else if (model === 'sensor') {
+			rooms.push('box_' + instance.box);
+			rooms.push('sensor_' + instance.id);
+		}
+		else if (model === 'measure') {
+			rooms.push('watch_box_' + instance.box);
+			rooms.push('watch_sensor_' + instance.sensor);
+		}
+
+		rooms.forEach(function(room){
+			sails.sockets.broadcast(room, model, data);
+		})
+	}
 
 };
 

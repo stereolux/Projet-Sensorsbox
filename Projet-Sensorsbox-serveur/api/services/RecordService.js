@@ -29,9 +29,8 @@ exports.recordSensor = function(sensor) {
 		if (typeof(recordTimeouts[sensor.id])!=='undefined'){
 			clearTimeout(recordTimeouts[sensor.id]);
 		}
-		getValues(sensor, function(record){
-			recordTimeouts[sensor.id] = setTimeout(function() {
-				console.log(record);
+		recordTimeouts[sensor.id] = setTimeout(function() {
+			getValues(sensor, function(record){
 				if (record) {
 					Record.create(record).exec(function(err, record){
 						if (err) {
@@ -46,14 +45,15 @@ exports.recordSensor = function(sensor) {
 						}
 					});
 				}
-				batch();
-			}, sensor.recordFrequency);
-		});
+			});
+			batch();
+		}, sensor.recordFrequency);
 	};
 	batch();
 };
 
 exports.cancelRecordSensor = function(sensor) {
+	console.log(sensor);
 	if (typeof(recordTimeouts[sensor.id])!=='undefined'){
 		clearTimeout(recordTimeouts[sensor.id]);
 	}
