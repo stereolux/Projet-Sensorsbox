@@ -1,0 +1,263 @@
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
+    <h1><i class="fa fa-book"></i> Reference</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-lg-4 col-lg-push-8">
+    <div>
+      <h4>SensorsBox</h4>
+      <div class="list-group">
+          <a class="list-group-item" ng-click="scrollTo('connect')">connect</a>
+      </div>
+      <h4>Connection</h4>
+      <div class="list-group">
+          <a class="list-group-item" ng-click="scrollTo('on')">on</a>
+          <a class="list-group-item" ng-click="scrollTo('watchBox')">watchBox</a>
+          <a class="list-group-item" ng-click="scrollTo('unwatchBox')">unwatchBox</a>
+          <a class="list-group-item" ng-click="scrollTo('watchSensor')">watchSensor</a>
+          <a class="list-group-item" ng-click="scrollTo('unwatchSensor')">unwatchSensor</a>
+          <a class="list-group-item" ng-click="scrollTo('boxes')">boxes</a>
+          <a class="list-group-item" ng-click="scrollTo('sensors')">sensors</a>
+          <a class="list-group-item" ng-click="scrollTo('socket')">socket</a>
+      </div>
+      <h4>Events</h4>
+      <div>
+          <a class="list-group-item" ng-click="scrollTo('onconnect')">connect</a>
+          <a class="list-group-item" ng-click="scrollTo('onbox')">box</a>
+          <a class="list-group-item" ng-click="scrollTo('onsensor')">sensor</a>
+          <a class="list-group-item" ng-click="scrollTo('onmeasure')">measure</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-6 col-lg-pull-4">
+    <h3>SensorsBox</h3>
+    <div class="panel panel-default" id="connect">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          connect
+          <div class="referenceType">Function</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Creates a websocket connection, returns a connection object</strong>
+<br/><br/>
+<pre>
+var myConnection = new SensorsBox.connect();
+</pre>
+      <p>Optional parameters:</p>
+<pre>
+var myConnection = new SensorsBox.connect({
+  <strong>verbose : false</strong> // log all events,
+  <strong>host : 'http://sensorsbox.com' </strong>// Server url
+});
+</pre>
+      </div>
+    </div>
+    <h3>Connection</h3>
+    <div class="panel panel-default" id="on">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          on
+          <div class="referenceType">Function</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Listens to events on the connection object</strong>
+<br/><br/>
+<pre>
+myConnection.on('connect', function(){
+  console.log('connection successfully established');
+});
+</pre>
+      <p>See the <a ng-click="scrollTo('events')">events section</a> for a list of all events</p>
+      </div>
+    </div>
+    <div class="panel panel-default" id="watchBox">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          watchBox
+          <div class="referenceType">Function</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Subscribe to a box and its sensors</strong>
+<br/><br/>
+<pre>
+myConnection.watchBox(YOUR_BOX_ID);
+</pre>
+      <p>A call to watchBox should be established only after the 'connect' event was received:</p>
+<pre>
+myConnection.on('connect', function(){
+  myConnection.watchBox(YOUR_BOX_ID);
+});
+</pre>
+      </div>
+    </div>
+    <div class="panel panel-default" id="unwatchBox">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          unwatchBox
+          <div class="referenceType">Function</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Unsubscribe from a box and its sensors</strong>
+<br/><br/>
+<pre>
+myConnection.unwatchBox(YOUR_BOX_ID);
+</pre>
+      </div>
+    </div>
+    <div class="panel panel-default" id="watchSensor">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          watchSensor
+          <div class="referenceType">Function</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Subscribe to a sensor</strong>
+<br/><br/>
+<pre>
+myConnection.watchSensor(YOUR_SENSOR_ID);
+</pre>
+      </div>
+    </div>
+    <div class="panel panel-default" id="unwatchSensor">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          unwatchSensor
+          <div class="referenceType">Function</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Unsubscribe from a sensor</strong>
+<br/><br/>
+<pre>
+myConnection.unwatchSensor(YOUR_SENSOR_ID);
+</pre>
+      </div>
+    </div>
+    <div class="panel panel-default" id="boxes">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          boxes
+          <div class="referenceType">Object</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Object containing all the subscribed boxes</strong>
+<br/><br/>
+<pre>
+console.log(myConnection.boxes);
+</pre>
+      </div>
+    </div>
+
+
+    <div class="panel panel-default" id="sensors">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          sensors
+          <div class="referenceType">Object</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Object containing all the subscribed sensors</strong>
+<br/><br/>
+<pre>
+console.log(myConnection.sensors);
+</pre>
+      </div>
+    </div>
+
+    <div class="panel panel-default" id="socket">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          socket
+          <div class="referenceType">Object</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>The socket.io socket</strong>
+<br/><br/>
+<pre>
+console.log(myConnection.socket);
+</pre>
+      </div>
+    </div>
+
+
+    <h3>Events</h3>
+    <div class="panel panel-default" id="onconnect">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          connect
+          <div class="referenceType">Event</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Event triggered on a successfull connection</strong>
+<br/><br/>
+<pre>
+myConnection.on('connect', function(){
+  console.log('connection successfully established');
+});
+</pre>
+      </div>
+    </div>
+
+    <div class="panel panel-default" id="onbox">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          box
+          <div class="referenceType">Event</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Event triggered after a watchBox request or on any change on the box model</strong>
+<br/><br/>
+<pre>
+myConnection.on('box', function(box){
+  console.log(box);
+});
+</pre>
+      </div>
+    </div>
+    <div class="panel panel-default" id="onsensor">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          sensor
+          <div class="referenceType">Event</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Event triggered after a watchSensor request or on any change on the sensor model</strong>
+<br/><br/>
+<pre>
+myConnection.on('sensor', function(box){
+  console.log(sensor);
+});
+</pre>
+      </div>
+    </div>
+    <div class="panel panel-default" id="onmeasure">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          measure
+          <div class="referenceType">Event</div>
+        </h3>
+      </div>
+      <div class="panel-body">
+        <strong>Event triggered when a measure is received for any of the subscribed sensors</strong>
+<br/><br/>
+<pre>
+myConnection.on('measure', function(measure){
+  updateGraph(measure);
+});
+</pre>
+      </div>
+    </div>
+  </div>
+</div>

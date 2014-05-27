@@ -30,8 +30,10 @@
 <pre>
 &lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-  var sensorsBox = new SensorsBox();
-  sensorsBox.watchSensor('{{sensor.id}}');
+  var sbConnection = new SensorsBox.connection();
+  sbConnection.on('connect', function(){
+    sbConnection.watchSensor('{{sensor.id}}');
+  });
   sensorsBox.on('measure', function(body){
     console.log(body.data);
   });

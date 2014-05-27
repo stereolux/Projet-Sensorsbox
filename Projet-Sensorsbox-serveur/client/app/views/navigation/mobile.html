@@ -4,12 +4,13 @@
 			<div class="vkbrand">
 					Menu
 			</div>
-			<a hm-tap="utils.locationPath('')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/'}">Home</a>
+			<a hm-tap="utils.locationPath('')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/'}"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a>
 			<h5 ng-show="user" class="centeredH dark"><span>Settings</span></h5>
 			<div ng-show="user" style="clear:both">
-          <a hm-tap="utils.locationPath('guide')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/guide'}">Guide</a>
-					<a hm-tap="utils.locationPath('box')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/box'}">Boxes</a>
-          <a hm-tap="utils.locationPath('sensor')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/sensor'}">Sensors</a>
+          <a hm-tap="utils.locationPath('guide')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/guide'}"><i class="fa fa-magic"></i>&nbsp;&nbsp;Get Started</a>
+          <a hm-tap="utils.locationPath('reference')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/reference'}"><i class="fa fa-book"></i>&nbsp;&nbsp;Reference</a>
+					<a hm-tap="utils.locationPath('box')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/box'}"><i class="fa fa-cube"></i>&nbsp;&nbsp;Boxes</a>
+          <a hm-tap="utils.locationPath('sensor')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/sensor'}"><i class="fa fa-tag"></i>&nbsp;&nbsp;Sensors</a>
 			</div>
 		</nav>
 	</div>

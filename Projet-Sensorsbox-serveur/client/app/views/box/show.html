@@ -68,10 +68,13 @@
       </div>
       <div class="panel-body">
 <pre>
+&lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-  var sensorsBox = new SensorsBox();
-  sensorsBox.watchBox('{{box.id}}');
-  sensorsBox.on('measure', function(body){
+  var sbConnection = new SensorsBox.connection();
+  sbConnection.on('connect', function(){
+    sbConnection.watchBox('{{box.id}}');
+  });
+  sbConnection.on('measure', function(body){
     console.log(body.data);
   });
 &lt;/script&gt;

@@ -36,6 +36,10 @@ angular
           templateUrl: 'views/guide.html',
           controller: 'GuideCtrl'
         })
+        .when('/reference', {
+          templateUrl: 'views/reference.html',
+          controller: 'ReferenceCtrl'
+        })
         .when('/user/signin', {
           templateUrl: 'views/user/signin.html',
           controller: 'UserSigninCtrl',

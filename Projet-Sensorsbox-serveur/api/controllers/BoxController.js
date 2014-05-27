@@ -8,12 +8,15 @@
 module.exports = {
 
 	update : function(req, res) {
-		Box.update(req.params.boxid, req.body).exec(function(err,boxes){
+		Box.update(req.params.boxid, req.body).populate('sensor').exec(function(err){
 			if (err) { res.end(404, err); }
-			else {
-				SocketService.message('box', 'updated', boxes[0]);
-				res.json(boxes[0]);
-			}
+			Box.find(req.params.boxid).populate('sensor').exec(function(err,boxes){
+				if (err) { res.end(404, err); }
+				else {
+					SocketService.message('box', 'updated', boxes[0]);
+					res.json(boxes[0]);
+				}
+			});
 		});
 	},
 	destroy : function(req, res) {

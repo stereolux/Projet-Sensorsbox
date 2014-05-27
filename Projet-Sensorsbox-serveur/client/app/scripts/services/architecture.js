@@ -11,6 +11,10 @@ angular.module('sensorsboxclientApp')
             name : 'Guide',
             url : '/#/guide'
           },
+          reference : {
+            name : 'Guide',
+            url : '/#/guide'
+          },
           usersignin : {
             name : 'Sign in',
             url : '/#/user/signin'
