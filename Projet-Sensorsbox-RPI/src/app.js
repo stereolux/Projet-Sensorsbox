@@ -24,20 +24,20 @@ var sensorMap = {};
 var io = sailsIOClient(socketIOClient);
 io.sails.url = config.serverUrl;
 
-io.socket.on('sensor', function(sensorConfig) {
-	if (sensorConfig.action === 'destroy') {
-		delete sensorMap[sensorConfig.data.id];
-		measureService.unwatchSensor(sensorConfig.data.id);
+io.socket.on('sensor', function(body) {
+	if (body.action === 'destroy') {
+		delete sensorMap[body.data.id];
+		measureService.unwatchSensor(body.data.id);
 	}
 	else {
-		var sensor = new Sensor(device, parseInt(sensorConfig.data.pin));
-		sensorMap[sensorConfig.data.id] = sensor;
-		watchSensor(sensor, sensorConfig);
+		measureService.unwatchSensor(body.data.id);
+		var sensor = new Sensor(device, parseInt(body.data.pin));
+		sensorMap[body.data.id] = sensor;
+		watchSensor(sensor, body.data);
 	}
 });
 
 io.socket.on('box', function(body) {
-	console.log(body.data);
 	if (body.action === 'destroy') {
 		for (var sensor in body.data.sensor) {
 			delete sensorMap[sensor.id];
@@ -46,10 +46,9 @@ io.socket.on('box', function(body) {
 	}
 	else {
 		body.data.sensor.forEach(function(sensorConfig) {
+			measureService.unwatchSensor(sensorConfig.id);
 			var sensor = new Sensor(device, parseInt(sensorConfig.pin));
 			sensorMap[sensorConfig.id] = sensor;
-			console.log('sensor');
-			console.log(sensor);
 			watchSensor(sensor, sensorConfig);
 		});
 	}
