@@ -60,9 +60,13 @@
 
 	var descriptionDiv = document.createElement('div');
 
-	var sbConnection = new SensorsBox.connection({verbose:true});
+	var sbConnection = new SensorsBox.connection({
+		host: 'http://localhost:1337',
+		verbose:true
+	});
+	window.sbConnection = sbConnection;
 	sbConnection.on('connect', function(){
-		sbConnection.watchBox('537e7956af25ef0200ad8bc5', function(err, box) {
+		sbConnection.watchBox('537bdd75353aae0c53d74815', function(err, box) {
 			console.log('successfully watching');
 		});
 	})

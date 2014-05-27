@@ -1,22 +1,20 @@
 ;(function(root) {
 
-	var SensorsBox = root.SensorsBox || {};
+	var EventEmitter = function() {};
 
-	SensorsBox.EventEmitter = function() {};
-
-	SensorsBox.EventEmitter.prototype.on = function(event, callback) {
+	EventEmitter.prototype.on = function(event, callback) {
 		this._events = this._events || {};
 		this._events[event] = this._events[event] || [];
 		this._events[event].push(callback);
 	};
 
-	SensorsBox.EventEmitter.prototype.off = function(event, callback) {
+	EventEmitter.prototype.off = function(event, callback) {
 		this._events = this._events || {};
 		if (event in this._events === false) return;
 		this._events[event].splice(this._events[event].indexOf(callback), 1);
 	};
 
-	SensorsBox.EventEmitter.prototype.emit = function(event /* , args... */) {
+	EventEmitter.prototype.emit = function(event /* , args... */) {
 		this._events = this._events || {};
 		if (event in this._events === false) return;
 		for (var i = 0; i < this._events[event].length; i++){
@@ -24,18 +22,19 @@
 		}
 	};
 
-	SensorsBox.EventEmitter.inherits = function(object) {
+	EventEmitter.inherits = function(object) {
 		var functions = ['on', 'off', 'emit'];
 		for (var i = 0; i < functions.length; i ++) {
 			if (typeof object === 'function') {
-				object.prototype[functions[i]] = SensorsBox.EventEmitter.prototype[functions[i]];
+				object.prototype[functions[i]] = EventEmitter.prototype[functions[i]];
 			}
 			else {
-				object[functions[i]] = SensorsBox.EventEmitter.prototype[functions[i]];
+				object[functions[i]] = EventEmitter.prototype[functions[i]];
 			}
 		}
 	};
 
-	root.SensorsBox = SensorsBox;
+	root.SensorsBox = root.SensorsBox || {};
+	root.SensorsBox.EventEmitter = EventEmitter;
 
 })(this);

@@ -820,23 +820,21 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 
 ;(function(root) {
 
-	var SensorsBox = root.SensorsBox || {};
+	var EventEmitter = function() {};
 
-	SensorsBox.EventEmitter = function() {};
-
-	SensorsBox.EventEmitter.prototype.on = function(event, callback) {
+	EventEmitter.prototype.on = function(event, callback) {
 		this._events = this._events || {};
 		this._events[event] = this._events[event] || [];
 		this._events[event].push(callback);
 	};
 
-	SensorsBox.EventEmitter.prototype.off = function(event, callback) {
+	EventEmitter.prototype.off = function(event, callback) {
 		this._events = this._events || {};
 		if (event in this._events === false) return;
 		this._events[event].splice(this._events[event].indexOf(callback), 1);
 	};
 
-	SensorsBox.EventEmitter.prototype.emit = function(event /* , args... */) {
+	EventEmitter.prototype.emit = function(event /* , args... */) {
 		this._events = this._events || {};
 		if (event in this._events === false) return;
 		for (var i = 0; i < this._events[event].length; i++){
@@ -844,19 +842,20 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 		}
 	};
 
-	SensorsBox.EventEmitter.inherits = function(object) {
+	EventEmitter.inherits = function(object) {
 		var functions = ['on', 'off', 'emit'];
 		for (var i = 0; i < functions.length; i ++) {
 			if (typeof object === 'function') {
-				object.prototype[functions[i]] = SensorsBox.EventEmitter.prototype[functions[i]];
+				object.prototype[functions[i]] = EventEmitter.prototype[functions[i]];
 			}
 			else {
-				object[functions[i]] = SensorsBox.EventEmitter.prototype[functions[i]];
+				object[functions[i]] = EventEmitter.prototype[functions[i]];
 			}
 		}
 	};
 
-	root.SensorsBox = SensorsBox;
+	root.SensorsBox = root.SensorsBox || {};
+	root.SensorsBox.EventEmitter = EventEmitter;
 
 })(this);
 
@@ -864,37 +863,54 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 
 	root.io.sails.autoConnect = false;
 
-	var SensorsBox = root.SensorsBox || {};
-
 	/*
 	============================
 	CONNECTION INITIALIZATION
 	============================
 	*/
 
-	SensorsBox.connection = function(opts) {
+	var connection = function(opts) {
 
 		this.verbose = opts.verbose || false;
-
-		this.watchedBoxes = [];
-		this.watchedSensors = [];
 
 		this.host = opts.host || 'http://beta.sensorsbox.com:80';
 		this.socket = root.io.connect(this.host);
 
+		this.boxes = {};
+		this.sensors = {};
+
+//		SensorsBox.WatchStore.inherits(this);
 		SensorsBox.EventEmitter.inherits(this);
 		initSocketEvents(this);
 	};
 
+	/*
+	============================
+	EVENT PROPAGATION
+	============================
+	*/
+
 	var initSocketEvents = function(connection) {
 		connection.socket.on('connect', function(){
+			if (connection.verbose) console.log('connection success');
 			connection.emit('connect');
 		});
 		connection.socket.on('measure', function (measure) {
 			if (connection.verbose) console.log(measure);
-			if (connection.watchedSensors.indexOf(measure.data.sensor) > -1) {
-				connection.emit('measure', measure);
-			}
+			connection.emit('measure', measure);
+		});
+		connection.socket.on('box', function (body) {
+			if (connection.verbose) console.log(body);
+			connection.boxes[body.data.id] = body.data;
+			body.data.sensor.forEach(function(sensor){
+				connection.sensors[sensor.id] = sensor;
+			});
+			connection.emit('box', body);
+		});
+		connection.socket.on('sensor', function (body) {
+			if (connection.verbose) console.log(body);
+			connection.sensors[body.data.id] = body.data;
+			connection.emit('sensor', body);
 		});
 	};
 
@@ -904,48 +920,30 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 	============================
 	*/
 
-	var initBox = function(connection) {
-		connection.socket.on('box', function (body) {
-			if (connection.verbose) console.log(body);
-			if (connection.watchedBoxes.indexOf(body.data.id) === -1) {
-				if (connection.verbose) console.log('Watching all the sensors attached to the box...');
-				connection.watchedBoxes.push(body.data.id);
-				body.data.sensor.forEach(function(sensor) {
-					connection.watchedSensors.push(sensor.id);
-				});
-				connection.emit('box', body);
-			}
-		});
-	};
-
-	SensorsBox.connection.prototype.watchBox = function(boxId, callback) {
+	connection.prototype.watchBox = function(boxId, callback) {
 		var route = '/api/v1/watch/box/';
 
-		if (this.watchedBoxes.indexOf(boxId) > -1) {
+		if (this.boxes[boxId]) {
 			callback(new Error('You are already watching this box!'));
 		}
 		else {
 			this.socket.get(this.host + route + boxId);
-			initBox(this);
 		}
 	};
 
-	SensorsBox.connection.prototype.unwatchBox = function(boxId, callback) {
+	connection.prototype.unwatchBox = function(boxId, callback) {
 		var _self = this;
 		var route = '/api/v1/unwatch/box/';
 
-		if (this.watchedBoxes.indexOf(boxId) === -1) {
-			callback(new Error('You are not watching this box!'));
-		}
-		else {
+		if (this.boxes[boxId]) {
 			this.socket.get(this.host + route + boxId, function(boxConfig, response) {
 				if (_self.verbose) console.log('Unwatching all the sensors attached to the box...');
-				_self.watchedBoxes.splice(_self.watchedBoxes.indexOf(boxConfig.id),1);
-				boxConfig.sensor.forEach(function(sensor) {
-					_self.watchedSensors.splice(_self.watchedSensors.indexOf(sensor.id),1);
-				});
+				delete _self.boxes[boxId];
 				callback(null, boxConfig);
 			});
+		}
+		else {
+			callback(new Error('You are not watching this box!'));
 		}
 	};
 
@@ -955,44 +953,34 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 	============================
 	*/
 
-	var initSensor = function(connection) {
-		connection.socket.on('sensor', function (body) {
-			if (connection.verbose) console.log(body);
-			if (connection.watchedSensors.indexOf(body.data.id) === -1) {
-				if (connection.verbose) console.log('Watching sensors...');
-				connection.watchedSensors.push(body.data.id);
-				connection.emit('sensor', body);
-			}
-		});
-	};
-
-	SensorsBox.connection.prototype.watchSensor = function(sensorId, callback) {
+	connection.prototype.watchSensor = function(sensorId, callback) {
 		var route = '/api/v1/watch/sensor/';
 
-		if (this.watchedSensors.indexOf(sensorId) > -1) {
+		if (this.sensors[sensorId]) {
 			callback(new Error('You are already watching this sensor!'));
 		}
 		else {
 			this.socket.get(this.host + route + sensorId);
-			initSensor(this);
 		}
 	};
 
-	SensorsBox.connection.prototype.unwatchSensor = function(sensorId, callback) {
+	connection.prototype.unwatchSensor = function(sensorId, callback) {
 		var _self = this;
 		var route = '/api/v1/unwatch/sensor/';
 
-		if (this.watchedSensors.indexOf(sensorId) === -1) {
-			callback(new Error('You are not watching this sensor!'));
-		}
-		else {
+		if (this.sensors[sensorId]) {
 			this.socket.get(this.host + route + sensorId, function(sensorConfig, response) {
 				if (_self.verbose) console.log('Sensor unwatched...');
-				_self.watchedSensors.splice(_self.watchedSensors.indexOf(sensorConfig.id),1);
+				delete _self.sensors[sensorId];
 				callback(null, sensorConfig);
 			});
 		}
+		else {
+			callback(new Error('You are not watching this sensor!'));
+		}
 	};
 
-	root.SensorsBox = SensorsBox;
+	root.SensorsBox = root.SensorsBox || {};
+	root.SensorsBox.connection = connection;
+
 })(this);
