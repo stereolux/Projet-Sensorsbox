@@ -70,11 +70,11 @@
 <pre>
 &lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-  var sbConnection = new SensorsBox.connection();
-  sbConnection.on('connect', function(){
-    sbConnection.watchBox('{{box.id}}');
+  var myConnection = new SensorsBox.connect();
+  myConnection.on('connect', function(){
+    myConnection.watchBox('{{box.id}}');
   });
-  sbConnection.on('measure', function(body){
+  myConnection.on('measure', function(body){
     console.log(body.data);
   });
 &lt;/script&gt;
