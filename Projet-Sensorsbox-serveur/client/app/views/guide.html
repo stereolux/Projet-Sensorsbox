@@ -19,7 +19,7 @@
 <pre>
 &lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-  var sbConnection = new SensorsBox.connection();
+  var myConnection = new SensorsBox.connect();
 &lt;/script&gt;
 </pre>
           This initiates a websocket connection to the server.
@@ -35,11 +35,11 @@
 <pre>
 &lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-  var sbConnection = new SensorsBox.connection();
-  sbConnection.on('connect', function(){
-    sbConnection.watchBox(YOUR_BOX_ID);
+  var myConnection = new SensorsBox.connect();
+  myConnection.on('connect', function(){
+    myConnection.watchBox(YOUR_BOX_ID);
   });
-  sbConnection.on('measure', function(body){
+  myConnection.on('measure', function(body){
     console.log(body.data);
   });
 &lt;/script&gt;
@@ -56,9 +56,9 @@
 <pre>
 &lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-  var sbConnection = new SensorsBox.connection();
-  sbConnection.on('connect', function(){
-    sbConnection.watchSensor(YOUR_SENSOR_ID);
+  var myConnection = new SensorsBox.connect();
+  myConnection.on('connect', function(){
+    myConnection.watchSensor(YOUR_SENSOR_ID);
   });
   sensorsBox.on('measure', function(body){
     console.log(body.data);
