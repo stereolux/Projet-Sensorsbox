@@ -11,11 +11,8 @@ module.exports = {
 		Box.create(req.body).exec(function(err,box){
 			if (err) { res.end(404, err); }
 			else {
-				var msg = 'New box created:\n';
-				msg += JSON.stringify(box);
-				EmailService.sendMail(msg, 'New box created', 'vkammerer@gmail.com, xavier.seignard@gmail.com', function(){
-					console.log('email sent');
-				});
+				var msg = 'New box created:\n' + JSON.stringify(box) + '\n\nThe SensorsBox Server';
+				EmailService.sendMail('New box created', msg, 'vkammerer@gmail.com, xavier.seignard@gmail.com');
 				res.json(box);
 			}
 		});

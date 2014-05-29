@@ -14,18 +14,9 @@ module.exports = {
 			}
 			else {
 				if (boxes[0] && boxes[0].sensor) {
-
 					SocketService.join(req.socket, 'box', boxes[0]);
 					SocketService.message('box', 'list', boxes[0]);
-
-					req.socket.on('disconnect', function () {
-						boxes[0].sensor.forEach(function(sensor){
-							RecordService.cancelRecordSensor(sensor);
-						});
-					});
-
 					return res.send(boxes[0]);
-
 				}
 			}
 		});

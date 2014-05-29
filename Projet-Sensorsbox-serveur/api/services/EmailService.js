@@ -7,7 +7,7 @@ var nodemailer = require('nodemailer');
  * @param {String} to - receiver of the mail
  */
 
-exports.sendMail = function(msg, subject, to, callback) {
+exports.sendMail = function(subject, msg, to, callback) {
 
 	// mail settings
 	var smtpTransport = nodemailer.createTransport('SMTP',{
@@ -26,7 +26,7 @@ exports.sendMail = function(msg, subject, to, callback) {
 	});
 
 	if(invalid) {
-		callback(new Error('one or more arguments are invalid'));
+		if (callback) callback(new Error('one or more arguments are invalid'));
 	} else {
 		var mailOptions = {
 			generateTextFromHTML: true,
@@ -38,7 +38,16 @@ exports.sendMail = function(msg, subject, to, callback) {
 
 		// send mail with defined transport object
 		smtpTransport.sendMail(mailOptions, function(err, response){
-			callback(err, response);
+			if (callback) callback(err, response);
 		});
 	}
+};
+
+
+exports.sendError = function(subject, err, callback) {
+	var subject = 'Error: ' + subject,
+		to = 'vkammerer@gmail.com, xavier.seignard@gmail.com';
+		msg = 'Measures destruction failure:\nerr:' + JSON.stringify(err) + '\n\nThe SensorsBox Server'
+
+	this.sendMail(msg, subject, to, callback);
 };
