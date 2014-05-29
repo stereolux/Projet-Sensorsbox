@@ -23,6 +23,7 @@ var getValues = function(sensor, callback){
 }
 
 var recordTimeouts = {};
+exports.recordTimeouts = recordTimeouts;
 
 exports.recordSensor = function(sensor) {
 	var batch = function() {

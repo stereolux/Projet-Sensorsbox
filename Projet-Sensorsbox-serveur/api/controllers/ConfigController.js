@@ -18,10 +18,6 @@ module.exports = {
 					SocketService.join(req.socket, 'box', boxes[0]);
 					SocketService.message('box', 'list', boxes[0]);
 
-					// initiate Record service for this box and cancel it when necessary
-					boxes[0].sensor.forEach(function(sensor){
-						RecordService.recordSensor(sensor);
-					});
 					req.socket.on('disconnect', function () {
 						boxes[0].sensor.forEach(function(sensor){
 							RecordService.cancelRecordSensor(sensor);
