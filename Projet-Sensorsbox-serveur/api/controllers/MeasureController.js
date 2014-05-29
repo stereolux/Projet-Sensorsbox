@@ -10,9 +10,13 @@ module.exports = {
 	create : function(req, res) {
 		if (!RecordService.recordTimeouts[req.body.sensor]) {
 			Sensor.find(req.body.sensor).exec(function(err, sensors) {
-				var subject = 'Measures creation - Failed to find sensor to create timeout';
-				EmailService.sendError(subject, err);
-				RecordService.recordSensor(sensors[0]);
+				if (err) {
+					var subject = 'Measures creation - Failed to find sensor to create timeout';
+					EmailService.sendError(subject, err);
+				}
+				else {
+					RecordService.recordSensor(sensors[0]);
+				}
 			});
 		}
 		Measure.create(req.body).exec(function(err,measure){
