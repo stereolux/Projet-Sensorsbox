@@ -52,6 +52,9 @@ exports.recordSensor = function(sensor) {
 				});
 				_self.recordSensor(sensor);
 			}
+			else {
+				delete recordTimeouts[sensor.id];
+			}
 		});
 	}, sensor.recordFrequency);
 };
