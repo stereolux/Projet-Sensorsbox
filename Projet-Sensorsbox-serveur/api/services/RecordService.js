@@ -40,6 +40,7 @@ exports.recordSensor = function(sensor) {
 							console.log('Record saved');
 							console.dir(record);
 							Measure.destroy({sensor:sensor.id}).exec(function(err) {
+								if (err) console.log(err);
 								console.log('Measures destroyed');
 							});
 						}
