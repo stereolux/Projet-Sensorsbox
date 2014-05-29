@@ -7,11 +7,14 @@
  *
  */
 module.exports = function(req, res, next) {
-	Box.findOne({id:req.params.boxid}, function(err, box) {
+
+	var boxid = req.params.boxid ? req.params.boxid : req.body.box;
+
+	Box.findOne({id:boxid}, function(err, box) {
 		if (err) {
 			return res.json(err);
 		}
-		else if (box.owner === req.user[0].id) {
+		else if (box && (box.owner === req.user[0].id)) {
 			return next();
 		}
 		else {

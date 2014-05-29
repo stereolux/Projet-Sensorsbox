@@ -7,6 +7,19 @@
 
 module.exports = {
 
+	create : function(req, res) {
+		Box.create(req.body).exec(function(err,box){
+			if (err) { res.end(404, err); }
+			else {
+				var msg = 'New box created:\n';
+				msg += JSON.stringify(box);
+				EmailService.sendMail(msg, 'New box created', 'vkammerer@gmail.com, xavier.seignard@gmail.com', function(){
+					console.log('email sent');
+				});
+				res.json(box);
+			}
+		});
+	},
 	update : function(req, res) {
 		Box.update(req.params.boxid, req.body).populate('sensor').exec(function(err){
 			if (err) { res.end(404, err); }

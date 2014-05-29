@@ -50,14 +50,9 @@ module.exports.policies = {
 	SensorController: {
 		'find': true,
 		'findOne': true,
-/*
-		'create': ['passportAuthenticated'],
+		'create': ['passportAuthenticated', 'isBoxOwner'],
 		'update': ['passportAuthenticated', 'isSensorOwner'],
 		'delete': ['passportAuthenticated', 'isSensorOwner']
-*/
-		'create': true,
-		'update': true,
-		'destroy': true
 	},
 
 	/* API Users */

@@ -25,6 +25,7 @@ angular.module('sensorsboxclientApp')
       });
 
       $scope.addSensor = function(sensor){
+        if (!$scope.myForm.$valid) return;
         $rootScope.spinner = 'Creating sensor';
         var thisSensor = new Sensor(sensor);
         thisSensor.$save(

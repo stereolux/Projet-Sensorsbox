@@ -68,6 +68,10 @@ module.exports.routes = {
 
 	/* Boxes */
 
+	'post /api/v1/box': {
+		controller: 'box',
+		action: 'create'
+	},
 	'put /api/v1/box/:boxid': {
 		controller: 'box',
 		action: 'update'

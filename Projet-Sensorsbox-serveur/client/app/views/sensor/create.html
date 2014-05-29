@@ -6,19 +6,19 @@
         <h3 class="panel-title">Settings</h3>
       </div>
       <div class="panel-body">
-        <form>
+        <form name="myForm">
           <div class="form-group">
             <label>Box</label>
             <div>
-              <select class="form-control" ng-model="sensor.box" placeholder="Name">
-                <option ng-repeat="box in boxs" value="{{box.id}}">{{box.name}}</option>
+              <select class="form-control" ng-model="sensor.box" placeholder="Name" required>
+                <option ng-repeat="box in boxs | filter:{owner:user.id}" value="{{box.id}}">{{box.name}}</option>
               </select>
             </div>
           </div>
         	<div class="form-group">
         		<label>Name</label>
         		<div>
-        			<input class="form-control" type="text" ng-model="sensor.name" placeholder="Name"></div>
+        			<input class="form-control" type="text" ng-model="sensor.name" placeholder="Name" required></div>
         	</div>
         	<div class="form-group">
         		<label>Description</label>
@@ -29,7 +29,7 @@
           <div class="form-group">
             <label>Pin</label>
             <div>
-              <input class="form-control" type="number" ng-model="sensor.pin" placeholder="Pin">
+              <input class="form-control" type="number" ng-model="sensor.pin" placeholder="Pin" min="3" max="20" required>
             </div>
           </div>
           <div class="form-group">
@@ -41,7 +41,8 @@
           <div class="form-group">
             <label>Measure Frequency</label>
             <div>
-              <input class="form-control" type="number" ng-model="sensor.measureFrequency" placeholder="Measure Frequency">
+              <input class="form-control" type="range" min="100" max="10000" ng-model="sensor.measureFrequency" placeholder="Measure Frequency">
+              <span></span>
             </div>
           </div>
         	<div class="form-group">
