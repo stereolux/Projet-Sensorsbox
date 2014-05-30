@@ -43,7 +43,10 @@ exports.recordSensor = function(sensor) {
 						Measure.destroy({sensor:sensor.id}).exec(function(err) {
 							if (err) {
 								var subject = 'Measures destruction failure';
-								EmailService.sendError(subject, err);
+								EmailService.sendError(subject, {
+									err: err,
+									sensorId : sensor.id
+								});
 								console.log(err);
 							}
 							console.log('Measures destroyed');
