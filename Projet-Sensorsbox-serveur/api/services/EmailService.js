@@ -49,5 +49,5 @@ exports.sendError = function(subject, err, callback) {
 		to = 'vkammerer@gmail.com, xavier.seignard@gmail.com';
 		msg = 'Measures destruction failure:\nerr:' + JSON.stringify(err) + '\n\nThe SensorsBox Server'
 
-	this.sendMail(msg, subject, to, callback);
+	this.sendMail(subject, msg, to, callback);
 };
