@@ -47,10 +47,10 @@ exports.recordSensor = function(sensor) {
 								console.log(err);
 							}
 							console.log('Measures destroyed');
+							_self.recordSensor(sensor);
 						});
 					}
 				});
-				_self.recordSensor(sensor);
 			}
 		});
 	}, sensor.recordFrequency);
