@@ -60,7 +60,7 @@
 
 	var descriptionDiv = document.createElement('div');
 
-	var sbConnection = new SensorsBox.connect({
+	var sbConnection = new SensorsBox.Connection({
 		verbose:true
 	});
 	window.sbConnection = sbConnection;
