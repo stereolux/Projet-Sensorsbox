@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-lg-6">
-    <h1><i class="fa fa-book"></i> Reference</h1>
+    <h2><i class="fa fa-book"></i> Reference</h2>
   </div>
 </div>
 <div class="row">
@@ -43,11 +43,11 @@
         <strong>Creates a websocket connection, returns a connection object</strong>
 <br/><br/>
 <pre>
-var myConnection = new SensorsBox.connect();
+var myConnection = new SensorsBox.Connection();
 </pre>
       <p>Optional parameters:</p>
 <pre>
-var myConnection = new SensorsBox.connect({
+var myConnection = new SensorsBox.Connection({
   <strong>verbose : false</strong> // log all events,
   <strong>host : 'http://sensorsbox.com' </strong>// Server url
 });

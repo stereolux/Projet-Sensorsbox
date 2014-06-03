@@ -7,8 +7,8 @@
  *
  */
 module.exports = function(req, res, next) {
-	Sensor.findOne({id:req.params.id}).populate('box').exec(function(err, sensor) {
-		if (sensor.box.owner === req.user[0].id){
+	Sensor.findOne(req.params.sensorid).populate('box').exec(function(err, sensor) {
+		if (sensor && (sensor.box.owner === req.user[0].id)) {
 			return next();
 		}
 		else {

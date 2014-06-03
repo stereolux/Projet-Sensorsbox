@@ -19,8 +19,8 @@ module.exports = {
 				}
 			});
 		}
+		SocketService.message('measure', 'created', req.body);
 		Measure.create(req.body).exec(function(err,measure){
-			SocketService.message('measure', 'created', measure);
 			res.json(measure);
 		});
 	}

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-lg-6">
-    <h1><i class="fa fa-magic"></i> Get Started</h1>
+    <h2><i class="fa fa-magic"></i> Get Started</h2>
   </div>
 </div>
 <div class="row">
@@ -19,7 +19,7 @@
 <pre>
 &lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-  var myConnection = new SensorsBox.connect();
+  var myConnection = new SensorsBox.Connection();
 &lt;/script&gt;
 </pre>
           This initiates a websocket connection to the server.
@@ -35,7 +35,7 @@
 <pre>
 &lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-  var myConnection = new SensorsBox.connect();
+  var myConnection = new SensorsBox.Connection();
   myConnection.on('connect', function(){
     myConnection.watchBox(YOUR_BOX_ID);
   });
@@ -56,7 +56,7 @@
 <pre>
 &lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-  var myConnection = new SensorsBox.connect();
+  var myConnection = new SensorsBox.Connection();
   myConnection.on('connect', function(){
     myConnection.watchSensor(YOUR_SENSOR_ID);
   });

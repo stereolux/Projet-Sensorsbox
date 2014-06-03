@@ -18,36 +18,69 @@ angular.module('sensorsboxclientApp')
       var sensorId = $routeParams.sensorId || "";
       $rootScope.navigationpath = ['home','sensor'];
 
-/*
-
-      var parseMeasure = function(measure){
-        return [
-          new Date(measure.createdAt),
-          parseInt(measure.value || measure.mean)
-        ];
-      }
-      io.socket.on('sensor', function (body) {
-        $scope.$apply(function(){
-            if ($scope.sensorMeasures[0].values.length > 29) {
-              $scope.sensorMeasures[0].values.shift();
-            }
-            $scope.sensorMeasures[0].values.push(parseMeasure(body.data));
-        })
-      });
-
+      var mySensorMeasures = {};
       $scope.sensorMeasures = [];
 
-*/
-      io.socket.get('/api/v1/watch/sensor/' + $routeParams.sensorId, function (body, sailsResponseObject) {
-        if(sailsResponseObject.statusCode === 200) {
-/*
-          $scope.sensorMeasures.push({
-              "key": body.name,
-              "values": []
-          })
-*/
-          console.log('subscribed to updates to sensor and to measures by this sensor');
+      var graphContainer = document.getElementById('graphContainer');
+      var graphContainerWidth = parseInt(window.getComputedStyle(graphContainer).width);
+      var graphContainerHeight = graphContainerWidth * 3 / 4;
+
+      $scope.graph = {
+        width : graphContainerWidth,
+        height : graphContainerHeight,
+        xAxisFormat : function(){
+          return function(d){
+            var thisDate = new Date(d);
+            var thisDateDiff = parseInt((Date.now() - Date.parse(thisDate)) / 1000);
+            return thisDateDiff + 's';
+          }
         }
+
+      };
+
+      var sensorsBox = new SensorsBox.Connection({
+        host:window.location.origin
+      });
+
+      sensorsBox.on('measure', function (body) {
+        $scope.$apply(function() {
+          if (mySensorMeasures[body.data.sensor].length > 29) {
+            mySensorMeasures[body.data.sensor].shift();
+          }
+          mySensorMeasures[body.data.sensor].push([
+            new Date(),
+            body.data.value
+          ]);
+        });
+      });
+
+      sensorsBox.on('sensor', function (body) {
+        var sensor = body.data;
+        $scope.sensorMeasures = [];
+        mySensorMeasures[sensor.id] = [];
+        $scope.sensorMeasures.push({
+            "key": sensor.name,
+            "values": mySensorMeasures[sensor.id]
+        })
+      })
+
+      if (sensorsBox.socket.socket.connected) {
+        sensorsBox.watchSensor($routeParams.sensorId, function(err, sensor) {
+          console.log('watching sensor');
+        });
+      }
+      else {
+        sensorsBox.on('connect', function(){
+          sensorsBox.watchSensor($routeParams.sensorId, function(err, sensor) {
+            console.log('watching sensor');
+          });
+        });
+      }
+
+      $scope.$on('$locationChangeStart', function(event) {
+        sensorsBox.unwatchSensor($routeParams.sensorId, function(err, sensor) {
+          console.log('Successfully unwatched sensor');
+        })
       });
 
       var querySensor = function(sensorId){

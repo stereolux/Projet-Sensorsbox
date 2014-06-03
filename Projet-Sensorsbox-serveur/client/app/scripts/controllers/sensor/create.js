@@ -19,6 +19,11 @@ angular.module('sensorsboxclientApp')
 
       $rootScope.navigationpath = ['home','sensor','create'];
 
+      $scope.sensor = {
+        recordFrequency : 10000,
+        measureFrequency : 1000
+      }
+
       Box.query(function(data){
         delete $rootScope.spinner;
         $scope.boxs = data;

@@ -10,16 +10,20 @@
     		</div>
     	</div>
     </div>
-    <h1><i class="fa fa-tag"></i> {{sensor.name}}</h1>
+    <h2><i class="fa fa-tag"></i> {{sensor.name}}</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Settings</h3>
       </div>
       <div class="panel-body">
-        <p><strong>Id: </strong>{{sensor.id}}</p>
-        <p><strong>Description: </strong>{{sensor.description}}</p>
-        <p><strong>Pin: </strong>{{sensor.pin}}</p>
-        <p><strong>Box: </strong>{{sensor.box.name}}</p>
+        <p><strong>Id:&nbsp;&nbsp;</strong>{{sensor.id}}</p>
+        <p><strong>Description:&nbsp;&nbsp;</strong>{{sensor.description}}</p>
+        <p><strong>Pin:&nbsp;&nbsp;</strong>{{sensor.pin}}</p>
+        <p><strong>Box:&nbsp;&nbsp;</strong>{{sensor.box.name}}</p>
       </div>
     </div>
     <div class="panel panel-default">
@@ -30,7 +34,7 @@
 <pre>
 &lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
 &lt;script&gt;
-  var myConnection = new SensorsBox.connect();
+  var myConnection = new SensorsBox.Connection();
   myConnection.on('connect', function(){
     myConnection.watchSensor('{{sensor.id}}');
   });
@@ -39,6 +43,27 @@
   });
 &lt;/script&gt;
 </pre>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Graph</h3>
+      </div>
+      <div class="panel-body" id="graphContainer">
+        <nvd3-line-chart
+            data="sensorMeasures"
+            objectEquality="true"
+            width="{{graph.width}}"
+            height="{{graph.height}}"
+            showXAxis="true"
+            showYAxis="true"
+            showLegend="true"
+            xAxisTickFormat="graph.xAxisFormat()"
+            yAxisTickFormat="graph.yAxisFormat()">
+            <svg></svg>
+        </nvd3-line-chart>
       </div>
     </div>
   </div>

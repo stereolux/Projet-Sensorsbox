@@ -15,8 +15,8 @@
     "angular-gestures": "0.2.2",
     "snapjs": "latest",
     "fontawesome": "4.1.0",
-    "sails.io.js": "~0.10.0-rc4",
-    "angularjs-nvd3-directives": "~0.0.7"
+    "angularjs-nvd3-directives": "~0.0.7",
+    "momentjs": "~2.6.0"
   },
   "devDependencies": {
     "angular-mocks": "1.2.15",
@@ -25,5 +25,4 @@
   "resolutions": {
     "d3": "3.4.8"
   }
-
 }
