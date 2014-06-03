@@ -86,18 +86,7 @@
         <h3 class="panel-title">Graph</h3>
       </div>
       <div class="panel-body" id="graphContainer">
-        <nvd3-line-chart
-            data="boxMeasures"
-            objectEquality="true"
-            width="{{graph.width}}"
-            height="{{graph.height}}"
-            showXAxis="true"
-            showYAxis="true"
-            showLegend="true"
-            xAxisTickFormat="graph.xAxisFormat()"
-            yAxisTickFormat="graph.yAxisFormat()">
-            <svg></svg>
-        </nvd3-line-chart>
+        <graph box="{{boxId}}"></graph>
       </div>
     </div>
   </div>
