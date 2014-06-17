@@ -67,7 +67,7 @@ var initSensor = function(sensorConfig) {
 	var sensor = new Sensor(device, parseInt(sensorConfig.pin));
 	sensorMap[sensorConfig.id] = sensor;
 	watchSensor(sensor, sensorConfig);
-}
+};
 
 var configController = new ConfigController(io, '/api/v1/config/');
 var measureController = new MeasureController(io, '/api/v1/measure');
