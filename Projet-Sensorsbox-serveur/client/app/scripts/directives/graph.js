@@ -21,7 +21,8 @@ angular.module('sensorsboxclientApp')
 
         sensorsBox.on('measure', function (body) {
           scope.$apply(function() {
-            if (measures[body.data.sensor].length > 29) {
+            console.log(measures);
+            if (measures && measures[body.data.sensor].length > 29) {
               measures[body.data.sensor].shift();
             }
             measures[body.data.sensor].push([
@@ -32,35 +33,40 @@ angular.module('sensorsboxclientApp')
         });
 
         sensorsBox.on('sensor', function (body) {
+          console.log('yay');
           scope.nvd3Measures = [];
-          measures[body.data.id] = [];
-          scope.nvd3Measures.push({
-              "key": body.data.name,
-              "values": measures[body.data.id]
-          })
+          initGraph([body.data]);
         })
 
         sensorsBox.on('box', function (body) {
+          console.log('youy');
           scope.nvd3Measures = [];
-          body.data.sensor.forEach(function(sensor) {
+          initGraph(body.data.sensor);
+        })
+
+        var initGraph = function(sensors){
+          scope.nvd3Measures = [];
+          sensors.forEach(function(sensor) {
             measures[sensor.id] = [];
             scope.nvd3Measures.push({
                 "key": sensor.name,
                 "values": measures[sensor.id]
             })
           })
-        })
+        }
 
         if (sensorsBox.socket.socket.connected) {
           console.log('boom');
-          sensorsBox[watchMethod](id, function(err, sensor) {
-            console.log('watching sensor');
+          sensorsBox[watchMethod](id, function(err, body) {
+            var watchedSensors = (graphtype === 'sensor') ? [body] : body.sensor;
+            initGraph(watchedSensors);
           });
         }
         else {
           sensorsBox.on('connect', function(){
-            sensorsBox[watchMethod](id, function(err, sensor) {
-              console.log('watching sensor');
+            sensorsBox[watchMethod](id, function(err, body) {
+              var watchedSensors = (graphtype === 'sensor') ? [body] : body.sensor;
+              initGraph(watchedSensors);
             });
           });
         }
