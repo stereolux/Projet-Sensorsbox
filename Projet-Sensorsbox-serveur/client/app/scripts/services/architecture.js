@@ -66,6 +66,20 @@ angular.module('sensorsboxclientApp')
                 }
               }
             }
+          },
+          demo : {
+            name : 'Demos',
+            url : '/#/demo',
+            children : {
+              create : {
+                name : 'Add demo',
+                url : '/#/demo/create'
+              },
+              edit : {
+                name : 'Edit',
+                url : ''
+              }
+            }
           }
         }
       }

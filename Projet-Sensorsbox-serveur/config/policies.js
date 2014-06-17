@@ -54,6 +54,13 @@ module.exports.policies = {
 		'update': ['passportAuthenticated', 'isSensorOwner'],
 		'delete': ['passportAuthenticated', 'isSensorOwner']
 	},
+	DemoController: {
+		'find': true,
+		'findOne': true,
+		'create': ['passportAuthenticated', 'addUser'],
+		'update': ['passportAuthenticated', 'isDemoOwner'],
+		'delete': ['passportAuthenticated', 'isDemoOwner']
+	},
 
 	/* API Users */
 

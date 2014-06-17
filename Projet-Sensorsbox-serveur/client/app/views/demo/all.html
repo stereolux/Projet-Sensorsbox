@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
+    <div class="articleOptions" ng-show="user">
+    	<div hm-tap="utils.locationPath('demo/create')" class="btn btn-default">
+    		<span class="glyphicon glyphicon-plus"></span>
+    		Add demo
+    	</div>
+    </div>
+    <h2><i class="fa fa-codepen"></i> All demos</h2>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Boxes</h3>
+      </div>
+      <div class="panel-body">
+        <ul class="list-group">
+          <li ng-repeat="demo in demos | orderBy:'name'" class="list-group-item clearfix">
+            <div class="articleOptions">
+              <div ng-show="(user.id === demo.owner.id)" hm-tap="utils.locationPath('demo/{{demo.id}}/edit')" class="btn btn-default">
+                <span class="glyphicon glyphicon-cog"></span>
+              </div>
+              <div ng-show="(user.id === demo.owner.id)" hm-tap="deleteDemo(demo)" class="btn btn-default" style="margin-left:5px">
+                <span class="glyphicon glyphicon-remove"></span>
+              </div>
+              <br/>
+              <br/>
+              <a href="{{demo.link}}" target="_blank" class="btn btn-block btn-primary" style="padding-left:2em;padding-right:2em;">
+                See demo
+              </a>
+            </div>
+            <p>
+              <strong>{{demo.name}}</strong><br>
+            <i>{{demo.owner.firstname}} {{demo.owner.lastname}}</i>
+            </p>
+            <p>{{demo.description}}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
