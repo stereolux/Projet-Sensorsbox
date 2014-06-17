@@ -920,13 +920,20 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 	*/
 
 	Connection.prototype.watchBox = function(boxId, callback) {
+		var _self = this;
 		var route = '/api/v1/watch/box/';
 
 		if (this.boxes[boxId]) {
 			callback(new Error('You are already watching this box!'));
 		}
 		else {
-			this.socket.get(this.host + route + boxId);
+			this.socket.get(this.host + route + boxId, function(boxConfig, response){
+				_self.boxes[boxId] = boxConfig;
+				boxConfig.sensor.forEach(function(sensor){
+					_self.sensors[sensor.id] = sensor;
+				});
+				callback(null, boxConfig);
+			});
 		}
 	};
 
@@ -938,6 +945,9 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 			this.socket.get(this.host + route + boxId, function(boxConfig, response) {
 				if (_self.verbose) console.log('Unwatching all the sensors attached to the box...');
 				delete _self.boxes[boxId];
+				boxConfig.sensor.forEach(function(sensor){
+					delete _self.sensors[sensor.id];
+				});
 				callback(null, boxConfig);
 			});
 		}
@@ -953,13 +963,17 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 	*/
 
 	Connection.prototype.watchSensor = function(sensorId, callback) {
+		var _self = this;
 		var route = '/api/v1/watch/sensor/';
 
 		if (this.sensors[sensorId]) {
 			callback(new Error('You are already watching this sensor!'));
 		}
 		else {
-			this.socket.get(this.host + route + sensorId);
+			this.socket.get(this.host + route + sensorId, function(sensorConfig, response){
+				_self.sensors[sensorId] = sensorConfig;
+				callback(null, sensorConfig);
+			});
 		}
 	};
 
