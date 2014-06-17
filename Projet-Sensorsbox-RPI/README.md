@@ -25,3 +25,9 @@ node src/app.js
 ## Run the program when the raspberry pi boots
 
 See http://www.raspberrypi.org/documentation/linux/usage/rc-local.md
+
+Just add this line in `rc.local`, before `exit 0`.
+
+```
+/usr/local/bin/node /home/pi/repos/sensorsbox-rpi/src/app.js&
+```
