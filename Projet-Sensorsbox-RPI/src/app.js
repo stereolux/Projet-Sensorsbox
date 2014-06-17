@@ -30,10 +30,7 @@ io.socket.on('sensor', function(body) {
 		measureService.unwatchSensor(body.data.id);
 	}
 	else {
-		measureService.unwatchSensor(body.data.id);
-		var sensor = new Sensor(device, parseInt(body.data.pin));
-		sensorMap[body.data.id] = sensor;
-		watchSensor(sensor, body.data);
+		initSensor(body.data);
 	}
 });
 
@@ -46,10 +43,7 @@ io.socket.on('box', function(body) {
 	}
 	else {
 		body.data.sensor.forEach(function(sensorConfig) {
-			measureService.unwatchSensor(sensorConfig.id);
-			var sensor = new Sensor(device, parseInt(sensorConfig.pin));
-			sensorMap[sensorConfig.id] = sensor;
-			watchSensor(sensor, sensorConfig);
+			initSensor(sensorConfig);
 		});
 	}
 });
@@ -68,9 +62,20 @@ var watchSensor = function (sensor, sensorConfig) {
 	});
 };
 
+var initSensor = function(sensorConfig) {
+	measureService.unwatchSensor(sensorConfig.id);
+	var sensor = new Sensor(device, parseInt(sensorConfig.pin));
+	sensorMap[sensorConfig.id] = sensor;
+	watchSensor(sensor, sensorConfig);
+}
+
 var configController = new ConfigController(io, '/api/v1/config/');
 var measureController = new MeasureController(io, '/api/v1/measure');
 
 var measureService = new MeasureService();
 
-configController.getConfig(config.boxId);
+configController.getConfig(config.boxId, function(err, body){
+	body.sensor.forEach(function(sensorConfig) {
+		initSensor(sensorConfig);
+	});
+});
