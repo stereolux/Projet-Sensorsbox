@@ -5,7 +5,7 @@
 		var $boxList = $('#boxes');
 		var connection = new SensorsBox.Connection();
 		var oscPort = new osc.UDPPort({
-			localAddress: "0.0.0.0",
+			localAddress: '0.0.0.0',
 			localPort: 0
 		});
 		oscPort.open();
