@@ -31,5 +31,8 @@ module.exports.connections = {
 		host: process.env.REDIS_HOST || 'localhost',
 		db: process.env.REDIS_DB || null,
 		password: process.env.REDIS_PASSWORD || null
+	},
+	memory : {
+		adapter: 'sails-memory'
 	}
 };

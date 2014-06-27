@@ -12,7 +12,8 @@
     "sails": "~0.10.0-rc7",
     "sails-mongo": "~0.10.0-rc4",
     "sails-redis": "git://github.com/xseignard/sails-redis",
-    "nodemailer": "~0.6.5"
+    "nodemailer": "~0.6.5",
+    "sails-memory": "~0.10.0-rc2"
   },
   "scripts": {
     "start": "node app.js",

@@ -16,6 +16,6 @@ module.exports = {
 			model: 'sensor'
 		}
 	},
-	connection: 'redis'
+	connection: 'memory'
 
 };
