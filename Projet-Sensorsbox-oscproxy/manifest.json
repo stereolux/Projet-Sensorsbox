@@ -6,7 +6,7 @@
 
 	"app": {
 		"background": {
-			"scripts": ["js/background.js"]
+			"scripts": ["src/js/background.js"]
 		}
 	},
 	"sockets": {
