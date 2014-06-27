@@ -1,0 +1,23 @@
+{
+  "name": "sensorsbox-oscproxy",
+  "version": "0.0.1",
+  "authors": [
+    "xseignard <xavier.seignard@gmail.com>",
+    "vkammerer <vkammerer@gmail.com>"
+  ],
+  "description": "OSC proxy for sensorsbox websockets messages",
+  "license": "MIT",
+  "homepage": "http://github.com/stereolux/sensorsbox-oscproxy",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "osc.js": "~1.0.1",
+    "sensorsbox-client": "http://beta.sensorsbox.com/scripts/sensorsbox-client.js"
+  }
+}

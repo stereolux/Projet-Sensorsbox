@@ -1,0 +1,18 @@
+{
+	"name": "sensorsbox-oscproxy",
+	"description": "OSC proxy for sensorsbox websockets messages",
+	"version": "0.0.1",
+	"manifest_version": 2,
+
+	"app": {
+		"background": {
+			"scripts": ["js/background.js"]
+		}
+	},
+	"sockets": {
+		"udp": {
+			"bind" : "*",
+			"send" : "*"
+		}
+	}
+}
