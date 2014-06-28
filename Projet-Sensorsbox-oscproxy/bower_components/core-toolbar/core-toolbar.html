@@ -23,8 +23,8 @@ class on the `core-toolbar`.  The will make the toolbar 3x the normal height.
     <core-toolbar class="tall">
       <core-icon-button icon="menu"></core-icon-button>
     </core-toolbar>
-    
-Apply `medium-tall` class to make the toolbar medium tall.  The will make the 
+
+Apply `medium-tall` class to make the toolbar medium tall.  The will make the
 toolbar 2x the normal height.
 
     <core-toolbar class="medium-tall">
@@ -38,7 +38,7 @@ When taller, elements can pin to either the top (default), middle or bottom.
       <div class="middle indent">Middle Title</div>
       <div class="bottom indent">Bottom Title</div>
     </core-toolbar>
-    
+
 To make an element completely fits at the bottom of the toolbar, use `fit` along
 with `bottom`.
 
@@ -53,7 +53,7 @@ with `bottom`.
 
 <link rel="import" href="../polymer/polymer.html">
 
-<polymer-element name="core-toolbar" noscript>
+<polymer-element name="core-toolbar">
 <template>
 
   <link rel="stylesheet" href="core-toolbar.css">
@@ -61,7 +61,7 @@ with `bottom`.
   <div id="bottomBar" class="toolbar-tools" center horizontal layout>
     <content select=".bottom"></content>
   </div>
-  
+
   <div id="middleBar" class="toolbar-tools" center horizontal layout>
     <content select=".middle"></content>
   </div>
