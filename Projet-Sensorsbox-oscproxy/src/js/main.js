@@ -16,7 +16,7 @@
 			console.log(measure);
 			oscPort.send({
 				address: '/' + measure.data.box + '/' + measure.data.sensor,
-				args: ['value', measure.data.value]
+				args: [measure.data.value]
 			}, '127.0.0.1', 3333);
 		});
 
