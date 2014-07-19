@@ -27,7 +27,7 @@ module.exports = {
 			else if (boxes[0]) {
 				SocketService.leave(req.socket, 'box', boxes[0]);
 				SocketService.leave(req.socket, 'watch_box', boxes[0]);
-				res.send(200);
+				res.send(boxes[0]);
 			}
 		});
 	},
@@ -52,7 +52,7 @@ module.exports = {
 			else if (sensors[0]) {
 				SocketService.leave(req.socket, 'sensor', sensors[0]);
 				SocketService.leave(req.socket, 'watch_sensor', sensors[0]);
-				res.send(200);
+				res.send(sensors[0]);
 			}
 		});
 	}
