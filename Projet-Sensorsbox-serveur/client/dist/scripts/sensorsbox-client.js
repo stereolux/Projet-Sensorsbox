@@ -875,8 +875,9 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 
 		this.verbose = opts.verbose || false;
 
-		this.host = opts.host || 'http://beta.sensorsbox.com:80';
-		this.socket = root.io.connect(this.host);
+		this.host = opts.host || 'http://beta.sensorsbox.com';
+		this.port = opts.port || 80;
+		this.socket = root.io.connect(this.host + ':' + this.port);
 
 		this.boxes = {};
 		this.sensors = {};
@@ -926,7 +927,9 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 		var route = '/api/v1/watch/box/';
 
 		if (this.boxes[boxId]) {
-			callback(new Error('You are already watching this box!'));
+			if (callback) {
+				callback(new Error('You are already watching this box!'));
+			}
 		}
 		else {
 			this.socket.get(this.host + route + boxId, function(boxConfig, response){
@@ -958,7 +961,9 @@ var io="undefined"==typeof module?{}:module.exports;(function(){(function(a,b){v
 			});
 		}
 		else {
-			callback(new Error('You are not watching this box!'));
+			if (callback) {
+				callback(new Error('You are not watching this box!'));
+			}
 		}
 	};
 
