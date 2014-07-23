@@ -1,3 +1,10 @@
 chrome.app.runtime.onLaunched.addListener(function(){
-	chrome.app.window.create('dist/index.html');
+	chrome.app.window.create('dist/index.html', {
+		bounds: {
+			top: 0,
+			left: 0,
+			width: 460,
+			height: 650
+		}
+	});
 });

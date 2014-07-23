@@ -5,7 +5,7 @@
 Polymer('sensorsbox-osc-proxy', {
 	observe : {
 		'$.settingspage.remoteServer' : 'newRemoteServer',
-		'$.settingspage.localServer' : 'newLocalServer'
+		'$.settingspage.localPort' : 'newLocalPort'
 	},
 	newRemoteServer : function(oldValue, newValue){
 		this.connection = new SensorsBox.Connection({
@@ -17,7 +17,7 @@ Polymer('sensorsbox-osc-proxy', {
 
 		this.$.boxespage.remoteServer = newValue;
 	},
-	newLocalServer : function(oldValue, newValue){
+	newLocalPort : function(oldValue, newValue){
 		var _self = this;
 		if (typeof(chrome.app.runtime) !== 'undefined') {
 			this.oscPort = new osc.UDPPort({
@@ -30,11 +30,11 @@ Polymer('sensorsbox-osc-proxy', {
 				_self.oscPort.send({
 					address: '/' + measure.data.box + '/' + measure.data.sensor,
 					args: ['value', measure.data.value]
-				}, '127.0.0.1', targetPort);
+				}, '127.0.0.1', newValue);
 			});
 		}
 
-		this.$.boxespage.localServer = newValue;
+		this.$.boxespage.localPort = newValue;
 	},
 	ready: function() {
 		var _self = this;

@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "description": "OSC proxy for sensorsbox websockets messages",
   "devDependencies": {
+    "gulp": "^3.8.6",
+    "gulp-connect": "~2.0.6",
     "gulp-vulcanize": "~0.1.1",
-    "gulp-watch": "~0.6.8",
-    "gulp-connect": "~2.0.6"
+    "gulp-watch": "~0.6.8"
   }
 }
