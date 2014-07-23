@@ -1,26 +1,26 @@
 {
-  "name": "sensorsbox-oscproxy",
-  "version": "0.0.1",
-  "authors": [
-    "xseignard <xavier.seignard@gmail.com>",
-    "vkammerer <vkammerer@gmail.com>"
-  ],
-  "description": "OSC proxy for sensorsbox websockets messages",
-  "license": "MIT",
-  "homepage": "http://github.com/stereolux/sensorsbox-oscproxy",
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "jquery": "~2.1.1",
-    "osc.js": "~1.0.2",
-    "sensorsbox-client": "http://beta.sensorsbox.com/scripts/sensorsbox-client.js",
-    "polymer": "~0.3.3",
-    "core-elements": "Polymer/core-elements#~0.3.3",
-    "paper-elements": "Polymer/paper-elements#~0.3.3"
-  }
+	"name": "sensorsbox-oscproxy",
+	"version": "0.0.1",
+	"authors": [
+		"xseignard <xavier.seignard@gmail.com>",
+		"vkammerer <vkammerer@gmail.com>"
+	],
+	"description": "OSC proxy for sensorsbox websockets messages",
+	"license": "MIT",
+	"homepage": "http://github.com/stereolux/sensorsbox-oscproxy",
+	"ignore": [
+		"**/.*",
+		"node_modules",
+		"bower_components",
+		"test",
+		"tests"
+	],
+	"dependencies": {
+		"osc.js": "~1.0.2",
+		"sensorsbox-client": "https://raw.githubusercontent.com/stereolux/sensorsbox-client/master/dist/sensorsbox-client.js",
+		"polymer": "Polymer/polymer#~0.3.4",
+		"core-elements": "Polymer/core-elements#~0.3.4",
+		"paper-elements": "Polymer/paper-elements#~0.3.4",
+		"fontawesome": "4.1.0"
+	}
 }

@@ -1,8 +1,10 @@
 {
   "name": "sensorsbox-oscproxy",
   "version": "0.0.1",
-  "description": "Client library for http://sensorsbox.com",
+  "description": "OSC proxy for sensorsbox websockets messages",
   "devDependencies": {
-    "gulp-vulcanize": "~0.1.1"
+    "gulp-vulcanize": "~0.1.1",
+    "gulp-watch": "~0.6.8",
+    "gulp-connect": "~2.0.6"
   }
 }

@@ -1,33 +1,86 @@
-<link rel="import" href="../../../bower_components/core-elements/core-elements.html">
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<!-- PAGE STRUCTURE -->
+<link rel="import" href="../../../bower_components/core-pages/core-pages.html">
+<link rel="import" href="../../../bower_components/core-header-panel/core-header-panel.html">
+<link rel="import" href="../../../bower_components/core-toolbar/core-toolbar.html">
+
+<!-- MENU -->
+<link rel="import" href="../../../bower_components/core-icon-button/core-icon-button.html">
+<link rel="import" href="../../../bower_components/core-item/core-item.html">
+
+<!-- LIBRAIRIES -->
+<script src="../../../bower_components/sensorsbox-client/index.js"></script>
+<script src="../../../bower_components/slip.js/src/slip.js"></script>
+<script src="../../../bower_components/eventEmitter/EventEmitter.js"></script>
+<script src="../../../bower_components/osc.js/src/osc.js"></script>
+<script src="../../../bower_components/osc.js/src/osc-transports.js"></script>
+<script src="../../../bower_components/osc.js/src/platforms/osc-chromeapp.js"></script>
+
+<!-- CUSTOM ELEMENTS -->
+<link rel="import" href="../sensorsbox-settings/index.html">
+<link rel="import" href="../sensorsbox-boxes/index.html">
+
+<style>
+	/*
+		http://robdodson.me/blog/2013/11/19/at-font-face-doesnt-work-in-shadow-dom
+	*/
+	@font-face {
+	font-family: 'FontAwesome';
+	src: url('../../../bower_components/fontawesome/fonts/fontawesome-webfont.eot?v=4.0.3');
+	src: url('../../../bower_components/fontawesome/fonts/fontawesome-webfont.eot?#iefix&v=4.0.3') format('embedded-opentype'), url('../../../bower_components/fontawesome/fonts/fontawesome-webfont.woff?v=4.0.3') format('woff'), url('../../../bower_components/fontawesome/fonts/fontawesome-webfont.ttf?v=4.0.3') format('truetype'), url('../../../bower_components/fontawesome/fonts/fontawesome-webfont.svg?v=4.0.3#fontawesomeregular') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	}
+</style>
+
 <polymer-element name="sensorsbox-osc-proxy">
+
 	<template>
-		<style>
-		:host {
-			display: block;
-			position: relative;
-			background-color: white;
-			padding: 20px;
-			width: 100%;
-			font-size: 1.2rem;
-			font-weight: 300;
-		}
-		.card-header {
-			margin-bottom: 10px;
-		}
-		polyfill-next-selector { content: ".card-header h2"; }
-		.card-header ::content h2 {
-			margin: 0;
-			font-size: 1.8rem;
-			font-weight: 300;
-		}
-		polyfill-next-selector { content: ".card-header img"; }
-		.card-header ::content img {
-			width: 70px;
-			border-radius: 50%;
-			margin: 10px;
-		}
+		<link href="../../../bower_components/fontawesome/css/font-awesome.css" rel="stylesheet">
+		<style type="text/css">
+			core-header-panel {
+				background: white;
+				height: 100vh;
+				width: 100vw;
+			}
+			core-toolbar {
+				background: white;
+			}
+			core-toolbar > span {
+				text-align: center;
+			}
+			core-toolbar > span > span {
+				vertical-align: top;
+				padding: 12px 4px 0;
+				display: inline-block;
+				font-weight: bold;
+				color: #333
+			}
+			#logo {
+				width: 140px;
+			}
+			.fa {
+				font-size: 1.6em;
+			}
+			.content {
+				padding: 1em 2em;
+			}
 		</style>
-		<content></content>
+		<core-header-panel>
+			<core-toolbar>
+				<core-icon-button data-pageindex="0"><i class="fa fa-cube"></i></core-icon-button>
+				<span flex><img src="logo.png" id="logo"> <span>- OSC proxy</span></span>
+				<core-icon-button data-pageindex="1"><i class="fa fa-cog"></i></core-icon-button>
+			</core-toolbar>
+			<div class="content">
+				<core-pages selected="0">
+					<sensorsbox-boxes id="boxespage"></sensorsbox-boxes>
+					<sensorsbox-settings id="settingspage"></sensorsbox-settings>
+				</core-pages>
+			</div>
+		</core-header-panel>
 	</template>
+
 	<script src="index.js"></script>
 </polymer-element>

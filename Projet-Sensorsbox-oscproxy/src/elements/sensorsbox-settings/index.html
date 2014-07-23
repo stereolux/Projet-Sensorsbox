@@ -1,0 +1,39 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/paper-button/paper-button.html">
+
+<polymer-element name="sensorsbox-settings" attributes="remoteServer localPort">
+	<template>
+		<link href="../../../bower_components/fontawesome/css/font-awesome.css" rel="stylesheet">
+		<style>
+			h1 {
+				color:#D85A4C;
+			}
+		</style>
+		<h1><i class="fa fa-cog"></i> Settings</h1>
+		<h2>Remote server</h2>
+		<paper-input label="Remote server URL" value="{{remoteServer}}"></paper-input>
+		<h2>Osc Port</h2>
+		<paper-input label="Local port number" value="{{localPort}}"></paper-input>
+	</template>
+	<script>
+		Polymer('sensorsbox-settings', {
+		created: function(){
+			this.remoteServer = this.remoteServer || 'http://beta.sensorsbox.com';
+			this.localPort = this.localPort || 3333;
+		},
+		ready: function() {
+			var _self = this;
+			var inputs = this.shadowRoot.getElementsByTagName('paper-input');
+
+			inputs[0].addEventListener('blur', function(){
+				_self.remoteServer = inputs[0].value;
+			});
+			inputs[1].addEventListener('blur', function(){
+				_self.localPort = inputs[1].value;
+			});
+		}
+    });
+	</script>
+</polymer-element>

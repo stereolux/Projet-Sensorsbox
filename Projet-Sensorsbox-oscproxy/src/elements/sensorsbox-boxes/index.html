@@ -1,0 +1,77 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../../bower_components/core-ajax/core-ajax.html">
+
+<link rel="import" href="../../../bower_components/paper-checkbox/paper-checkbox.html">
+
+<polymer-element name="sensorsbox-boxes" attributes="remoteServer localServer">
+	<template>
+		<link href="../../../bower_components/fontawesome/css/font-awesome.css" rel="stylesheet">
+		<style>
+		:host {
+			height: 100%;
+			width: 100%;
+		}
+		h1 {
+			color:#D85A4C;
+		}
+		paper-checkbox {
+			padding: 20px 20px 20px 5px;
+		}
+		paper-checkbox::shadow #ink[checked] {
+			color: #428bca;
+		}
+		paper-checkbox::shadow #checkbox.checked {
+			border-color: #428bca;
+		}
+		</style>
+		<core-ajax id="ajax" on-core-response="{{boxesLoaded}}" handleAs="json">
+		</core-ajax>
+		<h1><i class="fa fa-cube"></i> Boxes</h1>
+		<div id="boxes">
+			<template repeat="{{box in boxes}}">
+				<div horizontal layout>
+					<paper-checkbox data-value="{{box.id}}"></paper-checkbox>
+					<div vertical layout>
+						<h4>{{box.name}}</h4>
+						<div>{{box.owner.firstname}} {{box.owner.lastname}}</div>
+					</div>
+				</div>
+			</template>
+		</div>
+	</template>
+	<script>
+		Polymer('sensorsbox-boxes', {
+		created: function() {
+			this.boxes = [];
+		},
+		observe : {
+			'remoteServer' : 'newRemoteServer'
+		},
+		newRemoteServer : function(oldValue, newValue){
+			this.$.ajax.url = newValue + '/api/v1/box';
+			this.$.ajax.go();
+		},
+		boxesLoaded: function() {
+			this.boxes = this.$.ajax.response.slice(0);
+			var _self = this;
+			setTimeout(function(){
+				var checkboxes = _self.shadowRoot.getElementsByTagName('paper-checkbox');
+
+				for (var i = 0; i < checkboxes.length; i++) {
+
+					checkboxes[i].addEventListener('change', function(e) {
+						var boxid = this.dataset.value;
+						if (this.checked) {
+					        _self.fire('watchbox', {boxid: boxid});
+						}
+						else {
+					        _self.fire('unwatchbox', {boxid: boxid});
+						}
+					});
+				};
+			}, 0);
+		}
+    });
+	</script>
+</polymer-element>
