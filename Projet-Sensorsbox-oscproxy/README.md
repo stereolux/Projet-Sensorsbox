@@ -9,3 +9,5 @@ You need to run vulcanize to enable it: http://www.polymer-project.org/articles/
 npm install
 gulp
 ```
+
+check out Pure-Data and Processing examples here : 
