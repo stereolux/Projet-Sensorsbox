@@ -10,4 +10,4 @@ npm install
 gulp
 ```
 
-check out Pure-Data and Processing examples here : 
+check out Pure-Data and Processing examples here : https://github.com/stereolux/sensorbox-oscproxy-examples
