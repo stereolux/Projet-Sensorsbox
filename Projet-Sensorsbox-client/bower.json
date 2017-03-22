@@ -1,0 +1,20 @@
+{
+  "name": "sensorsbox-client",
+  "version": "0.0.1",
+  "authors": [
+    "xseignard <xavier.seignard@gmail.com>"
+  ],
+  "description": "Client library for http://sensorsbox.com",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sails.io.js": "~0.10.0-rc4"
+  }
+}
