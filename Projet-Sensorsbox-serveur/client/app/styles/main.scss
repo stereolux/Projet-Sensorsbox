@@ -1,0 +1,96 @@
+$icon-font-path: "/fonts/";
+$fa-font-path: "/fonts/";
+
+@import "fontawesome/scss/font-awesome";
+@import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap/bootstrap";
+
+
+@import "inline";
+@import "layout";
+@import "alert";
+@import "navigation";
+@import "user";
+@import "article";
+@import "header";
+@import "helpers";
+
+button .glyphicon {
+	top:2px;
+	margin:0 10px;
+}
+
+
+.gpioInput {
+	border: 1px solid #CCC;
+	padding: 10px;
+	text-align:center;
+	font-size:3em;
+	font-weight:bold;
+}
+
+.row > div > a.btn {
+	margin-bottom:15px;
+}
+
+.navbar-brand {
+  padding: 5px 15px;
+}
+.navbar-brand span {
+	position: absolute;
+	top:5px;
+	display:inline-block;
+	background:#444;
+	color:white;
+	height:40px;
+	width:40px;
+	line-height:210%;
+	border:1px solid #222;
+	border-radius:50%;
+	text-align:center;
+	text-shadow: rgba(0,0,0,0.8) 1px 1px 1px;
+}
+.navbar {
+  background: #f8f8f8;
+  border-radius: 0;
+  border-color: #FFF #FFF #e7e7e7 #FFF;
+  border-width: 0px 0px 0px 0px;
+}
+.navbar-default .navbar-nav > li > a,
+.navbar a {
+  cursor: pointer;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  background: white;
+}
+.dropdown-menu {
+  border-width: 3px 0px 0px 0px;
+  border-color: transparent;
+}
+
+h1,
+h2,
+h3 {
+  color: #D85A4C;
+  margin-top: 0;
+
+}
+
+.referenceType {
+  float: right;
+  font-style: italic;
+}
+
+.navigationdesktopContainer {
+  position: fixed;
+  background:#f8f8f8;
+  height:100%;
+  padding-top:60px;
+  border-right:1px solid #ddd;
+
+  .list-group a {
+    border-radius:0;
+  }
+}
+

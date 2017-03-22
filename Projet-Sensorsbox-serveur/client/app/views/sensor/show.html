@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
+    <div ng-show="user && (user.id === sensor.box.owner)" class="articleOptions clearfix">
+    	<div style="padding-bottom:8px;">
+    		<div hm-tap="utils.locationPath('sensor/' + sensor.id + '/edit')" class="btn btn-default">
+    			<span class="glyphicon glyphicon-cog"></span>
+    		</div>
+    		<div hm-tap="deleteRpi(sensor)" class="btn btn-default">
+    			<span class="glyphicon glyphicon-remove"></span>
+    		</div>
+    	</div>
+    </div>
+    <h2><i class="fa fa-tag"></i> {{sensor.name}}</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Settings</h3>
+      </div>
+      <div class="panel-body">
+        <p><strong>Id:&nbsp;&nbsp;</strong>{{sensor.id}}</p>
+        <p><strong>Description:&nbsp;&nbsp;</strong>{{sensor.description}}</p>
+        <p><strong>Pin:&nbsp;&nbsp;</strong>{{sensor.pin}}</p>
+        <p><strong>Box:&nbsp;&nbsp;</strong>{{sensor.box.name}}</p>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Integration</h3>
+      </div>
+      <div class="panel-body">
+<pre>
+&lt;script src="sensorsbox-client.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+  var myConnection = new SensorsBox.Connection();
+  myConnection.on('connect', function(){
+    myConnection.watchSensor('{{sensor.id}}');
+  });
+  myConnection.on('measure', function(body){
+    console.log(body.data);
+  });
+&lt;/script&gt;
+</pre>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Graph</h3>
+      </div>
+      <div class="panel-body">
+        <graph sensor="{{sensorId}}"></graph>
+        <rickshaw sensor="{{sensorId}}"></rickshaw>
+      </div>
+    </div>
+  </div>
+</div>

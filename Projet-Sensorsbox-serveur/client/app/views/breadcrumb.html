@@ -1,0 +1,6 @@
+<ol class="breadcrumb">
+  <li ng-repeat="path in breadcrumb">
+  	<a ng-show="!$last" ng-href="{{path.url}}" ng-bind="path.name"></a>
+  	<span ng-show="$last" ng-bind="path.name"></span>
+  </li>
+</ol>

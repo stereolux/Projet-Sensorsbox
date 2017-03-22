@@ -1,0 +1,32 @@
+<div class="snap-drawers">
+	<div class="snap-drawer snap-drawer-left">
+		<nav class="scrollable" role="navigation">
+			<div class="vkbrand">
+					Menu
+			</div>
+			<a hm-tap="utils.locationPath('')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/'}"><i class="fa fa-home"></i>&nbsp;&nbsp;Home</a>
+			<h5 class="centeredH dark"><span>Settings</span></h5>
+			<div style="clear:both">
+          <a hm-tap="utils.locationPath('guide')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/guide'}"><i class="fa fa-magic"></i>&nbsp;&nbsp;Get Started</a>
+          <a hm-tap="utils.locationPath('reference')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/reference'}"><i class="fa fa-book"></i>&nbsp;&nbsp;Reference</a>
+          <a hm-tap="utils.locationPath('demo')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/demo'}"><i class="fa fa-codepen"></i>&nbsp;&nbsp;Demos</a>
+					<a hm-tap="utils.locationPath('box')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/box'}"><i class="fa fa-cube"></i>&nbsp;&nbsp;Boxes</a>
+          <a hm-tap="utils.locationPath('sensor')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/sensor'}"><i class="fa fa-tag"></i>&nbsp;&nbsp;Sensors</a>
+			</div>
+		</nav>
+	</div>
+	<div class="snap-drawer snap-drawer-right">
+		<nav class="scrollable" role="navigation">
+			<div ng-show="!user">
+				<div class="vkbrand">User</div>
+				<a hm-tap="utils.locationPath('user/signin')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/user/signin'}">Sign in</a>
+				<a hm-tap="utils.locationPath('user/signup')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/user/signup'}">Sign up</a>
+			</div>
+			<div ng-show="user">
+					<div class="vkbrand">{{user.firstname}}</div>
+					<a hm-tap="utils.locationPath('user/edit')" class="list-group-item" ng-class="{active:utils.getLocationPath() == '/user/edit'}">Settings</a>
+					<a hm-tap="logout()" class="list-group-item">Sign out</a>
+			</div>
+		</nav>
+	</div>
+</div>

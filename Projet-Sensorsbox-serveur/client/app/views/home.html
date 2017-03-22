@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-lg-6">
+    <h2>Real time data from sensors</h2>
+		<p>
+      SensorsBox exposes an API to the Raspberry Pi's sensors.</p>
+      <a class="btn btn-primary btn-lg btn-block" hm-tap="utils.locationPath('guide')" >Installation guide</a>
+	</div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-lg-6">
+    <h2>Browse boxes</h2>
+    <p>Find the box you need to build your application</p>
+    <a class="btn btn-primary btn-lg btn-block" hm-tap="utils.locationPath('box')" >Browse boxes</a>
+    <div ng-show="!user">
+      <h2>Want your own box?</h2>
+      <p>Create an account on our platform</p>
+      <div class="btn-group btn-group-justified">
+        <a class="btn btn-primary btn-lg" hm-tap="utils.locationPath('user/signin')" >Sign in</a>
+        <a class="btn btn-default btn-lg" hm-tap="utils.locationPath('user/signup')" >Sign up</a>
+      </div>
+    </div>
+	</div>
+</div>

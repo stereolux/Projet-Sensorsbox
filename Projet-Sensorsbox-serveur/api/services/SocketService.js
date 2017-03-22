@@ -1,0 +1,43 @@
+exports.message = function(model, action, instance, socket) {
+
+	var data = {
+		action: action,
+		data: instance
+	};
+
+	if (socket) {
+		sails.sockets.emit(socket.id, model, data);
+	}
+
+	else {
+		var rooms = [];
+		if (model === 'box') {
+			rooms.push('box_' + instance.id);
+		}
+		else if (model === 'sensor') {
+			rooms.push('box_' + instance.box);
+			rooms.push('sensor_' + instance.id);
+		}
+		else if (model === 'measure') {
+			rooms.push('watch_box_' + instance.box);
+			rooms.push('watch_sensor_' + instance.sensor);
+		}
+
+		rooms.forEach(function(room){
+			sails.sockets.broadcast(room, model, data);
+		})
+	}
+
+};
+
+exports.join = function(socket, model, instance) {
+
+	sails.sockets.join(socket, model + '_' + instance.id);
+
+};
+
+exports.leave = function(socket, model, instance) {
+
+	sails.sockets.leave(socket, model + '_' + instance.id);
+
+};
